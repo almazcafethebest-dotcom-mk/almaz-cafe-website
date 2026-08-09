@@ -37,47 +37,47 @@
    ========================================================================== */
 
 [data-theme="dark"] {
-  --espresso: #d9c4a0;
-  --espresso-deep: #f8ecd6;
-  --charcoal: #f0e4cf;
-  --parchment: #1a130b;
-  --parchment-warm: #241a10;
-  --surface: #2a1d10;
-  --line: rgba(248, 236, 214, 0.12);
-  --cream-text: #fbf4e7;
-  --band-bg: #0f0a05;
-  --band-text: #f3e8d6;
-  --shadow: rgba(0, 0, 0, 0.45);
-  --rust: #d97a4f;
-  --rust-deep: #c76338;
-  --gold: #dba158;
-  --gold-light: #ecc07f;
-  --teal: #3f9c96;
-  --teal-deep: #2c716c;
-  --teal-light: #6fc2bc;
-  --olive: #90a06b;
+  --espresso: #d9b79a;
+  --espresso-deep: #f8e2c8;
+  --charcoal: #ecdcc6;
+  --parchment: #17130f;
+  --parchment-warm: #1f1912;
+  --surface: #241c15;
+  --line: rgba(248, 226, 200, 0.12);
+  --cream-text: #f8e9d2;
+  --band-bg: #0c0906;
+  --band-text: #f6e4cc;
+  --shadow: rgba(0, 0, 0, 0.55);
+  --rust: #f78e49;
+  --rust-deep: #d4703a;
+  --gold: #e0a44c;
+  --gold-light: #f3c47c;
+  --teal: #4a8f89;
+  --teal-deep: #366e69;
+  --teal-light: #7dbdb6;
+  --olive: #a7935e;
 }
 
 [data-theme="vibrant"] {
-  --espresso: #3a2415;
-  --espresso-deep: #1c1006;
-  --charcoal: #241505;
-  --parchment: #fff6e9;
-  --parchment-warm: #ffe9c4;
-  --surface: #ffffff;
-  --line: rgba(28, 16, 6, 0.12);
-  --cream-text: #fff8ec;
-  --band-bg: #0e3d3a;
-  --band-text: #fff8ec;
-  --shadow: rgba(200, 90, 30, 0.22);
-  --rust: #e2521f;
-  --rust-deep: #c23f11;
-  --gold: #f0a916;
-  --gold-light: #ffcc5c;
-  --teal: #0d9488;
-  --teal-deep: #0a6f66;
-  --teal-light: #3fd8c7;
-  --olive: #4d7c3a;
+  --espresso: #5a2c22;
+  --espresso-deep: #2c130c;
+  --charcoal: #341811;
+  --parchment: #f3e6cf;
+  --parchment-warm: #ecd6ae;
+  --surface: #fffaf0;
+  --line: rgba(51, 24, 16, 0.16);
+  --cream-text: #fdf3e2;
+  --band-bg: #6b2f26;
+  --band-text: #fdf3e2;
+  --shadow: rgba(107, 47, 38, 0.3);
+  --rust: #f78e49;
+  --rust-deep: #d4703a;
+  --gold: #e6a23c;
+  --gold-light: #f7c873;
+  --teal: #8a4a3d;
+  --teal-deep: #6b2f26;
+  --teal-light: #b06a52;
+  --olive: #9a5a34;
 }
 
 * { box-sizing: border-box; }
@@ -1123,3 +1123,137 @@ body { transition: background 0.25s ease, color 0.25s ease; }
   margin-left: 8px;
 }
 .name-callout p { margin: 6px 0 0; color: var(--espresso); }
+
+/* ==========================================================================
+   Real logo lockup
+   ========================================================================== */
+
+.brand-logo {
+  height: 44px;
+  width: auto;
+  border-radius: 4px;
+  display: block;
+}
+@media (max-width: 760px) {
+  .brand-logo { height: 36px; }
+}
+
+/* ==========================================================================
+   Hero — ornamental Turkish arch + pattern backdrop
+   ========================================================================== */
+
+.hero {
+  position: relative;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 15% 20%, var(--gold-light) 0, transparent 2px),
+    radial-gradient(circle at 85% 10%, var(--rust) 0, transparent 2px),
+    radial-gradient(circle at 50% 85%, var(--teal) 0, transparent 2px);
+  background-size: 90px 90px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+.hero-art .arch {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+/* Stat strip with count-up numbers */
+.stat-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+@media (max-width: 760px) {
+  .stat-strip { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+}
+.stat-item .num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--gold-light);
+  font-weight: 600;
+  line-height: 1;
+}
+.stat-item .label {
+  margin-top: 8px;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: rgba(251, 244, 231, 0.75);
+  font-weight: 600;
+}
+
+/* Storefront visit band */
+.visit-band {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+}
+@media (max-width: 860px) {
+  .visit-band { grid-template-columns: 1fr; }
+}
+.visit-photo {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 20px 50px var(--shadow);
+  border: 6px solid var(--surface);
+}
+.visit-photo img { width: 100%; display: block; }
+
+/* Menu filter tabs */
+.menu-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 28px 0 40px;
+}
+.menu-tab {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--espresso);
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.menu-tab:hover { border-color: var(--rust); }
+.menu-tab.active {
+  background: var(--rust);
+  border-color: var(--rust);
+  color: var(--cream-text);
+}
+.menu-group[hidden] { display: none; }
+
+/* Surprise-me picker */
+.surprise-box {
+  background: var(--band-bg);
+  color: var(--band-text);
+  border-radius: 10px;
+  padding: 36px;
+  text-align: center;
+}
+.surprise-box h3 { color: var(--band-text); }
+.surprise-result {
+  margin-top: 18px;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  min-height: 1.6em;
+}
+.surprise-result .tag {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--gold-light);
+  margin-bottom: 4px;
+}

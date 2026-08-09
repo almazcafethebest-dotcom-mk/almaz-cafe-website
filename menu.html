@@ -55,12 +55,7 @@
 <header class="site-header">
   <nav class="nav wrap">
     <a class="brand" href="index.html">
-      <svg class="mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M24 4 L40 18 L24 44 L8 18 Z" stroke="#1f6b6b" stroke-width="2.5" fill="#f3e8d6"/>
-        <path d="M24 4 L40 18 L8 18 Z" stroke="#1f6b6b" stroke-width="2" fill="#e0ab5f"/>
-        <path d="M16 18 L24 4 L32 18" stroke="#3a2415" stroke-width="1.5" fill="none"/>
-      </svg>
-      Almaz Cafe
+      <img class="brand-logo" src="images/almaz-logo.png" alt="Almaz Cafe" />
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -93,7 +88,15 @@
   <section style="padding-top:0;">
     <div class="wrap">
 
-      <div class="menu-group">
+      <div class="menu-tabs" role="tablist" aria-label="Filter the menu">
+        <button class="menu-tab active" data-filter="all" type="button">All</button>
+        <button class="menu-tab" data-filter="kebabs" type="button">Kebabs &amp; Grills</button>
+        <button class="menu-tab" data-filter="persian" type="button">Persian Specials</button>
+        <button class="menu-tab" data-filter="veg" type="button">Vegetarian &amp; Sides</button>
+        <button class="menu-tab" data-filter="sweets" type="button">Sweets &amp; Drinks</button>
+      </div>
+
+      <div class="menu-group" data-category="kebabs">
         <h2>Kebabs &amp; Grills</h2>
         <div class="menu-item">
           <div>
@@ -139,7 +142,7 @@
         </div>
       </div>
 
-      <div class="menu-group">
+      <div class="menu-group" data-category="persian">
         <h2>Persian Specials</h2>
         <div class="menu-item">
           <div>
@@ -164,7 +167,7 @@
         </div>
       </div>
 
-      <div class="menu-group">
+      <div class="menu-group" data-category="veg">
         <h2>Vegetarian &amp; Sides</h2>
         <div class="menu-item">
           <div>
@@ -203,7 +206,7 @@
         </div>
       </div>
 
-      <div class="menu-group">
+      <div class="menu-group" data-category="sweets">
         <h2>Sweets &amp; Drinks</h2>
         <div class="menu-item">
           <div>
@@ -230,6 +233,18 @@
 
       <p class="form-note">Vegetarian, vegan and halal options are available across the menu — ask your server, or see our <a href="support.html">Support / FAQ page</a>.</p>
 
+    </div>
+  </section>
+
+  <section class="section-tight" style="padding-top:0;">
+    <div class="wrap">
+      <div class="surprise-box">
+        <span class="eyebrow" style="color:var(--gold-light);">Can't decide?</span>
+        <h3>Let Almaz pick for you</h3>
+        <p style="color:rgba(251,244,231,0.8); max-width:46ch; margin:8px auto 0;">Tap the button and we'll suggest something off the menu.</p>
+        <div class="surprise-result" id="surprise-result" aria-live="polite"></div>
+        <button class="btn btn-primary" id="surprise-btn" type="button" style="margin-top:14px;">🎲 Surprise me</button>
+      </div>
     </div>
   </section>
 </main>
@@ -272,6 +287,7 @@
 <script src="js/chat.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/reveal.js"></script>
+<script src="js/menu-interactive.js"></script>
 
 <nav class="action-bar" aria-label="Quick actions">
   <div class="wrap">

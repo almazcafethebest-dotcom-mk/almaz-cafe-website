@@ -7,13 +7,16 @@ widget that answers common questions (hours, halal/vegan options, parking,
 delivery, etc.) instantly, with no backend required.
 
 **Also included:**
-- **Light / Dark / Vibrant theme switcher** (top-right of the nav) — choice is remembered per visitor via `localStorage`.
+- **Real logo & storefront photo** — cropped from the photo you sent of the actual signage, used in the nav and as a hero/storefront image (not a stock illustration).
+- **Light / Dark / Vibrant theme switcher** (top-right of the nav) — Vibrant now pulls directly from your real sign colours (maroon, burnt orange, cream); Dark is a moody near-black version of the same palette. Choice is remembered per visitor via `localStorage`.
+- **Animated stat counters** on the homepage (20+ years, 4.2★, 222+ reviews, 40+ seats) that count up as you scroll to them.
+- **Interactive menu filter tabs** — visitors can jump straight to Kebabs, Persian Specials, Vegetarian, or Sweets instead of scrolling the whole menu.
+- **"Surprise me" dish picker** at the bottom of the menu — a bit of fun for indecisive visitors.
 - **Live "Open now / Closed" badge** on the Home and Menu pages, computed from real Auckland time against your actual hours.
 - **SEO structured data** (`Restaurant` JSON-LD schema) on every page — address, hours, phone, price range and rating, so Google can show rich results.
 - Open Graph / Twitter card meta tags, so links shared on social/WhatsApp show a proper title and description.
 - A subtle scroll-reveal animation on cards and sections.
 - A sticky mobile "Call / Directions / Order" action bar.
-- A diamond-mark favicon.
 
 No build step, no framework — plain HTML/CSS/JS, so it deploys as-is to
 GitHub Pages or Netlify.
