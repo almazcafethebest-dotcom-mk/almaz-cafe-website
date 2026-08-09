@@ -1,10 +1,18 @@
 # Almaz Cafe website
 
-A simple, fast, 4-page static website for Almaz Cafe (Onehunga, Auckland):
-`index.html` (Home), `menu.html`, `about.html`, `contact.html`.
+A fast, 5-page static website for Almaz Cafe, 157 Onehunga Mall, Onehunga,
+Auckland (09 622 2108): `index.html` (Home), `menu.html`, `about.html`,
+`contact.html`, `support.html` (FAQ). Includes a floating "Ask Almaz" chat
+widget that answers common questions (hours, halal/vegan options, parking,
+delivery, etc.) instantly, with no backend required.
 
 No build step, no framework — plain HTML/CSS/JS, so it deploys as-is to
 GitHub Pages or Netlify.
+
+Business details (hours, address, phone, cuisine, rating) were pulled from
+Almaz Cafe's public Google/Tripadvisor/Uber Eats/DoorDash listings — double
+check anything important (especially hours, which can change) against your
+own records before publishing.
 
 ## File structure
 
@@ -14,11 +22,30 @@ almaz-cafe/
 ├── menu.html
 ├── about.html
 ├── contact.html
+├── support.html      ← FAQ / support page
 ├── css/style.css
 ├── js/script.js
-├── images/          ← put your real photos here
+├── js/chat.js         ← the "Ask Almaz" chat widget logic
+├── images/            ← put your real photos here
 └── README.md
 ```
+
+## About the "Ask Almaz" chat widget
+
+This is a lightweight, **rule-based** FAQ bot — it matches keywords in
+whatever's typed (like "hours", "halal", "parking", "deliver") against a
+fixed list of facts about the cafe, all defined at the top of `js/chat.js`.
+It runs entirely in the visitor's browser: no external AI API, no API key,
+nothing to pay for or configure. Update the `FACTS` object in that file any
+time your hours, menu highlights, or policies change.
+
+If you'd rather it be backed by a real AI model (so it can handle
+open-ended questions, not just the ones it's been given canned answers
+for), that needs a small server-side piece — e.g. a Netlify Function that
+calls the Anthropic API with your own API key. An API key should **never**
+be placed directly in `chat.js` or any other front-end file, since anyone
+viewing the page source could read and misuse it. Ask me if you'd like
+that upgraded version built.
 
 ## 1. Put this on GitHub
 
@@ -68,10 +95,18 @@ JS just shows a placeholder message.)
 
 ## 3. Things to personalise before launch
 
-- **Photos**: replace the dashed-border placeholder blocks in
-  `index.html` and `about.html` with `<img>` tags pointing at real
-  photos dropped into the `images/` folder.
-- **Menu & prices**: edit the items directly in `menu.html`.
+- **Photos**: I've used simple placeholder graphics rather than pulling
+  photos from Google/Tripadvisor reviews — those photos were taken and
+  uploaded by other people, so reusing them without permission isn't
+  something I can do. The easiest legitimate source is your own Google
+  Business Profile (Google Business Profile → Photos → download) or
+  photos you take yourself — drop them into `images/` and swap the
+  dashed-border placeholder blocks in `index.html` and `about.html` for
+  `<img>` tags.
+- **Menu & prices**: the dish names are real (pulled from Uber Eats/
+  DoorDash listings), but exact prices are estimates within the
+  $10–20/person range reported for the cafe — edit them directly in
+  `menu.html` to match your actual menu board.
 - **Address, phone, email, hours**: update in `contact.html` (and the
   footer, which is repeated on every page) — also update the map
   `<iframe>` in `contact.html` with your exact address once you have it.

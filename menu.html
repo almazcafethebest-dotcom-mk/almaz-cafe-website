@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Menu — Almaz Cafe</title>
-<meta name="description" content="Full menu for Almaz Cafe, Onehunga — coffee, brunch, and light bites." />
+<title>Menu — Almaz Cafe, Onehunga</title>
+<meta name="description" content="Kebabs, Persian specials, vegetarian plates and sweets at Almaz Cafe, Onehunga. Halal, vegetarian &amp; vegan options available." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,12 +12,14 @@
 </head>
 <body>
 
+<div class="tile-rule" aria-hidden="true"></div>
+
 <header class="site-header">
   <nav class="nav wrap">
     <a class="brand" href="index.html">
       <svg class="mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-        <path d="M24 4 L40 18 L24 44 L8 18 Z" stroke="#b5502d" stroke-width="2.5" fill="#f3e8d6"/>
-        <path d="M24 4 L40 18 L8 18 Z" stroke="#b5502d" stroke-width="2" fill="#e0ab5f"/>
+        <path d="M24 4 L40 18 L24 44 L8 18 Z" stroke="#1f6b6b" stroke-width="2.5" fill="#f3e8d6"/>
+        <path d="M24 4 L40 18 L8 18 Z" stroke="#1f6b6b" stroke-width="2" fill="#e0ab5f"/>
         <path d="M16 18 L24 4 L32 18" stroke="#3a2415" stroke-width="1.5" fill="none"/>
       </svg>
       Almaz Cafe
@@ -30,6 +32,7 @@
       <a href="menu.html" aria-current="page">Menu</a>
       <a href="about.html">About</a>
       <a href="contact.html">Contact &amp; Location</a>
+      <a href="support.html">Support / FAQ</a>
     </div>
   </nav>
 </header>
@@ -37,9 +40,13 @@
 <main>
   <section class="section-tight">
     <div class="wrap">
-      <span class="eyebrow">What we serve</span>
+      <span class="eyebrow">Turkish · Middle Eastern · Persian</span>
       <h1>The menu</h1>
-      <p class="lede">Prices are a starting point — replace with your real menu whenever it's ready. Everything below is easy to edit in <code>menu.html</code>.</p>
+      <p class="lede">Everything's made fresh daily. Typical spend is around $10–20 per person. Prices below are a starting point — swap in your exact prices whenever you like, they're easy to edit in <code>menu.html</code>.</p>
+      <div class="order-links">
+        <a href="https://www.ubereats.com/nz/store/almaz-cafe/1CzXzYeQVOqqjAGNo8NTgg" target="_blank" rel="noopener">Order on Uber Eats →</a>
+        <a href="https://www.doordash.com/en-NZ/store/almaz-cafe-auckland-41214841/" target="_blank" rel="noopener">Order on DoorDash →</a>
+      </div>
     </div>
   </section>
 
@@ -47,79 +54,141 @@
     <div class="wrap">
 
       <div class="menu-group">
-        <h2>Coffee</h2>
+        <h2>Kebabs &amp; Grills</h2>
         <div class="menu-item">
           <div>
-            <div class="menu-item-name">Flat White</div>
-            <div class="menu-item-desc">Our house blend, silky micro-foam.</div>
+            <div class="menu-item-name">Lamb Kebab</div>
+            <div class="menu-item-desc">Marinated lamb, served with rice, salad and sauces.</div>
           </div>
-          <div class="menu-item-price">$5.00</div>
+          <div class="menu-item-price">$18</div>
         </div>
         <div class="menu-item">
           <div>
-            <div class="menu-item-name">Long Black</div>
-            <div class="menu-item-desc">Double shot, hot water, simple.</div>
+            <div class="menu-item-name">Chicken Kebab</div>
+            <div class="menu-item-desc">Marinated boneless chicken, served with rice, salad and sauces.</div>
           </div>
-          <div class="menu-item-price">$4.80</div>
+          <div class="menu-item-price">$17</div>
         </div>
         <div class="menu-item">
           <div>
-            <div class="menu-item-name">Cappuccino</div>
-            <div class="menu-item-desc">Dusted with chocolate.</div>
+            <div class="menu-item-name">Mixed Kebab</div>
+            <div class="menu-item-desc">Combination of marinated lamb and chicken, served with rice.</div>
           </div>
-          <div class="menu-item-price">$5.00</div>
+          <div class="menu-item-price">$19</div>
         </div>
         <div class="menu-item">
           <div>
-            <div class="menu-item-name">Filter of the Week</div>
-            <div class="menu-item-desc">Ask your barista what's pouring.</div>
+            <div class="menu-item-name">Lamb Souvlaki</div>
+            <div class="menu-item-desc">Marinated lamb shoulder steak wrapped in pita, sauces and salad.</div>
           </div>
-          <div class="menu-item-price">$5.50</div>
+          <div class="menu-item-price">$16</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Chicken &amp; Chips</div>
+            <div class="menu-item-desc">A regular favourite — chicken served with chips.</div>
+          </div>
+          <div class="menu-item-price">$15</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Almaz Platter</div>
+            <div class="menu-item-desc">Lamb, salads, sauces, falafel, hummus and cheese — built to share.</div>
+          </div>
+          <div class="menu-item-price">$28</div>
         </div>
       </div>
 
       <div class="menu-group">
-        <h2>Brunch</h2>
+        <h2>Persian Specials</h2>
         <div class="menu-item">
           <div>
-            <div class="menu-item-name">Big Breakfast</div>
-            <div class="menu-item-desc">Eggs, bacon, tomato, sourdough.</div>
-          </div>
-          <div class="menu-item-price">$22</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Shakshuka</div>
-            <div class="menu-item-desc">Baked eggs, spiced tomato, feta, flatbread.</div>
+            <div class="menu-item-name">Lamb Pasendeh</div>
+            <div class="menu-item-desc">Slow-cooked Persian lamb — a genuine customer favourite.</div>
           </div>
           <div class="menu-item-price">$21</div>
         </div>
         <div class="menu-item">
           <div>
-            <div class="menu-item-name">Avocado on Toast</div>
-            <div class="menu-item-desc">Sourdough, lemon, chilli flakes.</div>
+            <div class="menu-item-name">Moussaka</div>
+            <div class="menu-item-desc">Layered eggplant and spiced meat bake.</div>
+          </div>
+          <div class="menu-item-price">$19</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Chicken &amp; Rice</div>
+            <div class="menu-item-desc">Grilled chicken skewers over rice.</div>
           </div>
           <div class="menu-item-price">$18</div>
         </div>
       </div>
 
       <div class="menu-group">
-        <h2>Sweet</h2>
+        <h2>Vegetarian &amp; Sides</h2>
         <div class="menu-item">
           <div>
-            <div class="menu-item-name">Banana Bread</div>
-            <div class="menu-item-desc">Toasted, with butter.</div>
+            <div class="menu-item-name">Vegetarian Samosa</div>
+            <div class="menu-item-desc">Middle Eastern-style samosa, made in-house.</div>
+          </div>
+          <div class="menu-item-price">$8</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Spanakopita</div>
+            <div class="menu-item-desc">Spinach and feta in crisp filo pastry.</div>
+          </div>
+          <div class="menu-item-price">$8</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Hummus &amp; Pita</div>
+            <div class="menu-item-desc">House-made hummus with warm pita.</div>
+          </div>
+          <div class="menu-item-price">$9</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Falafel</div>
+            <div class="menu-item-desc">Crisp-fried, served with sauce.</div>
+          </div>
+          <div class="menu-item-price">$9</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Wedges / Chips</div>
+            <div class="menu-item-desc">A side regulars keep coming back for.</div>
           </div>
           <div class="menu-item-price">$7</div>
         </div>
+      </div>
+
+      <div class="menu-group">
+        <h2>Sweets &amp; Drinks</h2>
         <div class="menu-item">
           <div>
-            <div class="menu-item-name">Almond Croissant</div>
-            <div class="menu-item-desc">Baked daily.</div>
+            <div class="menu-item-name">Baklava</div>
+            <div class="menu-item-desc">Layered filo, nuts and syrup.</div>
           </div>
-          <div class="menu-item-price">$6.50</div>
+          <div class="menu-item-price">$6</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Turkish Delight</div>
+            <div class="menu-item-desc">A sweet way to finish the meal.</div>
+          </div>
+          <div class="menu-item-price">$5</div>
+        </div>
+        <div class="menu-item">
+          <div>
+            <div class="menu-item-name">Turkish Coffee</div>
+            <div class="menu-item-desc">Slow-brewed, served the traditional way.</div>
+          </div>
+          <div class="menu-item-price">$5</div>
         </div>
       </div>
+
+      <p class="form-note">Vegetarian, vegan and halal options are available across the menu — ask your server, or see our <a href="support.html">Support / FAQ page</a>.</p>
 
     </div>
   </section>
@@ -130,7 +199,7 @@
     <div class="footer-grid">
       <div>
         <h4>Almaz Cafe</h4>
-        <p>Onehunga Mall, Onehunga, Auckland. Coffee, brunch, and a warm room to sit in.</p>
+        <p>157 Onehunga Mall, Onehunga, Auckland 1061. Turkish, Middle Eastern &amp; Persian kitchen, open daily.</p>
       </div>
       <div>
         <h4>Explore</h4>
@@ -138,24 +207,28 @@
           <a href="menu.html">Menu</a>
           <a href="about.html">About</a>
           <a href="contact.html">Contact &amp; Location</a>
+          <a href="support.html">Support / FAQ</a>
         </div>
       </div>
       <div>
         <h4>Visit</h4>
         <div class="footer-links">
-          <span>Mon–Sun, 7am–3pm</span>
-          <a href="tel:+64000000000">Call the cafe</a>
+          <span>Daily, 11am–9pm</span>
+          <a href="tel:+6496222108">(09) 622 2108</a>
           <a href="contact.html">Get directions</a>
         </div>
       </div>
     </div>
     <div class="footer-bottom">
       <span>&copy; <span id="year"></span> Almaz Cafe, Onehunga</span>
-      <span>Built with care, one cup at a time.</span>
+      <span>Family-run since — add your founding year here.</span>
     </div>
   </div>
 </footer>
 
+<div id="almaz-chat-root"></div>
+
 <script src="js/script.js"></script>
+<script src="js/chat.js"></script>
 </body>
 </html>
