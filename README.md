@@ -6,6 +6,15 @@ Auckland (09 622 2108): `index.html` (Home), `menu.html`, `about.html`,
 widget that answers common questions (hours, halal/vegan options, parking,
 delivery, etc.) instantly, with no backend required.
 
+**Also included:**
+- **Light / Dark / Vibrant theme switcher** (top-right of the nav) — choice is remembered per visitor via `localStorage`.
+- **Live "Open now / Closed" badge** on the Home and Menu pages, computed from real Auckland time against your actual hours.
+- **SEO structured data** (`Restaurant` JSON-LD schema) on every page — address, hours, phone, price range and rating, so Google can show rich results.
+- Open Graph / Twitter card meta tags, so links shared on social/WhatsApp show a proper title and description.
+- A subtle scroll-reveal animation on cards and sections.
+- A sticky mobile "Call / Directions / Order" action bar.
+- A diamond-mark favicon.
+
 No build step, no framework — plain HTML/CSS/JS, so it deploys as-is to
 GitHub Pages or Netlify.
 
@@ -95,14 +104,17 @@ JS just shows a placeholder message.)
 
 ## 3. Things to personalise before launch
 
-- **Photos**: I've used simple placeholder graphics rather than pulling
-  photos from Google/Tripadvisor reviews — those photos were taken and
-  uploaded by other people, so reusing them without permission isn't
-  something I can do. The easiest legitimate source is your own Google
-  Business Profile (Google Business Profile → Photos → download) or
-  photos you take yourself — drop them into `images/` and swap the
-  dashed-border placeholder blocks in `index.html` and `about.html` for
-  `<img>` tags.
+- **Photos & video**: I've used custom illustrated placeholders (in
+  brand colours) rather than pulling photos from Google/Tripadvisor
+  review pages — those were taken and uploaded by other people, so
+  reusing them without permission isn't something I can do, even for
+  your own business's site. The easiest legitimate source is your own
+  Google Business Profile (Google Business Profile → Photos → download)
+  or photos/video you take yourself. Swap the `.gallery-item` and
+  `.dish-card` art blocks in `index.html` / `about.html` for real
+  `<img>` tags, and swap the "Take a look inside" video block on the
+  homepage for a real embed (e.g. an Instagram Reel or YouTube embed
+  code).
 - **Menu & prices**: the dish names are real (pulled from Uber Eats/
   DoorDash listings), but exact prices are estimates within the
   $10–20/person range reported for the cafe — edit them directly in

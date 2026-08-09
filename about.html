@@ -2,12 +2,50 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<script>try{document.documentElement.setAttribute("data-theme", localStorage.getItem("almaz-theme")||"light");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>About — Almaz Cafe, Onehunga</title>
 <meta name="description" content="The story behind Almaz Cafe — a family-run Turkish, Middle Eastern and Persian kitchen on Onehunga Mall, Auckland." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+<meta name="theme-color" content="#241407" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="About — Almaz Cafe, Onehunga" />
+<meta property="og:description" content="The story behind Almaz Cafe - a family-run Turkish, Middle Eastern and Persian kitchen on Onehunga Mall, Auckland." />
+<meta property="og:locale" content="en_NZ" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="About — Almaz Cafe, Onehunga" />
+<meta name="twitter:description" content="The story behind Almaz Cafe - a family-run Turkish, Middle Eastern and Persian kitchen on Onehunga Mall, Auckland." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Almaz Cafe",
+  "servesCuisine": ["Turkish", "Middle Eastern", "Persian", "Mediterranean"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "157 Onehunga Mall",
+    "addressLocality": "Onehunga, Auckland",
+    "postalCode": "1061",
+    "addressCountry": "NZ"
+  },
+  "telephone": "+64-9-622-2108",
+  "priceRange": "$10-$20",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "11:00",
+    "closes": "21:00"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.2",
+    "reviewCount": "222"
+  }
+}
+</script>
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -34,6 +72,7 @@
       <a href="contact.html">Contact &amp; Location</a>
       <a href="support.html">Support / FAQ</a>
     </div>
+    <div id="theme-switch-root"></div>
   </nav>
 </header>
 
@@ -43,21 +82,65 @@
       <span class="eyebrow">Our story</span>
       <h1>Named for a diamond,<br />run like family.</h1>
       <p class="lede">Almaz Cafe has been a fixture on Onehunga Mall for over twenty years — a family-run kitchen where the couple behind the counter still make almost everything fresh, every single day.</p>
+
+      <div class="name-callout" style="max-width:620px; margin-top:28px;">
+        <svg class="glyph" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 4 L40 18 L24 44 L8 18 Z" fill="currentColor" opacity="0.15" stroke="currentColor" stroke-width="2"/>
+          <path d="M24 4 L40 18 L8 18 Z" fill="currentColor" opacity="0.3"/>
+        </svg>
+        <div>
+          <span class="word">Almaz</span><span class="phon">/ɑːlˈmɑːz/ — noun</span>
+          <p>Diamond. Chosen as the cafe's name to set a standard: every plate should be something worth coming back for.</p>
+        </div>
+      </div>
     </div>
   </section>
 
   <section style="padding-top:0;">
     <div class="wrap">
       <div class="contact-grid">
-        <div class="photo-placeholder" style="min-height:340px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M21 16l-5-5-4 4-3-3-6 6"/></svg>
-          <span>Photo of the team or the space<br />— swap in a real one when ready</span>
+        <div class="gallery-item" style="min-height:340px; border-radius:6px;">
+          <svg class="art" viewBox="0 0 400 340" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <rect width="400" height="340" fill="#93401f"/>
+            <rect y="230" width="400" height="110" fill="#3a2415"/>
+            <circle cx="90" cy="120" r="70" fill="#c98a3b" opacity="0.55"/>
+            <circle cx="310" cy="90" r="50" fill="#1f6b6b" opacity="0.55"/>
+            <rect x="160" y="150" width="90" height="120" rx="8" fill="#e0ab5f" opacity="0.65"/>
+          </svg>
+          <span class="cap">Inside Almaz Cafe</span>
         </div>
         <div>
           <h2>Why "Almaz"</h2>
-          <p>Almaz means diamond — a name chosen to reflect the standard behind every plate. Regulars often mention the same thing: the couple who run the cafe are warm, attentive, and proud of food they make themselves rather than buy in.</p>
+          <p>Regulars often mention the same thing: the couple who run the cafe are warm, attentive, and proud of food they make themselves rather than buy in.</p>
           <h2>A local institution</h2>
           <p>Long before "cozy neighbourhood cafe" was a trend, Almaz was already the go-to on Onehunga Mall — one family has kept coming back for around twenty years, and it's a regular Sunday-night stop for many more.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">A closer look</span>
+        <h2>Around the cafe</h2>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <svg class="art" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><rect width="100" height="100" fill="#b5502d"/><circle cx="50" cy="45" r="26" fill="#c98a3b"/></svg>
+          <span class="cap">Kebab platter</span>
+        </div>
+        <div class="gallery-item">
+          <svg class="art" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><rect width="100" height="100" fill="#1f6b6b"/><rect x="30" y="30" width="40" height="45" rx="4" fill="#e0ab5f"/></svg>
+          <span class="cap">Turkish coffee</span>
+        </div>
+        <div class="gallery-item">
+          <svg class="art" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><rect width="100" height="100" fill="#c98a3b"/><path d="M20 30h60v40H20z" fill="#93401f" opacity="0.7"/></svg>
+          <span class="cap">Fresh baklava</span>
+        </div>
+        <div class="gallery-item">
+          <svg class="art" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid slice"><rect width="100" height="100" fill="#93401f"/><circle cx="50" cy="50" r="34" fill="#1f6b6b" opacity="0.6"/></svg>
+          <span class="cap">The dining room</span>
         </div>
       </div>
     </div>
@@ -114,7 +197,7 @@
     </div>
     <div class="footer-bottom">
       <span>&copy; <span id="year"></span> Almaz Cafe, Onehunga</span>
-      <span>Family-run since — add your founding year here.</span>
+      <span>Family-run, Turkish &amp; Middle Eastern kitchen — proudly local for over 20 years.</span>
     </div>
   </div>
 </footer>
@@ -123,5 +206,24 @@
 
 <script src="js/script.js"></script>
 <script src="js/chat.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/reveal.js"></script>
+
+<nav class="action-bar" aria-label="Quick actions">
+  <div class="wrap">
+    <a href="tel:+6496222108">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92Z"/></svg>
+      Call
+    </a>
+    <a href="contact.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Directions
+    </a>
+    <a href="menu.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15Z"/></svg>
+      Order
+    </a>
+  </div>
+</nav>
 </body>
 </html>
