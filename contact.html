@@ -50,7 +50,19 @@
 </head>
 <body>
 
-<div class="tile-rule" aria-hidden="true"></div>
+<div class="tile-border" aria-hidden="true">
+  <svg viewBox="0 0 240 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="turkishTile" width="24" height="24" patternUnits="userSpaceOnUse">
+        <rect width="24" height="24" fill="var(--parchment-warm)"/>
+        <path d="M12 2 L17 7 L22 12 L17 17 L12 22 L7 17 L2 12 L7 7 Z" fill="var(--teal)"/>
+        <path d="M12 6 L18 12 L12 18 L6 12 Z" fill="var(--parchment-warm)"/>
+        <circle cx="12" cy="12" r="2.6" fill="var(--gold)"/>
+      </pattern>
+    </defs>
+    <rect width="240" height="24" fill="url(#turkishTile)"/>
+  </svg>
+</div>
 
 <header class="site-header">
   <nav class="nav wrap">
@@ -153,9 +165,19 @@
           <label for="message">Message</label>
           <textarea id="message" name="message" rows="5" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="justify-self:start;">Send message</button>
+        <button type="submit" class="btn btn-primary" id="form-submit" style="justify-self:start;">Send message</button>
         <p id="form-status" class="form-note" role="status"></p>
       </form>
+
+      <div id="form-success" class="form-success" hidden>
+        <svg class="check" viewBox="0 0 52 52" aria-hidden="true">
+          <circle class="check-circle" cx="26" cy="26" r="24" fill="none"/>
+          <path class="check-mark" fill="none" d="M14 27l7 7 17-17"/>
+        </svg>
+        <h3>Message sent</h3>
+        <p>Thanks — we'll get back to you soon. Need an answer right now? Call <a href="tel:+6496222108">(09) 622 2108</a>.</p>
+        <button type="button" class="btn btn-ghost" id="form-reset" style="border-color:var(--gold-light); color:var(--cream-text);">Send another message</button>
+      </div>
     </div>
   </section>
 </main>

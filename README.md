@@ -8,10 +8,15 @@ delivery, etc.) instantly, with no backend required.
 
 **Also included:**
 - **Real logo & storefront photo** — cropped from the photo you sent of the actual signage, used in the nav and as a hero/storefront image (not a stock illustration).
-- **Light / Dark / Vibrant theme switcher** (top-right of the nav) — Vibrant now pulls directly from your real sign colours (maroon, burnt orange, cream); Dark is a moody near-black version of the same palette. Choice is remembered per visitor via `localStorage`.
+- **Light / Dark / Vibrant theme switcher** (top-right of the nav) — the three modes now use genuinely distinct palettes: Light is soft and elegant, Vibrant is bold and saturated straight off your real sign (orange/maroon/gold, with a gradient banner-chip treatment on the homepage that echoes the shop sign), Dark is a moody near-black version of the same warm colours. Choice is remembered per visitor via `localStorage`.
+- **Turkish tile-pattern border band** at the top of every page — a proper repeating star-and-cross motif in the theme colours, replacing the plain stripe from before.
+- **Ottoman arch motif** watermarked behind the homepage headline.
 - **Animated stat counters** on the homepage (20+ years, 4.2★, 222+ reviews, 40+ seats) that count up as you scroll to them.
+- **"Today's Special" banner** on the homepage — automatically rotates through a different dish each day of the week.
+- **Testimonial carousel** with auto-advance, arrows and dots, instead of a static grid.
 - **Interactive menu filter tabs** — visitors can jump straight to Kebabs, Persian Specials, Vegetarian, or Sweets instead of scrolling the whole menu.
-- **"Surprise me" dish picker** at the bottom of the menu — a bit of fun for indecisive visitors.
+- **"Surprise me" dish picker** at the bottom of the menu, complete with a little confetti burst.
+- **Click-to-enlarge photo lightbox** on the About page gallery.
 - **Live "Open now / Closed" badge** on the Home and Menu pages, computed from real Auckland time against your actual hours.
 - **SEO structured data** (`Restaurant` JSON-LD schema) on every page — address, hours, phone, price range and rating, so Google can show rich results.
 - Open Graph / Twitter card meta tags, so links shared on social/WhatsApp show a proper title and description.
@@ -100,10 +105,20 @@ that upgraded version built.
 6. Every time you push to `main` on GitHub, Netlify redeploys automatically.
 
 The contact form in `contact.html` already has `data-netlify="true"` on
-it, so once it's live on Netlify, Netlify will automatically collect
-submissions under **Forms** in your Netlify dashboard — no extra setup
-needed. (On GitHub Pages alone, the form has no backend to send to; the
-JS just shows a placeholder message.)
+it, so once it's live on Netlify, every submission is automatically
+collected under **Forms** in your Netlify dashboard — no extra setup
+needed. To also get them emailed to you: **Site settings → Forms →
+Form notifications → Add notification → Email notification**, then
+enter your email address. From then on, every message a customer
+sends through the site lands in your inbox.
+
+⚠️ **Important**: on GitHub Pages alone (with no Netlify), the form has
+nowhere to send to, since GitHub Pages can't run a backend. The page's
+JS will still *look* like it worked (it shows the "Message sent"
+success screen), because it can't actually detect whether a real
+backend received it — but nothing is stored anywhere unless the site is
+deployed on Netlify. Don't rely on the contact form for real enquiries
+until it's live on Netlify.
 
 ## 3. Things to personalise before launch
 

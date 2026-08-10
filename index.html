@@ -50,7 +50,19 @@
 </head>
 <body>
 
-<div class="tile-rule" aria-hidden="true"></div>
+<div class="tile-border" aria-hidden="true">
+  <svg viewBox="0 0 240 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <pattern id="turkishTile" width="24" height="24" patternUnits="userSpaceOnUse">
+        <rect width="24" height="24" fill="var(--parchment-warm)"/>
+        <path d="M12 2 L17 7 L22 12 L17 17 L12 22 L7 17 L2 12 L7 7 Z" fill="var(--teal)"/>
+        <path d="M12 6 L18 12 L12 18 L6 12 Z" fill="var(--parchment-warm)"/>
+        <circle cx="12" cy="12" r="2.6" fill="var(--gold)"/>
+      </pattern>
+    </defs>
+    <rect width="240" height="24" fill="url(#turkishTile)"/>
+  </svg>
+</div>
 
 <header class="site-header">
   <nav class="nav wrap">
@@ -76,6 +88,11 @@
   <section class="hero">
     <div class="wrap">
       <div class="hero-copy">
+        <svg class="arch-motif" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M60 148 V70 A38 38 0 0 1 98 32 V4" fill="none" stroke="var(--gold)" stroke-width="2"/>
+          <path d="M60 148 V70 A38 38 0 0 0 22 32 V4" fill="none" stroke="var(--gold)" stroke-width="2"/>
+          <circle cx="60" cy="32" r="4" fill="var(--rust)"/>
+        </svg>
         <span class="eyebrow">Onehunga Mall, Auckland · Est. local favourite for 20+ years</span>
         <h1>Turkish, Middle&nbsp;Eastern &amp;<br /><span style="color:var(--rust);">Persian</span> — made fresh,<br />served with pride.</h1>
 
@@ -181,6 +198,18 @@
     </div>
   </section>
 
+  <section class="section-tight" style="padding-top:0;">
+    <div class="wrap">
+      <div class="special-banner reveal">
+        <span class="badge">Today's special</span>
+        <div id="special-text">
+          <strong>Chef's pick</strong>
+          <p>Ask your server what's featured today.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="band-dark">
     <div class="wrap">
       <div class="section-head">
@@ -255,19 +284,28 @@
         <h2>What regulars say</h2>
         <p style="color:var(--espresso); opacity:0.8;">Paraphrased from Google &amp; Tripadvisor reviews — read the full reviews on Google.</p>
       </div>
-      <div class="testimonial-grid">
-        <div class="testimonial-card">
-          <p>"One family has been ordering here for around 20 years — it's their standing Sunday-night favourite."</p>
-          <div class="who">Long-time regular, Google review</div>
+      <div class="carousel">
+        <button class="carousel-arrow prev" type="button" aria-label="Previous review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <div class="carousel-track">
+          <div class="carousel-slide active">
+            <blockquote>"One family has been ordering here for around 20 years — it's their standing Sunday-night favourite."</blockquote>
+            <div class="who">Long-time regular, Google review</div>
+          </div>
+          <div class="carousel-slide">
+            <blockquote>"The couple who run it make almost everything fresh every day, and it shows in the food."</blockquote>
+            <div class="who">Visitor, Tripadvisor review</div>
+          </div>
+          <div class="carousel-slide">
+            <blockquote>"Big front windows that open onto the street make it a lovely place to sit, especially in summer."</blockquote>
+            <div class="who">Local diner, Google review</div>
+          </div>
         </div>
-        <div class="testimonial-card">
-          <p>"The couple who run it make almost everything fresh every day, and it shows in the food."</p>
-          <div class="who">Visitor, Tripadvisor review</div>
-        </div>
-        <div class="testimonial-card">
-          <p>"Big front windows that open onto the street make it a lovely place to sit, especially in summer."</p>
-          <div class="who">Local diner, Google review</div>
-        </div>
+        <button class="carousel-arrow next" type="button" aria-label="Next review">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+        <div class="carousel-dots"></div>
       </div>
     </div>
   </section>
@@ -335,6 +373,8 @@
 <script src="js/theme.js"></script>
 <script src="js/reveal.js"></script>
 <script src="js/counters.js"></script>
+<script src="js/carousel.js"></script>
+<script src="js/special.js"></script>
 
 <nav class="action-bar" aria-label="Quick actions">
   <div class="wrap">

@@ -37,10 +37,26 @@
     const btn = document.getElementById("surprise-btn");
     const result = document.getElementById("surprise-result");
     if (!btn || !result) return;
-    btn.addEventListener("click", () => {
+    btn.addEventListener("click", (e) => {
       const pick = DISHES[Math.floor(Math.random() * DISHES.length)];
       result.innerHTML = `<span class="tag">${pick.tag}</span>${pick.name}`;
+      burstConfetti(e.clientX, e.clientY);
     });
+  }
+
+  function burstConfetti(x, y) {
+    const colors = ["#f78e49", "#e8a317", "#7a2f22", "#1f6b6b", "#fbf4e7"];
+    for (let i = 0; i < 22; i++) {
+      const piece = document.createElement("div");
+      piece.className = "confetti-piece";
+      piece.style.left = (x || window.innerWidth / 2) + (Math.random() * 120 - 60) + "px";
+      piece.style.top = (y || 200) + "px";
+      piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+      piece.style.animationDuration = 900 + Math.random() * 700 + "ms";
+      piece.style.transform = "rotate(" + Math.random() * 360 + "deg)";
+      document.body.appendChild(piece);
+      setTimeout(() => piece.remove(), 1700);
+    }
   }
   document.addEventListener("DOMContentLoaded", init);
 })();

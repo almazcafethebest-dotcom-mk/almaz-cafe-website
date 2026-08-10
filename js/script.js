@@ -11,18 +11,52 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
-  // Simple client-side handling for the contact form (no backend yet)
+  // Contact form — submits properly to Netlify Forms (works once the site
+  // is deployed on Netlify; on GitHub Pages alone there's no backend to
+  // receive it, since GitHub Pages only serves static files).
   const form = document.querySelector("#contact-form");
   if (form) {
+    const submitBtn = document.querySelector("#form-submit");
+    const status = document.querySelector("#form-status");
+    const successBox = document.querySelector("#form-success");
+    const resetBtn = document.querySelector("#form-reset");
+
     form.addEventListener("submit", (e) => {
       e.preventDefault();
-      const status = document.querySelector("#form-status");
-      if (status) {
-        status.textContent =
-          "Thanks! This form isn't wired up to send messages yet — see the README for how to connect it (e.g. Netlify Forms).";
-      }
-      form.reset();
+      if (status) status.textContent = "";
+      submitBtn.classList.add("sending");
+      submitBtn.textContent = "Sending…";
+
+      const body = new URLSearchParams(new FormData(form)).toString();
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body,
+      })
+        .then(() => {
+          form.hidden = true;
+          if (successBox) successBox.hidden = false;
+        })
+        .catch(() => {
+          if (status) {
+            status.textContent =
+              "Couldn't send that just now — please call (09) 622 2108 instead, or try again shortly.";
+          }
+        })
+        .finally(() => {
+          submitBtn.classList.remove("sending");
+          submitBtn.textContent = "Send message";
+        });
     });
+
+    if (resetBtn) {
+      resetBtn.addEventListener("click", () => {
+        form.reset();
+        form.hidden = false;
+        if (successBox) successBox.hidden = true;
+      });
+    }
   }
 
   // Set current year in footer

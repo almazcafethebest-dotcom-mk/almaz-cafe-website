@@ -59,25 +59,25 @@
 }
 
 [data-theme="vibrant"] {
-  --espresso: #5a2c22;
-  --espresso-deep: #2c130c;
-  --charcoal: #341811;
-  --parchment: #f3e6cf;
-  --parchment-warm: #ecd6ae;
-  --surface: #fffaf0;
-  --line: rgba(51, 24, 16, 0.16);
+  --espresso: #5a2418;
+  --espresso-deep: #2c1108;
+  --charcoal: #341409;
+  --parchment: #f7e0b3;
+  --parchment-warm: #f0c47e;
+  --surface: #fff8ea;
+  --line: rgba(51, 20, 9, 0.18);
   --cream-text: #fdf3e2;
-  --band-bg: #6b2f26;
+  --band-bg: #6b2318;
   --band-text: #fdf3e2;
-  --shadow: rgba(107, 47, 38, 0.3);
-  --rust: #f78e49;
-  --rust-deep: #d4703a;
-  --gold: #e6a23c;
-  --gold-light: #f7c873;
-  --teal: #8a4a3d;
-  --teal-deep: #6b2f26;
-  --teal-light: #b06a52;
-  --olive: #9a5a34;
+  --shadow: rgba(107, 35, 24, 0.35);
+  --rust: #ef5a17;
+  --rust-deep: #cf4610;
+  --gold: #e8a317;
+  --gold-light: #f7c73f;
+  --teal: #7a2f22;
+  --teal-deep: #5c2118;
+  --teal-light: #a4523f;
+  --olive: #a85a1f;
 }
 
 * { box-sizing: border-box; }
@@ -290,7 +290,6 @@ p { margin: 0 0 1em; }
   overflow: hidden;
   background: radial-gradient(ellipse at 80% -10%, var(--parchment-warm), var(--parchment) 60%);
 }
-
 .hero .wrap {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -578,16 +577,11 @@ body { transition: background 0.25s ease, color 0.25s ease; }
    Turkish tile pattern accent
    ========================================================================== */
 
-.tile-rule {
-  height: 10px;
-  background-image: linear-gradient(45deg, var(--teal) 25%, transparent 25%),
-    linear-gradient(-45deg, var(--teal) 25%, transparent 25%),
-    linear-gradient(45deg, transparent 75%, var(--gold) 75%),
-    linear-gradient(-45deg, transparent 75%, var(--gold) 75%);
-  background-size: 20px 20px;
-  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
-  opacity: 0.85;
+.tile-border {
+  border-bottom: 1px solid var(--line);
+  line-height: 0;
 }
+.tile-border svg { width: 100%; height: 22px; display: block; }
 
 /* ==========================================================================
    Rating badge
@@ -1257,3 +1251,230 @@ body { transition: background 0.25s ease, color 0.25s ease; }
   color: var(--gold-light);
   margin-bottom: 4px;
 }
+
+/* ==========================================================================
+   Per-theme layout personality
+   ========================================================================== */
+
+/* Vibrant: bolder hero wash + sign-style gradient banner chip on the eyebrow */
+[data-theme="vibrant"] .hero {
+  background: radial-gradient(ellipse at 85% -15%, var(--gold-light) 0%, transparent 45%),
+    linear-gradient(160deg, var(--parchment-warm), var(--parchment) 60%);
+}
+[data-theme="vibrant"] .hero::before { opacity: 0.3; background-size: 64px 64px; }
+[data-theme="vibrant"] .hero-copy .eyebrow {
+  display: inline-block;
+  background: linear-gradient(100deg, var(--band-bg), var(--rust) 85%);
+  color: var(--cream-text);
+  padding: 7px 16px;
+  border-radius: 999px;
+  letter-spacing: 0.14em;
+}
+[data-theme="vibrant"] .btn-primary { box-shadow: 0 10px 26px var(--shadow); }
+
+/* Dark: moodier vignette, softer pattern glow */
+[data-theme="dark"] .hero {
+  background: radial-gradient(ellipse at 50% -25%, var(--parchment-warm), var(--parchment) 70%);
+}
+[data-theme="dark"] .hero::before { opacity: 0.12; }
+[data-theme="dark"] .hero-copy .eyebrow {
+  text-shadow: 0 0 18px rgba(247, 199, 63, 0.35);
+}
+
+/* Light: keep it airy — pattern nearly invisible, minimal chrome */
+[data-theme="light"] .hero::before,
+:root:not([data-theme]) .hero::before { opacity: 0.1; }
+
+/* ==========================================================================
+   Ottoman arch motif behind the hero heading
+   ========================================================================== */
+
+.hero-copy { position: relative; }
+.hero-copy .arch-motif {
+  position: absolute;
+  top: -18px;
+  left: -28px;
+  width: 120px;
+  height: 150px;
+  z-index: -1;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   Testimonial carousel
+   ========================================================================== */
+
+.carousel { max-width: 640px; margin: 0 auto; position: relative; }
+.carousel-track { overflow: hidden; }
+.carousel-slide {
+  display: none;
+  text-align: center;
+  padding: 4px 8px;
+}
+.carousel-slide.active { display: block; }
+.carousel-slide blockquote {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  color: var(--espresso-deep);
+  line-height: 1.4;
+  margin: 0 0 12px;
+}
+.carousel-slide .who {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--olive);
+}
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+}
+.carousel-dots button {
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  border: none;
+  background: var(--line);
+  cursor: pointer;
+  padding: 0;
+}
+.carousel-dots button.active { background: var(--rust); }
+.carousel-arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: var(--espresso-deep);
+}
+.carousel-arrow.prev { left: -46px; }
+.carousel-arrow.next { right: -46px; }
+@media (max-width: 720px) {
+  .carousel-arrow { display: none; }
+}
+
+/* ==========================================================================
+   Lightbox for gallery photos
+   ========================================================================== */
+
+.gallery-item { cursor: zoom-in; border: none; text-align: left; padding: 0; }
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(15, 10, 5, 0.86);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.lightbox.open { display: flex; }
+.lightbox-inner {
+  max-width: 640px;
+  width: 100%;
+  background: var(--surface);
+  border-radius: 10px;
+  overflow: hidden;
+  text-align: center;
+}
+.lightbox-inner .frame { aspect-ratio: 4/3; }
+.lightbox-inner .frame svg, .lightbox-inner .frame img { width: 100%; height: 100%; object-fit: cover; }
+.lightbox-cap { padding: 16px; font-family: var(--font-display); color: var(--espresso-deep); }
+.lightbox-close {
+  position: absolute;
+  top: 20px; right: 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   Today's special banner
+   ========================================================================== */
+
+.special-banner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(100deg, var(--band-bg), var(--rust-deep));
+  color: var(--band-text);
+  border-radius: 10px;
+  padding: 20px 26px;
+  flex-wrap: wrap;
+}
+.special-banner .badge {
+  background: rgba(255,255,255,0.16);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+.special-banner strong { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; }
+.special-banner p { margin: 0; opacity: 0.85; font-size: 0.9rem; }
+
+/* ==========================================================================
+   Confetti burst (Surprise Me delight)
+   ========================================================================== */
+
+.confetti-piece {
+  position: fixed;
+  top: -10px;
+  width: 8px; height: 14px;
+  z-index: 400;
+  pointer-events: none;
+  animation: confetti-fall linear forwards;
+}
+@keyframes confetti-fall {
+  to { transform: translateY(105vh) rotate(540deg); opacity: 0.4; }
+}
+
+/* ==========================================================================
+   Contact form success state
+   ========================================================================== */
+
+.form-success {
+  max-width: 560px;
+  text-align: center;
+  padding: 20px 10px;
+}
+.form-success h3 { color: var(--band-text); margin: 6px 0 6px; }
+.form-success p { color: rgba(251, 244, 231, 0.82); }
+.form-success .check {
+  width: 64px; height: 64px;
+  margin: 0 auto 6px;
+}
+.check-circle {
+  stroke: var(--gold-light);
+  stroke-width: 2;
+  stroke-dasharray: 151;
+  stroke-dashoffset: 151;
+  animation: check-circle 0.5s ease forwards;
+}
+.check-mark {
+  stroke: var(--gold-light);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 36;
+  stroke-dashoffset: 36;
+  animation: check-mark 0.35s ease 0.4s forwards;
+}
+@keyframes check-circle { to { stroke-dashoffset: 0; } }
+@keyframes check-mark { to { stroke-dashoffset: 0; } }
+
+#form-submit.sending { opacity: 0.7; pointer-events: none; }
