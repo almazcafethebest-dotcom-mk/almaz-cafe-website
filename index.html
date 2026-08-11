@@ -10,6 +10,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+<link rel="manifest" href="site.webmanifest" />
+<meta name="apple-mobile-web-app-title" content="Almaz Cafe" />
 <meta name="theme-color" content="#241407" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Almaz Cafe — Turkish & Middle Eastern Kitchen, Onehunga" />
@@ -86,6 +91,44 @@
 <main>
 
   <section class="hero">
+    <div class="heritage-deco left" aria-hidden="true">
+      <svg class="deco-kebab" width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <rect x="56" y="6" width="8" height="108" rx="4" fill="var(--espresso)"/>
+        <g>
+          <circle cx="60" cy="34" r="20" fill="var(--rust)"/>
+          <circle cx="60" cy="58" r="20" fill="var(--gold)"/>
+          <circle cx="60" cy="82" r="20" fill="var(--rust-deep)"/>
+        </g>
+        <rect x="30" y="106" width="60" height="6" rx="3" fill="var(--espresso-deep)"/>
+      </svg>
+      <svg class="deco-tulip" width="46" height="56" viewBox="0 0 46 56" style="top:70%; left:8px;" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 8c-8 4-12 12-9 22 2 7 9 10 9 10s7-3 9-10c3-10-1-18-9-22Z" fill="var(--teal)" opacity="0.85"/>
+        <rect x="21" y="38" width="4" height="16" fill="var(--olive)"/>
+      </svg>
+    </div>
+
+    <div class="heritage-deco right" aria-hidden="true">
+      <svg class="deco-tea" width="70" height="90" viewBox="0 0 70 90" xmlns="http://www.w3.org/2000/svg">
+        <g class="deco-steam" stroke="var(--espresso)" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.6">
+          <path d="M24 34c-4-6 4-8 0-14"/>
+          <path d="M35 34c-4-6 4-8 0-14"/>
+          <path d="M46 34c-4-6 4-8 0-14"/>
+        </g>
+        <path d="M20 40 h30 l-6 38a4 4 0 0 1-4 4H30a4 4 0 0 1-4-4Z" fill="var(--rust)"/>
+        <path d="M23 44 h24 l-3 20 a20 20 0 0 1-18 0Z" fill="var(--gold-light)" opacity="0.9"/>
+        <rect x="16" y="40" width="38" height="6" rx="3" fill="var(--gold)"/>
+      </svg>
+      <svg class="deco-nazar" width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="20" cy="20" r="18" fill="var(--teal)"/>
+        <circle cx="20" cy="20" r="13" fill="var(--surface)"/>
+        <circle cx="20" cy="20" r="8" fill="var(--rust)"/>
+        <circle cx="20" cy="20" r="3.4" fill="var(--espresso-deep)"/>
+      </svg>
+      <svg class="deco-tulip" width="42" height="52" viewBox="0 0 46 56" style="top:66%; right:4px;" xmlns="http://www.w3.org/2000/svg">
+        <path d="M23 8c-8 4-12 12-9 22 2 7 9 10 9 10s7-3 9-10c3-10-1-18-9-22Z" fill="var(--rust)" opacity="0.85"/>
+        <rect x="21" y="38" width="4" height="16" fill="var(--olive)"/>
+      </svg>
+    </div>
     <div class="wrap">
       <div class="hero-copy">
         <svg class="arch-motif" viewBox="0 0 120 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -334,11 +377,16 @@
 
 </main>
 
+<div class="tile-border" aria-hidden="true">
+  <svg viewBox="0 0 240 24" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="240" height="24" fill="url(#turkishTile)"/>
+  </svg>
+</div>
 <footer class="site-footer">
   <div class="wrap">
     <div class="footer-grid">
       <div>
-        <h4>Almaz Cafe</h4>
+        <h4>Almaz Cafe <svg class="footer-charm" width="16" height="16" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--teal-light)"/><circle cx="20" cy="20" r="13" fill="var(--surface)"/><circle cx="20" cy="20" r="8" fill="var(--rust)"/><circle cx="20" cy="20" r="3.4" fill="var(--espresso-deep)"/></svg></h4>
         <p>157 Onehunga Mall, Onehunga, Auckland 1061. Turkish, Middle Eastern &amp; Persian kitchen, open daily.</p>
       </div>
       <div>

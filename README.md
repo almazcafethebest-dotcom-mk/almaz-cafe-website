@@ -9,8 +9,9 @@ delivery, etc.) instantly, with no backend required.
 **Also included:**
 - **Real logo & storefront photo** — cropped from the photo you sent of the actual signage, used in the nav and as a hero/storefront image (not a stock illustration).
 - **Light / Dark / Vibrant theme switcher** (top-right of the nav) — the three modes now use genuinely distinct palettes: Light is soft and elegant, Vibrant is bold and saturated straight off your real sign (orange/maroon/gold, with a gradient banner-chip treatment on the homepage that echoes the shop sign), Dark is a moody near-black version of the same warm colours. Choice is remembered per visitor via `localStorage`.
-- **Turkish tile-pattern border band** at the top of every page — a proper repeating star-and-cross motif in the theme colours, replacing the plain stripe from before.
-- **Ottoman arch motif** watermarked behind the homepage headline.
+- **Ottoman arch motif** watermarked behind the homepage headline, plus an animated rotating kebab skewer, a steaming tea glass, floating tulips, and a nazar (evil-eye) charm along the sides of the hero on desktop — small heritage touches, not stock clip-art, and they respect visitors' reduced-motion settings.
+- **Turkish tile-pattern border band** at both the top and bottom of every page — a proper repeating star-and-cross motif in the theme colours.
+- **Real app icons** (favicon + Apple touch icon) generated from the diamond mark, plus a web app manifest so visitors on mobile can "Add to Home Screen" and get a proper app-like icon.
 - **Animated stat counters** on the homepage (20+ years, 4.2★, 222+ reviews, 40+ seats) that count up as you scroll to them.
 - **"Today's Special" banner** on the homepage — automatically rotates through a different dish each day of the week.
 - **Testimonial carousel** with auto-advance, arrows and dots, instead of a static grid.
