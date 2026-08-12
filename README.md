@@ -7,11 +7,13 @@ widget that answers common questions (hours, halal/vegan options, parking,
 delivery, etc.) instantly, with no backend required.
 
 **Also included:**
-- **Real logo & storefront photo** — cropped from the photo you sent of the actual signage, used in the nav and as a hero/storefront image (not a stock illustration).
+- **Real logo & storefront photo** — the nav now uses the ornate emblem lockup cropped from your official menu artwork, and hero/About images use your real storefront photo.
 - **Light / Dark / Vibrant theme switcher** (top-right of the nav) — the three modes now use genuinely distinct palettes: Light is soft and elegant, Vibrant is bold and saturated straight off your real sign (orange/maroon/gold, with a gradient banner-chip treatment on the homepage that echoes the shop sign), Dark is a moody near-black version of the same warm colours. Choice is remembered per visitor via `localStorage`.
 - **Ottoman arch motif** watermarked behind the homepage headline, plus an animated rotating kebab skewer, a steaming tea glass, floating tulips, and a nazar (evil-eye) charm along the sides of the hero on desktop — small heritage touches, not stock clip-art, and they respect visitors' reduced-motion settings.
 - **Turkish tile-pattern border band** at both the top and bottom of every page — a proper repeating star-and-cross motif in the theme colours.
+- **Real, current menu** — pulled from your actual menu board and combo poster: every kebab, rice meal, Persian/Turkish traditional dish, salad, vegetarian option, side, dessert, drink and the two Deal Combos ($21.90 each), with real photos of the food.
 - **Real app icons** (favicon + Apple touch icon) generated from the diamond mark, plus a web app manifest so visitors on mobile can "Add to Home Screen" and get a proper app-like icon.
+- **Elite interactive touches**: a scroll progress bar along the top of the page, a soft cursor-follow glow in the homepage hero, and buttons that subtly pull toward your cursor — small things most small-business sites skip.
 - **Animated stat counters** on the homepage (20+ years, 4.2★, 222+ reviews, 40+ seats) that count up as you scroll to them.
 - **"Today's Special" banner** on the homepage — automatically rotates through a different dish each day of the week.
 - **Testimonial carousel** with auto-advance, arrows and dots, instead of a static grid.
@@ -123,21 +125,8 @@ until it's live on Netlify.
 
 ## 3. Things to personalise before launch
 
-- **Photos & video**: I've used custom illustrated placeholders (in
-  brand colours) rather than pulling photos from Google/Tripadvisor
-  review pages — those were taken and uploaded by other people, so
-  reusing them without permission isn't something I can do, even for
-  your own business's site. The easiest legitimate source is your own
-  Google Business Profile (Google Business Profile → Photos → download)
-  or photos/video you take yourself. Swap the `.gallery-item` and
-  `.dish-card` art blocks in `index.html` / `about.html` for real
-  `<img>` tags, and swap the "Take a look inside" video block on the
-  homepage for a real embed (e.g. an Instagram Reel or YouTube embed
-  code).
-- **Menu & prices**: the dish names are real (pulled from Uber Eats/
-  DoorDash listings), but exact prices are estimates within the
-  $10–20/person range reported for the cafe — edit them directly in
-  `menu.html` to match your actual menu board.
+- **Photos & video**: the food photos (kebab wrap, rice bowl, combo shot), the logo, and the storefront photo are now real — pulled from your own menu artwork and signage photo, not stock or illustrations. A few illustrated accents remain (the "Around the cafe" gallery on the About page, the Baklava & Turkish Coffee card on the homepage) — swap those `.gallery-item`/`.dish-card` blocks for real `<img>` tags whenever you have more photos. The "Take a look inside" video block on the homepage is also still a static image — swap it for a real video embed (e.g. an Instagram Reel or YouTube embed code) whenever you have one. I still won't pull photos from Google/Tripadvisor review pages, since those were uploaded by other people, not you.
+- **Menu & prices**: the full menu on `menu.html` (kebabs, rice meals, traditional dishes, sides, desserts, drinks, and the two Deal Combos) matches your actual menu board and combo poster exactly. If prices change, update them directly in `menu.html` — and consider updating `js/chat.js`'s `price` fact too, so the chat assistant stays accurate.
 - **Address, phone, email, hours**: update in `contact.html` (and the
   footer, which is repeated on every page) — also update the map
   `<iframe>` in `contact.html` with your exact address once you have it.

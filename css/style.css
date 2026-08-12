@@ -1569,3 +1569,61 @@ body { transition: background 0.25s ease, color 0.25s ease; }
   margin-left: 8px;
   animation: gentle-float 4s ease-in-out infinite;
 }
+
+/* ==========================================================================
+   Elite interactive polish
+   ========================================================================== */
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0; left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--rust), var(--gold));
+  z-index: 500;
+  transition: width 0.1s linear;
+}
+
+/* Cursor-follow glow in the hero */
+.hero { --mx: 50%; --my: 30%; }
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(320px circle at var(--mx) var(--my), var(--gold-light) 0%, transparent 70%);
+  opacity: 0.16;
+  pointer-events: none;
+  z-index: 0;
+}
+@media (max-width: 860px) {
+  .hero::after { display: none; }
+}
+
+/* Magnetic buttons */
+.btn { will-change: transform; }
+
+/* Image zoom-on-hover for food photography */
+.gallery-item, .visit-photo { overflow: hidden; }
+.gallery-item img, .visit-photo img {
+  transition: transform 0.5s cubic-bezier(.2,.8,.2,1), filter 0.4s ease;
+}
+.gallery-item:hover img, .dish-card:hover .gallery-item img,
+.visit-photo:hover img {
+  transform: scale(1.08);
+}
+
+/* Nav underline glow + smoother active state */
+.nav-links a { transition: color 0.2s ease; }
+
+/* Smooth anchor + page fade-in */
+body { animation: page-fade-in 0.4s ease; }
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body { animation: none; }
+  .gallery-item img, .visit-photo img { transition: none; }
+}

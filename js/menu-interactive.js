@@ -28,7 +28,7 @@
     { name: "Almaz Platter", tag: "Great for sharing" },
     { name: "Lamb Pasendeh", tag: "Persian special" },
     { name: "Moussaka", tag: "Persian special" },
-    { name: "Falafel & Hummus", tag: "Vegetarian" },
+    { name: "Falafel Kebab", tag: "Vegetarian" },
     { name: "Chicken & Chips", tag: "Regular favourite" },
     { name: "Baklava & Turkish Coffee", tag: "To finish" },
   ];

@@ -5,7 +5,7 @@
 <script>try{document.documentElement.setAttribute("data-theme", localStorage.getItem("almaz-theme")||"light");}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Menu — Almaz Cafe, Onehunga</title>
-<meta name="description" content="Kebabs, Persian specials, vegetarian plates and sweets at Almaz Cafe, Onehunga. Halal, vegetarian &amp; vegan options available." />
+<meta name="description" content="The full halal menu at Almaz Cafe, Onehunga — kebabs, rice meals, Persian &amp; Turkish traditional dishes, vegetarian options, sides, desserts and deal combos." />
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..600&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -18,11 +18,11 @@
 <meta name="theme-color" content="#241407" />
 <meta property="og:type" content="website" />
 <meta property="og:title" content="Menu — Almaz Cafe, Onehunga" />
-<meta property="og:description" content="Kebabs, Persian specials, vegetarian plates and sweets at Almaz Cafe, Onehunga. Halal, vegetarian & vegan options available." />
+<meta property="og:description" content="The full halal menu at Almaz Cafe, Onehunga — kebabs, rice meals, Persian & Turkish traditional dishes, vegetarian options, sides, desserts and deal combos." />
 <meta property="og:locale" content="en_NZ" />
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="Menu — Almaz Cafe, Onehunga" />
-<meta name="twitter:description" content="Kebabs, Persian specials, vegetarian plates and sweets at Almaz Cafe, Onehunga. Halal, vegetarian & vegan options available." />
+<meta name="twitter:description" content="The full halal menu at Almaz Cafe, Onehunga — kebabs, rice meals, Persian & Turkish traditional dishes, vegetarian options, sides, desserts and deal combos." />
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -37,7 +37,7 @@
     "addressCountry": "NZ"
   },
   "telephone": "+64-9-622-2108",
-  "priceRange": "$10-$20",
+  "priceRange": "$10-$25",
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
@@ -72,7 +72,7 @@
 <header class="site-header">
   <nav class="nav wrap">
     <a class="brand" href="index.html">
-      <img class="brand-logo" src="images/almaz-logo.png" alt="Almaz Cafe" />
+      <img class="brand-logo" src="images/almaz-emblem-logo.png" alt="Almaz Cafe" />
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -91,10 +91,10 @@
 <main>
   <section class="section-tight">
     <div class="wrap">
-      <span class="eyebrow">Turkish · Middle Eastern · Persian<svg class="eyebrow-charm" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--teal)"/><circle cx="20" cy="20" r="13" fill="var(--surface)"/><circle cx="20" cy="20" r="8" fill="var(--rust)"/><circle cx="20" cy="20" r="3.4" fill="var(--espresso-deep)"/></svg></span>
+      <span class="eyebrow">Halal · Kebabs · Rice Meals · Persian &amp; Turkish Traditional<svg class="eyebrow-charm" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--teal)"/><circle cx="20" cy="20" r="13" fill="var(--surface)"/><circle cx="20" cy="20" r="8" fill="var(--rust)"/><circle cx="20" cy="20" r="3.4" fill="var(--espresso-deep)"/></svg></span>
       <h1>The menu</h1>
       <div style="margin: 10px 0 4px;"><span id="status-badge" class="status-badge"></span></div>
-      <p class="lede">Everything's made fresh daily, with halal, vegetarian and vegan options throughout. Most people spend around $10–20 per person.</p>
+      <p class="lede">Everything's halal, made fresh daily. Most people spend around $15–25 per person.</p>
       <div class="order-links">
         <a href="https://www.ubereats.com/nz/store/almaz-cafe/1CzXzYeQVOqqjAGNo8NTgg" target="_blank" rel="noopener">Order on Uber Eats →</a>
         <a href="https://www.doordash.com/en-NZ/store/almaz-cafe-auckland-41214841/" target="_blank" rel="noopener">Order on DoorDash →</a>
@@ -107,148 +107,152 @@
 
       <div class="menu-tabs" role="tablist" aria-label="Filter the menu">
         <button class="menu-tab active" data-filter="all" type="button">All</button>
-        <button class="menu-tab" data-filter="kebabs" type="button">Kebabs &amp; Grills</button>
-        <button class="menu-tab" data-filter="persian" type="button">Persian Specials</button>
-        <button class="menu-tab" data-filter="veg" type="button">Vegetarian &amp; Sides</button>
-        <button class="menu-tab" data-filter="sweets" type="button">Sweets &amp; Drinks</button>
+        <button class="menu-tab" data-filter="kebabs" type="button">Kebabs</button>
+        <button class="menu-tab" data-filter="rice" type="button">Rice &amp; Salads</button>
+        <button class="menu-tab" data-filter="traditional" type="button">Traditional</button>
+        <button class="menu-tab" data-filter="veg" type="button">Vegetarian</button>
+        <button class="menu-tab" data-filter="fishburgers" type="button">Fish &amp; Burgers</button>
+        <button class="menu-tab" data-filter="sides" type="button">Sides &amp; Desserts</button>
+        <button class="menu-tab" data-filter="drinks" type="button">Drinks</button>
+        <button class="menu-tab" data-filter="combos" type="button">Deal Combos</button>
+      </div>
+
+      <div class="menu-group" data-category="combos">
+        <h2>Deal Combos — A meal, a drink &amp; chips</h2>
+        <div class="grid-3" style="margin-bottom:10px;">
+          <div class="dish-card">
+            <div class="gallery-item" style="border-radius:0; aspect-ratio:4/3;">
+              <img src="images/food-hero-combo.jpg" alt="Kebab wrap, chips and a can of soft drink" style="width:100%; height:100%; object-fit:cover;" />
+              <span class="cap">Combo 1</span>
+            </div>
+            <div class="dish-body">
+              <h3>Kebab Wrap Combo</h3>
+              <p>Any kebab wrap, chips, and your choice of Coke, Diet Coke or Sprite.</p>
+              <p class="menu-item-price" style="margin-top:8px;">$21.90</p>
+            </div>
+          </div>
+          <div class="dish-card">
+            <div class="gallery-item" style="border-radius:0; aspect-ratio:4/3;">
+              <img src="images/food-rice-bowl.jpg" alt="Meat, rice and salad plate with a can of soft drink" style="width:100%; height:100%; object-fit:cover;" />
+              <span class="cap">Combo 2</span>
+            </div>
+            <div class="dish-body">
+              <h3>Rice Meal Combo</h3>
+              <p>Any rice meal, chips, and your choice of Coke, Diet Coke or Sprite.</p>
+              <p class="menu-item-price" style="margin-top:8px;">$21.90</p>
+            </div>
+          </div>
+          <div class="dish-card">
+            <div class="dish-body" style="padding-top:24px;">
+              <h3>Choose up to 3 sauces</h3>
+              <p>Hummus, tomato, mayonnaise, garlic yoghurt, sweet chilli, hot chilli, BBQ, satay.</p>
+              <p class="form-note" style="margin-top:16px;">🥫 <strong>Please help us help others</strong> — with any combo purchase, help yourself to a can from the bottom shelf of the fridge.</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="menu-group" data-category="kebabs">
-        <h2>Kebabs &amp; Grills</h2>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Lamb Kebab</div>
-            <div class="menu-item-desc">Marinated lamb, served with rice, salad and sauces.</div>
-          </div>
-          <div class="menu-item-price">$18</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Chicken Kebab</div>
-            <div class="menu-item-desc">Marinated boneless chicken, served with rice, salad and sauces.</div>
-          </div>
-          <div class="menu-item-price">$17</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Mixed Kebab</div>
-            <div class="menu-item-desc">Combination of marinated lamb and chicken, served with rice.</div>
-          </div>
-          <div class="menu-item-price">$19</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Lamb Souvlaki</div>
-            <div class="menu-item-desc">Marinated lamb shoulder steak wrapped in pita, sauces and salad.</div>
-          </div>
-          <div class="menu-item-price">$16</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Chicken &amp; Chips</div>
-            <div class="menu-item-desc">A regular favourite — chicken served with chips.</div>
-          </div>
-          <div class="menu-item-price">$15</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Almaz Platter</div>
-            <div class="menu-item-desc">Lamb, salads, sauces, falafel, hummus and cheese — built to share.</div>
-          </div>
-          <div class="menu-item-price">$28</div>
-        </div>
+        <h2>Kebabs <span class="dish-tag" style="position:static; display:inline-block; vertical-align:middle;">Halal</span></h2>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Kebab</div><div class="menu-item-desc">Marinated boneless chicken with sauces &amp; salad.</div></div><div class="menu-item-price">$16.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Kebab</div><div class="menu-item-desc">Marinated tender lamb with sauces &amp; salad.</div></div><div class="menu-item-price">$18.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mixed Kebab</div><div class="menu-item-desc">Chicken &amp; lamb with sauces &amp; salad.</div></div><div class="menu-item-price">$19.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Beef Kebab</div><div class="menu-item-desc">Marinated prime beef with sauces &amp; salad.</div></div><div class="menu-item-price">$16.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Souvlaki Kebab</div><div class="menu-item-desc">Cooked with homemade garlic sauce.</div></div><div class="menu-item-price">$17.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Souvlaki Kebab</div><div class="menu-item-desc">Cooked with homemade garlic sauce.</div></div><div class="menu-item-price">$19.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Satay Kebab</div><div class="menu-item-desc">Cooked with homemade satay sauce.</div></div><div class="menu-item-price">$17.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Satay Kebab</div><div class="menu-item-desc">Cooked with homemade satay sauce.</div></div><div class="menu-item-price">$19.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Works Kebab</div><div class="menu-item-desc">Chicken with salad, cheese, hummus &amp; sauces.</div></div><div class="menu-item-price">$19.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Works Kebab</div><div class="menu-item-desc">Lamb with salad, cheese, hummus &amp; sauces.</div></div><div class="menu-item-price">$21.90</div></div>
       </div>
 
-      <div class="menu-group" data-category="persian">
-        <h2>Persian Specials</h2>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Lamb Pasendeh</div>
-            <div class="menu-item-desc">Slow-cooked Persian lamb — a genuine customer favourite.</div>
-          </div>
-          <div class="menu-item-price">$21</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Moussaka</div>
-            <div class="menu-item-desc">Layered eggplant and spiced meat bake.</div>
-          </div>
-          <div class="menu-item-price">$19</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Chicken &amp; Rice</div>
-            <div class="menu-item-desc">Grilled chicken skewers over rice.</div>
-          </div>
-          <div class="menu-item-price">$18</div>
-        </div>
+      <div class="menu-group" data-category="rice">
+        <h2>Rice Meals <span class="dish-tag" style="position:static; display:inline-block; vertical-align:middle;">Halal</span></h2>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken on Rice</div><div class="menu-item-desc">Marinated chicken, salad &amp; sauce.</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb on Rice</div><div class="menu-item-desc">Marinated lamb, salad &amp; sauce.</div></div><div class="menu-item-price">$22.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Beef on Rice</div><div class="menu-item-desc">Grilled prime beef mince, salad &amp; sauce.</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mixed on Rice</div><div class="menu-item-desc">Chicken &amp; lamb, salad &amp; sauce.</div></div><div class="menu-item-price">$22.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken &amp; Chips</div><div class="menu-item-desc">Marinated chicken &amp; chips.</div></div><div class="menu-item-price">$20.90</div></div>
+
+        <h3 style="margin-top:26px; font-family:var(--font-display); color:var(--espresso-deep);">Salads</h3>
+        <p class="form-note" style="margin-top:-4px;">Served with fresh salad, cheese, tomato, cucumber, onion &amp; olives.</p>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Salad</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Salad</div></div><div class="menu-item-price">$22.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Beef Salad</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mixed Salad</div></div><div class="menu-item-price">$22.90</div></div>
+      </div>
+
+      <div class="menu-group" data-category="traditional">
+        <h2>Traditional <span class="dish-tag" style="position:static; display:inline-block; vertical-align:middle;">Halal</span></h2>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Pasendeh <span style="font-weight:400; opacity:0.7;">(mild or spicy)</span></div><div class="menu-item-desc">Traditional Persian-style lamb casserole with almonds &amp; cream. Served with rice &amp; salad.</div></div><div class="menu-item-price">$22.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Moussaka</div><div class="menu-item-desc">Layers of spring potatoes, kofte mince and aubergines with white sauce &amp; cheese. Served with rice &amp; salad.</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Khoresh Ghormeh Sabzi</div><div class="menu-item-desc">Traditional Persian casserole of tender lamb, spinach &amp; red beans. Served with rice &amp; salad.</div></div><div class="menu-item-price">$22.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Khoresh Badenjun <span style="font-weight:400; opacity:0.7;">(Eggplant Casserole)</span></div><div class="menu-item-desc">Traditional Persian casserole of beef &amp; eggplant. Served with rice &amp; salad.</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Butter Chicken</div><div class="menu-item-desc">Marinated chicken cooked with spices, yoghurt and fenugreek, rich in cream.</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Spanakopita</div><div class="menu-item-desc">Spinach pie with pastries, feta cheese, topped with our special yoghurt sauce.</div></div><div class="menu-item-price">$16.90</div></div>
       </div>
 
       <div class="menu-group" data-category="veg">
-        <h2>Vegetarian &amp; Sides</h2>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Vegetarian Samosa</div>
-            <div class="menu-item-desc">Middle Eastern-style samosa, made in-house.</div>
-          </div>
-          <div class="menu-item-price">$8</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Spanakopita</div>
-            <div class="menu-item-desc">Spinach and feta in crisp filo pastry.</div>
-          </div>
-          <div class="menu-item-price">$8</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Hummus &amp; Pita</div>
-            <div class="menu-item-desc">House-made hummus with warm pita.</div>
-          </div>
-          <div class="menu-item-price">$9</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Falafel</div>
-            <div class="menu-item-desc">Crisp-fried, served with sauce.</div>
-          </div>
-          <div class="menu-item-price">$9</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Wedges / Chips</div>
-            <div class="menu-item-desc">A side regulars keep coming back for.</div>
-          </div>
-          <div class="menu-item-price">$7</div>
-        </div>
+        <h2>Vegetarian</h2>
+        <div class="menu-item"><div><div class="menu-item-name">Almaz Platter</div><div class="menu-item-desc">Hummus, falafel, dolma, tabouli, salad, tzatziki, pita bread &amp; dip.</div></div><div class="menu-item-price">$18.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Falafel on Rice</div><div class="menu-item-desc">Falafel, salad &amp; sauce, served with rice.</div></div><div class="menu-item-price">$17.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Falafel Kebab</div><div class="menu-item-desc">Falafel, salad &amp; sauce, wrapped in pita.</div></div><div class="menu-item-price">$15.90</div></div>
       </div>
 
-      <div class="menu-group" data-category="sweets">
-        <h2>Sweets &amp; Drinks</h2>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Baklava</div>
-            <div class="menu-item-desc">Layered filo, nuts and syrup.</div>
-          </div>
-          <div class="menu-item-price">$6</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Turkish Delight</div>
-            <div class="menu-item-desc">A sweet way to finish the meal.</div>
-          </div>
-          <div class="menu-item-price">$5</div>
-        </div>
-        <div class="menu-item">
-          <div>
-            <div class="menu-item-name">Turkish Coffee</div>
-            <div class="menu-item-desc">Slow-brewed, served the traditional way.</div>
-          </div>
-          <div class="menu-item-price">$5</div>
-        </div>
+      <div class="menu-group" data-category="fishburgers">
+        <h2>Fish &amp; Chips</h2>
+        <div class="menu-item"><div><div class="menu-item-name">Fish &amp; Chips</div><div class="menu-item-desc">Buttered fish with salad, chips &amp; sauce.</div></div><div class="menu-item-price">$19.90</div></div>
+
+        <h3 style="margin-top:26px; font-family:var(--font-display); color:var(--espresso-deep);">Burgers</h3>
+        <div class="menu-item"><div><div class="menu-item-name">Almaz Beef Burger</div><div class="menu-item-desc">Prime beef patty with salad &amp; sauce.</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Burger</div><div class="menu-item-desc">Grilled chicken with salad &amp; sauce.</div></div><div class="menu-item-price">$11.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Cheese Burger</div><div class="menu-item-desc">Beef patty with cheese, salad &amp; sauce.</div></div><div class="menu-item-price">$11.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Add Combo — Fries &amp; a Can</div><div class="menu-item-desc">Add fries and a can of soft drink to any burger.</div></div><div class="menu-item-price">+$11.90</div></div>
       </div>
 
-      <p class="form-note">Vegetarian, vegan and halal options are available across the menu — ask your server, or see our <a href="support.html">Support / FAQ page</a>.</p>
+      <div class="menu-group" data-category="sides">
+        <h2>Side Dishes</h2>
+        <div class="menu-item"><div><div class="menu-item-name">Vegetable Samosa</div></div><div class="menu-item-price">$4.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb or Chicken Samosa</div></div><div class="menu-item-price">$6.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Vegetarian Samosa w/ Salad</div></div><div class="menu-item-price">$8.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Hummus &amp; Garlic Pita Bread</div></div><div class="menu-item-price">$8.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Garlic Pita Bread</div></div><div class="menu-item-price">$4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Wedges with Sour Cream</div></div><div class="menu-item-price">$6.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chips</div></div><div class="menu-item-price">$5.00</div></div>
+
+        <h3 style="margin-top:26px; font-family:var(--font-display); color:var(--espresso-deep);">Desserts</h3>
+        <div class="menu-item"><div><div class="menu-item-name">Baklava</div></div><div class="menu-item-price">$4.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Baklava with Ice Cream</div></div><div class="menu-item-price">$8.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Turkish Delights</div></div><div class="menu-item-price">$2.90</div></div>
+      </div>
+
+      <div class="menu-group" data-category="drinks">
+        <h2>Coffee</h2>
+        <div class="menu-item"><div><div class="menu-item-name">Short Black</div></div><div class="menu-item-price">$4.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Long Black</div></div><div class="menu-item-price">$5.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Flat White</div></div><div class="menu-item-price">$5.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Cappuccino</div></div><div class="menu-item-price">$5.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Latte</div></div><div class="menu-item-price">$6.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Hot Chocolate</div></div><div class="menu-item-price">$5.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mochaccino</div></div><div class="menu-item-price">$6.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chai Latte</div></div><div class="menu-item-price">$6.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Turkish Coffee</div></div><div class="menu-item-price">$4.50</div></div>
+
+        <h3 style="margin-top:26px; font-family:var(--font-display); color:var(--espresso-deep);">Tea</h3>
+        <div class="menu-item"><div><div class="menu-item-name">English Breakfast</div></div><div class="menu-item-price">$4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Earl Grey</div></div><div class="menu-item-price">$4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Green Tea</div></div><div class="menu-item-price">$4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Peppermint Tea</div></div><div class="menu-item-price">$4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Apple Tea</div></div><div class="menu-item-price">$4.00</div></div>
+
+        <h3 style="margin-top:26px; font-family:var(--font-display); color:var(--espresso-deep);">Specialty</h3>
+        <div class="menu-item"><div><div class="menu-item-name">Iced Coffee</div></div><div class="menu-item-price">$7.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Iced Chocolate</div></div><div class="menu-item-price">$7.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Milkshake <span style="font-weight:400; opacity:0.7;">(all flavours)</span></div></div><div class="menu-item-price">$6.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Thickshake <span style="font-weight:400; opacity:0.7;">(all flavours)</span></div></div><div class="menu-item-price">$7.00</div></div>
+      </div>
+
+      <p class="form-note">Vegetarian and vegan options are available across the menu — ask your server, or see our <a href="support.html">Support / FAQ page</a>.</p>
 
     </div>
   </section>
@@ -309,6 +313,7 @@
 <script src="js/chat.js"></script>
 <script src="js/theme.js"></script>
 <script src="js/reveal.js"></script>
+<script src="js/interactive-fx.js"></script>
 <script src="js/menu-interactive.js"></script>
 
 <nav class="action-bar" aria-label="Quick actions">

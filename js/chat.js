@@ -22,8 +22,9 @@
     payment: "We take credit cards, debit cards, and contactless/NFC payments.",
     groups: "We can seat larger groups and can host private functions for up to about 40 people — give us a call on (09) 622 2108 to arrange it.",
     popular: "Customer favourites are the lamb, chicken and mixed kebabs, the lamb souvlaki, the Almaz platter, and the lamb pasendeh from our Persian specials. Baklava and Turkish coffee are a popular way to finish.",
-    price: "Most people spend around $10–20 per person.",
+    price: "Most people spend around $15–20 per person, though rice meals and Persian specials run up to about $23.",
     rating: "We're rated 4.2 out of 5 from 222+ Google reviews.",
+    combos: "Yes — our Deal Combos are $21.90 each: a kebab wrap or rice meal, chips, and a can of Coke, Diet Coke or Sprite. Choose up to 3 sauces. Combo purchases also get you a free can from the bottom shelf of our fridge.",
   };
 
   const RULES = [
@@ -43,6 +44,7 @@
     { keys: ["rating", "review", "star"], fact: "rating" },
     { keys: ["cuisine", "food type", "turkish", "persian", "middle eastern"], fact: "cuisine" },
     { keys: ["menu", "what do you serve", "dish"], fact: "popular" },
+    { keys: ["combo", "deal", "meal deal"], fact: "combos" },
   ];
 
   const SUGGESTIONS = [
