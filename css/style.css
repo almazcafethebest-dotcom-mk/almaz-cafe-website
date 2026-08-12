@@ -1627,3 +1627,59 @@ body { animation: page-fade-in 0.4s ease; }
   body { animation: none; }
   .gallery-item img, .visit-photo img { transition: none; }
 }
+
+/* ==========================================================================
+   Sauce stickers
+   ========================================================================== */
+
+.sauce-stickers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+.sauce-sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--sc, var(--gold));
+  color: #1c1006;
+  font-weight: 700;
+  font-size: 0.76rem;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 2px solid rgba(0,0,0,0.15);
+  box-shadow: 0 3px 0 rgba(0,0,0,0.18), 0 6px 14px var(--shadow);
+  transform: rotate(var(--rot, 0deg));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: default;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.25);
+}
+.sauce-sticker::before {
+  content: "";
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.25);
+  flex-shrink: 0;
+}
+.sauce-sticker:hover {
+  transform: rotate(0deg) scale(1.12) translateY(-3px);
+  box-shadow: 0 6px 0 rgba(0,0,0,0.18), 0 14px 22px var(--shadow);
+}
+
+/* ==========================================================================
+   3D tilt cards
+   ========================================================================== */
+
+.tilt-card {
+  transform-style: preserve-3d;
+  perspective: 700px;
+  transition: transform 0.15s ease-out, box-shadow 0.2s ease;
+}
+.tilt-card .dish-body, .tilt-card > * { transform: translateZ(0); }
+.tilt-card:hover { box-shadow: 0 22px 40px var(--shadow); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tilt-card { transform: none !important; }
+  .sauce-sticker { transition: none; }
+}

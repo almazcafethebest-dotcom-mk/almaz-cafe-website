@@ -32,7 +32,25 @@
   document.addEventListener("DOMContentLoaded", init);
 })();
 
-/* Subtle magnetic pull on primary buttons */
+/* 3D tilt effect for cards — mouse position drives a subtle perspective tilt */
+(function () {
+  function init() {
+    if (window.matchMedia("(pointer: coarse)").matches) return;
+    document.querySelectorAll(".tilt-card").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        const px = (e.clientX - rect.left) / rect.width - 0.5;
+        const py = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = `rotateX(${py * -8}deg) rotateY(${px * 10}deg) translateY(-4px)`;
+      });
+      card.addEventListener("mouseleave", () => {
+        card.style.transform = "rotateX(0) rotateY(0) translateY(0)";
+      });
+    });
+  }
+  document.addEventListener("DOMContentLoaded", init);
+})();
+
 (function () {
   function init() {
     if (window.matchMedia("(pointer: coarse)").matches) return;
