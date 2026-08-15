@@ -290,6 +290,26 @@ p { margin: 0 0 1em; }
   overflow: hidden;
   background: radial-gradient(ellipse at 80% -10%, var(--parchment-warm), var(--parchment) 60%);
 }
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  z-index: 0;
+  opacity: 0.55;
+}
+.hero-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--parchment) 0%, rgba(0,0,0,0) 30%, var(--parchment) 92%),
+    linear-gradient(90deg, var(--parchment) 0%, rgba(0,0,0,0.15) 40%, rgba(0,0,0,0.15) 60%, var(--parchment) 100%);
+}
+[data-theme="dark"] .hero-backdrop { opacity: 0.32; }
+.hero .wrap, .hero-backdrop ~ * { position: relative; z-index: 1; }
+@media (max-width: 760px) {
+  .hero-backdrop { opacity: 0.3; }
+}
 .hero .wrap {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -538,7 +558,7 @@ body { transition: background 0.25s ease, color 0.25s ease; }
 
 /* Footer */
 .site-footer {
-  background: var(--espresso-deep);
+  background: var(--band-bg);
   color: rgba(251, 244, 231, 0.7);
   padding: 48px 0 28px;
 }
@@ -553,7 +573,7 @@ body { transition: background 0.25s ease, color 0.25s ease; }
   .footer-grid { grid-template-columns: 1fr; }
 }
 .site-footer h4 {
-  color: var(--cream-text);
+  color: var(--band-text);
   font-size: 0.95rem;
   margin-bottom: 14px;
 }
@@ -567,6 +587,7 @@ body { transition: background 0.25s ease, color 0.25s ease; }
   gap: 10px;
   padding-top: 22px;
   font-size: 0.8rem;
+  color: rgba(251, 244, 231, 0.7);
 }
 
 /* Utility */
@@ -1742,4 +1763,100 @@ body { animation: page-fade-in 0.4s ease; }
 }
 @media (max-width: 760px) {
   .item-preview { display: none; }
+}
+
+/* ==========================================================================
+   Real badge logo lockup
+   ========================================================================== */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-badge {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px var(--shadow);
+}
+.brand-word {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--espresso-deep);
+  line-height: 1.1;
+}
+.brand-word small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--rust);
+  margin-top: 2px;
+}
+@media (max-width: 760px) {
+  .brand-badge { width: 38px; height: 38px; }
+  .brand-word { font-size: 1.1rem; }
+}
+
+/* ==========================================================================
+   Trust badges strip (real facts, not fabricated awards)
+   ========================================================================== */
+
+.trust-strip {
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 22px 0;
+}
+.trust-strip .wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 42px;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--espresso);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.trust-item .icon { width: 26px; height: 26px; color: var(--rust); flex-shrink: 0; }
+.trust-item strong { color: var(--espresso-deep); font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
+
+/* ==========================================================================
+   Scroll parallax on hero backdrop
+   ========================================================================== */
+
+.hero-backdrop { will-change: transform; }
+
+/* ==========================================================================
+   Mobile polish pass
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .trust-strip .wrap { gap: 18px 26px; justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 2px; }
+  .trust-item { font-size: 0.78rem; white-space: nowrap; }
+  .menu-item.has-photo { gap: 10px; }
+  .menu-item-thumb { width: 48px; height: 48px; }
+  .menu-item-main { flex-direction: row; }
+  .hero h1 { font-size: clamp(2.1rem, 9vw, 2.8rem); }
+  .stat-strip { gap: 22px 16px; }
+  .journey-step { padding: 24px 18px; }
+  .gallery-grid { gap: 10px; }
+  .surprise-box { padding: 26px 18px; }
+  .name-callout { flex-direction: column; }
+  .special-banner { flex-direction: column; align-items: flex-start; }
+  .item-preview { display: none; }
+}
+
+@media (max-width: 400px) {
+  .footer-grid { gap: 22px; }
+  .hero-meta { gap: 18px; }
 }

@@ -1,4 +1,20 @@
-/* Scroll progress bar along the top of the page */
+/* Subtle parallax on the hero backdrop photo as the visitor scrolls */
+(function () {
+  function init() {
+    const backdrop = document.querySelector(".hero-backdrop");
+    if (!backdrop || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    function update() {
+      const y = window.scrollY;
+      if (y < window.innerHeight) {
+        backdrop.style.transform = `translateY(${y * 0.15}px) scale(1.05)`;
+      }
+    }
+    document.addEventListener("scroll", update, { passive: true });
+    update();
+  }
+  document.addEventListener("DOMContentLoaded", init);
+})();
+
 (function () {
   function init() {
     const bar = document.createElement("div");

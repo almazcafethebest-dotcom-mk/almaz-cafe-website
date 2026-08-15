@@ -172,3 +172,12 @@ Nine professional dish photos and a hero collage were added from the files you s
 Each now has a real thumbnail directly on its menu row, and hovering over any of those rows on desktop pops up a larger floating preview of the actual dish next to your cursor — this is the "shows the item" interaction. On mobile, the thumbnail is simply always visible instead (no hover on touchscreens, so this is the right fallback rather than a broken feature).
 
 The homepage's "customer favourites" cards, the About page's "Around the cafe" gallery (now 9 real photos, up from 4 illustrations), and the "Take a look inside" video frame all now use this real photography instead of the earlier menu-poster crops.
+
+## This round's changes
+
+- **Fixed a real dark-mode bug**: the footer background and text were both using the same variable, so in Dark mode the footer became invisible (light text on a light background) — this is almost certainly what "can't see the bottom" was. Fixed by giving the footer its own always-dark token, independent of the theme.
+- **Real badge logo** — swapped in the actual "almaz · the real turkish taste" circular badge from your wall, cropped from the photo you sent, paired with a clean text wordmark for legibility at small sizes.
+- **Blurred storefront backdrop** on the homepage hero — your real shopfront photo, blurred and darkened behind the hero text, the same treatment used by kebabsonmaskell.co.nz and other restaurant sites, with a subtle parallax drift as you scroll.
+- **Trust badge strip** under the nav (4.2★ rating, Halal certified, 20+ years, Uber Eats/DoorDash) — inspired by the "awards" row on the reference site, but built from real, verifiable facts about Almaz rather than invented awards, since I won't fabricate credentials that aren't real.
+- **All remaining low-quality/black-background photos replaced** with your real photoshoot images (brown wood table background, consistent throughout) — nothing mismatched anymore.
+- **Mobile pass**: tighter spacing, smaller touch-friendly thumbnails, horizontally-scrollable trust badges, adjusted hero type scale, and the floating hover-preview is now explicitly disabled on touch devices (it was already effectively off, this makes it certain) so nothing breaks on a phone.
