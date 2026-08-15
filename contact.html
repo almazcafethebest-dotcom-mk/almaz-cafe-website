@@ -144,8 +144,11 @@
         <p style="color:rgba(251,244,231,0.78)">For catering, private functions, or general questions. For anything urgent, calling (09) 622 2108 is faster.</p>
       </div>
 
-      <form id="contact-form" class="contact-form" style="max-width:560px;" name="contact" method="POST" data-netlify="true">
+      <form id="contact-form" class="contact-form" style="max-width:560px;" name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="contact" />
+        <p style="position:absolute; left:-9999px;" aria-hidden="true">
+          <label>Leave this field blank: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+        </p>
         <div>
           <label for="name">Name</label>
           <input id="name" name="name" type="text" required />
@@ -204,6 +207,7 @@
     <div class="footer-bottom">
       <span>&copy; <span id="year"></span> Almaz Cafe, Onehunga</span>
       <span>Family-run, Turkish &amp; Middle Eastern kitchen — proudly local for over 20 years.</span>
+      <span><a href="privacy.html" style="color:inherit;">Privacy Policy</a></span>
     </div>
   </div>
 </footer>

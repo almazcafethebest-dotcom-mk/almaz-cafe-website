@@ -145,3 +145,30 @@ python3 -m http.server 8000
 ```
 
 then visit `http://localhost:8000`.
+
+## Security & legal — what's included, and what's still on you
+
+I did a security pass and added the things a real deployment needs:
+
+- **No secrets anywhere.** There's no API key, password, or token in this codebase — the "Ask Almaz" chatbot runs entirely in the browser with hardcoded facts, and the contact form goes through Netlify's own form handling. Nothing to leak.
+- **Spam protection** on the contact form (a honeypot field Netlify uses to silently drop bot submissions).
+- **Security headers** (`netlify.toml`) — clickjacking protection, MIME-sniffing protection, a Content Security Policy, and a referrer policy. These only take effect on Netlify, not GitHub Pages.
+- **HTTPS** — automatic and free on both Netlify and GitHub Pages, nothing to configure.
+- **Privacy Policy** (`privacy.html`, linked in every footer) — since the contact form collects a name, email, and message, this explains what happens to it. Worth a quick read to make sure it matches how you actually handle enquiries.
+- **robots.txt + sitemap.xml** so Google indexes the site properly, and a custom **404 page** instead of a broken default.
+- **Allergen note** added to the menu page — "please let your server know of any allergies," standard practice for a food business and something you'd want regardless of the website.
+
+**Not included, and worth thinking about separately:**
+- This isn't legal advice, and I'm not a lawyer — if you want a proper Terms of Service or want the Privacy Policy reviewed for NZ Privacy Act 2020 compliance specifically, that's worth a quick check from someone qualified, especially once the site is handling real customer data.
+- Food safety, allergen labelling, and pricing-display obligations (e.g. under the Fair Trading Act) are about how the business operates, not the website — the site just displays what you tell it to.
+- If you ever add real analytics (Google Analytics, Meta Pixel, etc.), that changes the privacy picture — you'd likely need a cookie-consent banner and an updated Privacy Policy at that point. Right now the site has zero tracking, so none of that applies yet.
+
+## Real dish photography (added from your own photoshoot)
+
+Nine professional dish photos and a hero collage were added from the files you sent (Uber Eats / Hi-Res / Low-Res sets), matched to the correct real menu items:
+
+- Chicken Salad, Chicken on Rice, Falafel on Rice, Beef on Rice, Lamb on Rice, Moussaka, Chicken & Chips, Cheese Burger, Almaz Platter
+
+Each now has a real thumbnail directly on its menu row, and hovering over any of those rows on desktop pops up a larger floating preview of the actual dish next to your cursor — this is the "shows the item" interaction. On mobile, the thumbnail is simply always visible instead (no hover on touchscreens, so this is the right fallback rather than a broken feature).
+
+The homepage's "customer favourites" cards, the About page's "Around the cafe" gallery (now 9 real photos, up from 4 illustrations), and the "Take a look inside" video frame all now use this real photography instead of the earlier menu-poster crops.
