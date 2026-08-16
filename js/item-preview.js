@@ -23,15 +23,25 @@
     }
 
     items.forEach((item) => {
+      const thumb = item.querySelector(".menu-item-thumb");
       item.addEventListener("mouseenter", (e) => {
         img.src = item.dataset.img;
         cap.textContent = item.dataset.name || "";
         preview.classList.add("visible");
         move(e);
       });
-      item.addEventListener("mousemove", move);
+      item.addEventListener("mousemove", (e) => {
+        move(e);
+        if (thumb) {
+          const rect = item.getBoundingClientRect();
+          const px = (e.clientX - rect.left) / rect.width - 0.5;
+          const py = (e.clientY - rect.top) / rect.height - 0.5;
+          thumb.style.transform = `scale(1.15) rotateX(${py * -18}deg) rotateY(${px * 22}deg)`;
+        }
+      });
       item.addEventListener("mouseleave", () => {
         preview.classList.remove("visible");
+        if (thumb) thumb.style.transform = "";
       });
     });
   }
