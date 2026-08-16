@@ -191,3 +191,21 @@ The homepage's "customer favourites" cards, the About page's "Around the cafe" g
 - **On "3D" specifically**: I want to be straight with you here. Sites like 3dishviewer.app do true 3D/AR dish models — that requires either a professional 3D-scanning rig or a paid third-party service scanning the actual dishes in person; it's not something achievable from ordinary photos, and not something I can fabricate convincingly. What I *did* add is real depth-based interactivity within what a coded website can do: the menu photos now tilt in true 3D toward your cursor (not just a hover effect — actual `rotateX`/`rotateY` perspective transforms), on top of the existing 3D tilt cards elsewhere on the site. If a true AR dish viewer is something the client wants later, that would mean subscribing to a service like 3dishviewer.app separately and getting the dishes scanned — happy to help wire that into the site if you go that route.
 - **What I deliberately left out**: the reference site shows "Recommended on Restaurant Guru" and "Uber Eats Super Star" badges — those are real, earned recognitions specific to that restaurant. I won't invent equivalent fake badges for Almaz. The trust strip added a few rounds ago (4.2★, Halal, 20+ years, Uber Eats/DoorDash) is the honest version of that same idea.
 - **Full QA pass**: checked every page for broken internal links, missing images, unbalanced HTML tags, and missing `alt` text — all clean. Brought `privacy.html` up to the same feature level as the rest of the site (chat widget, animations, mobile action bar), since it was missing them before.
+
+## 3D scroll element, side-space use, and sizzle sound
+
+- **3D scroll-rotating icons** on every page (homepage and all secondary pages) — a kebab skewer and a medallion sitting in the unused gutters on very wide screens (1500px+), rotating in true 3D as you scroll. They're intentionally sized small and contained near the top of each page, not a full-page background or a huge distracting element, and they simply don't render at all on normal or mobile screens (there's no gutter space to use there, so nothing is lost).
+- **Turkish tile side-rail pattern** added down both gutters of the menu page's item list on very wide screens, so that space doesn't just sit blank.
+- **"Hear it sizzle" sound toggle** in the hero — this is a synthesized sizzle sound built live in the browser with the Web Audio API (filtered white noise with a bit of random flutter), not a licensed sound effect file, so there's no rights question at all. Nothing plays until a visitor deliberately clicks it.
+- A video reference was mentioned for the 3D animation but didn't actually attach to that message — I built a reasonable interpretation from the text. If you send the video through, I can tune the 3D element to match it more closely.
+
+## Real rotisserie video (the video that came through this time)
+
+Your video showed an actual döner-style rotisserie spit turning under the heating elements — genuinely great footage. I:
+
+- Cropped it to a tight square around the meat and grill
+- Compressed it from the original ~1280×720 down to a lightweight 440×440 clip (under 500KB, so it loads fast)
+- Framed it as a circular "cooking window" in the hero, right next to the sizzle sound toggle — so a visitor can see it turning and hear it sizzle at the same time
+- Set it to autoplay muted and loop silently in the background (required for autoplay to work in any browser), with the "Hear it sizzle" button as the separate, deliberate way to add sound
+
+I did try chroma-keying the white background out to transparency first so it would blend seamlessly into the page, but the result didn't come out clean, so I went with a simpler, more reliable approach instead: framing it as a circular porthole window with a rust-colored ring, like a look into the actual grill. It reads as intentional rather than a rough edge.

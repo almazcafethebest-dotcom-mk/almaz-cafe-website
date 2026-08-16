@@ -78,7 +78,22 @@
 </header>
 
 <main>
-  <section class="section-tight">
+  <section class="section-tight" style="position:relative;">
+    <div class="scroll3d-rail left" aria-hidden="true">
+      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+        <rect x="65" y="10" width="10" height="120" rx="5" fill="var(--espresso)"/>
+        <circle cx="70" cy="35" r="22" fill="var(--rust)"/>
+        <circle cx="70" cy="65" r="22" fill="var(--gold)"/>
+        <circle cx="70" cy="95" r="22" fill="var(--rust-deep)"/>
+      </svg>
+    </div>
+    <div class="scroll3d-rail right" aria-hidden="true">
+      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="70" cy="70" r="52" fill="var(--teal)"/>
+        <circle cx="70" cy="70" r="52" fill="none" stroke="var(--gold)" stroke-width="4"/>
+        <path d="M70 30 L82 55 L110 58 L89 77 L95 105 L70 90 L45 105 L51 77 L30 58 L58 55 Z" fill="var(--surface)" opacity="0.9"/>
+      </svg>
+    </div>
     <div class="wrap">
       <span class="eyebrow">Our story<svg class="eyebrow-charm" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--teal)"/><circle cx="20" cy="20" r="13" fill="var(--surface)"/><circle cx="20" cy="20" r="8" fill="var(--rust)"/><circle cx="20" cy="20" r="3.4" fill="var(--espresso-deep)"/></svg></span>
       <h1>Named for a diamond,<br />run like family.</h1>
@@ -225,6 +240,7 @@
 <script src="js/theme.js"></script>
 <script src="js/reveal.js"></script>
 <script src="js/interactive-fx.js"></script>
+<script src="js/scroll3d.js"></script>
 <script src="js/lightbox.js"></script>
 
 <nav class="action-bar" aria-label="Quick actions">
