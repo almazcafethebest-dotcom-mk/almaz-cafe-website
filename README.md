@@ -221,3 +221,24 @@ What I built instead is the same technique Apple uses on product pages (like the
 - The logo is noticeably bigger in the nav on every page.
 - Every page (Menu, About, Contact, Support) now opens with a full-width photo banner immediately, before any text — so like kebabsonmaskell.co.nz, food and the shop are the first thing you see on every page, not paragraphs.
 - **These banner photos are placeholders using your existing real photos** (the menu collage, the storefront, the Almaz Platter, chicken & chips) — you mentioned more photos are coming tomorrow/later, so these slots are built and ready. When you send new photos, just tell me which one goes where (e.g. "use this one for the About page banner") and I'll swap them in — the `background-image` on each `.page-banner` div is a one-line change per page.
+
+## Rotisserie widget rebuilt as a persistent, sitewide element
+
+Changed from a one-time pinned section on the homepage to a **persistent fixed widget on the right side of every page** (Home, Menu, About, Contact, Support):
+
+- Stays on screen the whole time you're on the site, not just while passing through one section
+- Rotates continuously as you scroll — scroll down to spin forward, scroll up to spin it backward, cycling through the frames endlessly rather than running out partway down a long page
+- Drifts gently left and right (and a little up/down) as you scroll, so it feels alive rather than static
+- Fully transparent background (the same proper alpha-matted frames as before — no white box, no circle frame this time, just the meat and grill floating over the page)
+- Only shows on wider screens (1100px+) where there's room for it on the side without crowding the content — on tablet/mobile it's hidden entirely rather than getting in the way
+- Respects "reduce motion" settings, same as everything else on the site
+
+The "Hear it sizzle" button moved back to the homepage hero, next to the menu/directions buttons, since the sound only really makes sense as an intentional, occasional click rather than tied to a widget that's now always on screen.
+
+## Page layout: text first, bold photo band lower down (not at the top)
+
+Based on feedback, every secondary page (Menu, About, Contact, Support) now leads with the normal text intro (heading, description) the way it always did — the full-bleed photo banner was moved from the very top of the page down into the middle of the page instead, styled as a bold statement band ("A different kind of taste.") with a large italic headline over a photo, closer to the reference site's placement and treatment.
+
+## QA pass after this round's changes
+
+Checked every page again after all the restructuring: balanced HTML tags, no missing image references, no duplicate element IDs, and removed CSS for the old rotisserie-window/scrub-section components that no longer exist in any page's markup.
