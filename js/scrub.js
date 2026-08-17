@@ -17,8 +17,7 @@
     // Build the fixed widget
     const widget = document.createElement("div");
     widget.className = "rotisserie-fixed";
-    widget.setAttribute("aria-hidden", "true");
-    widget.innerHTML = `<img id="rotisserie-fixed-img" src="${FRAME_PATH(0)}" alt="" />`;
+    widget.innerHTML = `<img id="rotisserie-fixed-img" src="${FRAME_PATH(0)}" alt="Rotisserie meat turning, decorative" /><span class="rf-tip">🔥 Fresh off the spit</span>`;
     document.body.appendChild(widget);
     const imgEl = widget.querySelector("#rotisserie-fixed-img");
 
@@ -40,10 +39,12 @@
       const idx = Math.floor(frameIndex);
       imgEl.src = images[idx].src;
 
-      // Gentle left/right drift synced to total scroll position
-      const sway = Math.sin(currentY / 260) * 26;
-      const bob = Math.sin(currentY / 340) * 14;
-      widget.style.transform = `translate(${sway}px, calc(-50% + ${bob}px))`;
+      // Gentle drift synced to total scroll position — kept small and
+      // biased rightward/downward so it never drifts off the left edge
+      // of the viewport from its top-left home position.
+      const sway = Math.sin(currentY / 260) * 10 + 8;
+      const bob = Math.sin(currentY / 340) * 8;
+      widget.style.transform = `translate(${sway}px, ${bob}px)`;
     }
 
     function onScroll() {
@@ -53,7 +54,6 @@
       }
     }
 
-    widget.style.transform = "translate(0, -50%)";
     document.addEventListener("scroll", onScroll, { passive: true });
   }
 

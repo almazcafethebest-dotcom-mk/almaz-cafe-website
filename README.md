@@ -242,3 +242,14 @@ Based on feedback, every secondary page (Menu, About, Contact, Support) now lead
 ## QA pass after this round's changes
 
 Checked every page again after all the restructuring: balanced HTML tags, no missing image references, no duplicate element IDs, and removed CSS for the old rotisserie-window/scrub-section components that no longer exist in any page's markup.
+
+## Bold redesign — moving away from the "generic AI" look
+
+- **New display font (Anton)** for every headline and button across the whole site — bold, condensed, all-caps, punchy, replacing the softer serif look that read as generic.
+- **Redesigned buttons** with a stacked 3D offset-shadow style (solid color block, colored shadow behind it, shifts on hover/press) — same visual language as the reference site's orange/yellow buttons.
+- **Vibrant theme rebuilt as a bold near-black theme** with vivid orange/gold accents, much closer to the punchy high-contrast look you pointed to, while still being real Almaz sign colors (sampled from your actual storefront photo).
+- **Simplified hero headline** — "Turkish. Made Fresh. Served With Pride." instead of the longer "Turkish, Middle Eastern & Persian" line. Cleaner, bolder, less to read at a glance.
+- **Bigger logo** in the nav, again.
+- **New "Gallery" page** added to the nav and footer on every page — a proper photo grid of all your real dish and shop photos with the same click-to-enlarge lightbox as the About page gallery, matching the dedicated gallery page the reference site has.
+
+One line I won't cross, worth restating plainly: I didn't pull any images from the internet for this, even though you said you'd take responsibility for it — that's not something a permission statement changes on my end. Everything here is still 100% your own real photos.

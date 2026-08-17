@@ -27,6 +27,7 @@
 
   --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
   --font-body: "Work Sans", "Segoe UI", sans-serif;
+  --font-bold: "Anton", "Archivo Black", sans-serif;
 
   --radius: 4px;
   --max-width: 1140px;
@@ -59,25 +60,25 @@
 }
 
 [data-theme="vibrant"] {
-  --espresso: #5a2418;
-  --espresso-deep: #2c1108;
-  --charcoal: #341409;
-  --parchment: #f7e0b3;
-  --parchment-warm: #f0c47e;
-  --surface: #fff8ea;
-  --line: rgba(51, 20, 9, 0.18);
+  --espresso: #e8c9a0;
+  --espresso-deep: #fff8ec;
+  --charcoal: #f3e6d2;
+  --parchment: #17110c;
+  --parchment-warm: #241a10;
+  --surface: #221a13;
+  --line: rgba(255, 220, 170, 0.14);
   --cream-text: #fdf3e2;
-  --band-bg: #6b2318;
+  --band-bg: #0c0906;
   --band-text: #fdf3e2;
-  --shadow: rgba(107, 35, 24, 0.35);
+  --shadow: rgba(0, 0, 0, 0.55);
   --rust: #ef5a17;
   --rust-deep: #cf4610;
-  --gold: #e8a317;
-  --gold-light: #f7c73f;
-  --teal: #7a2f22;
-  --teal-deep: #5c2118;
-  --teal-light: #a4523f;
-  --olive: #a85a1f;
+  --gold: #f0a916;
+  --gold-light: #ffcc4d;
+  --teal: #b05a2a;
+  --teal-deep: #8a4420;
+  --teal-light: #d4855a;
+  --olive: #d4922e;
 }
 
 * { box-sizing: border-box; }
@@ -125,8 +126,8 @@ h1, h2, h3, h4 {
   letter-spacing: -0.01em;
 }
 
-h1 { font-size: clamp(2.6rem, 6vw, 4.6rem); font-weight: 500; line-height: 1.02; }
-h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); }
+h1 { font-size: clamp(3rem, 7.5vw, 5.6rem); font-weight: 500; line-height: 1.02; }
+h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); font-family: var(--font-bold); text-transform: uppercase; letter-spacing: 0.01em; font-weight: 400; }
 h3 { font-size: 1.3rem; }
 
 p { margin: 0 0 1em; }
@@ -134,10 +135,27 @@ p { margin: 0 0 1em; }
 .eyebrow {
   font-family: var(--font-body);
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 0.72rem;
-  font-weight: 600;
+  letter-spacing: 0.14em;
+  font-size: 0.76rem;
+  font-weight: 800;
   color: var(--rust);
+}
+
+.eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surface);
+  border: 2px solid var(--gold);
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--espresso-deep);
+  margin-bottom: 18px;
 }
 
 .lede {
@@ -151,17 +169,20 @@ p { margin: 0 0 1em; }
   display: inline-flex;
   align-items: center;
   gap: 0.5em;
-  padding: 0.85em 1.6em;
-  border-radius: var(--radius);
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 0.95rem;
-  letter-spacing: 0.02em;
+  padding: 0.85em 1.7em;
+  border-radius: 8px;
+  font-family: var(--font-bold);
+  font-weight: 400;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+  position: relative;
+  transition: transform 0.12s ease;
 }
-.btn:hover { transform: translateY(-1px); }
+.btn:hover { transform: translate(-2px, -2px); }
+.btn:active { transform: translate(0, 0); }
 .btn:focus-visible {
   outline: 3px solid var(--gold-light);
   outline-offset: 2px;
@@ -170,15 +191,19 @@ p { margin: 0 0 1em; }
 .btn-primary {
   background: var(--rust);
   color: var(--cream-text);
+  box-shadow: 5px 5px 0 0 var(--gold);
 }
-.btn-primary:hover { background: var(--rust-deep); }
+.btn-primary:hover { box-shadow: 7px 7px 0 0 var(--gold); }
+.btn-primary:active { box-shadow: 2px 2px 0 0 var(--gold); }
 
 .btn-ghost {
   background: transparent;
-  border-color: var(--espresso);
+  border: 2px solid var(--espresso);
   color: var(--espresso);
+  box-shadow: 5px 5px 0 0 var(--espresso);
 }
-.btn-ghost:hover { background: var(--espresso); color: var(--cream-text); }
+.btn-ghost:hover { background: var(--espresso); color: var(--cream-text); box-shadow: 7px 7px 0 0 var(--espresso); }
+.btn-ghost:active { box-shadow: 2px 2px 0 0 var(--espresso); }
 
 /* ==========================================================================
    Header / Nav
@@ -1781,7 +1806,7 @@ body { animation: page-fade-in 0.4s ease; }
   gap: 12px;
 }
 .brand-badge {
-  width: 62px; height: 62px;
+  width: 76px; height: 76px;
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
@@ -1789,14 +1814,14 @@ body { animation: page-fade-in 0.4s ease; }
 }
 .brand-word {
   font-family: var(--font-display);
-  font-size: 1.65rem;
+  font-size: 2rem;
   color: var(--espresso-deep);
   line-height: 1.1;
 }
 .brand-word small {
   display: block;
   font-family: var(--font-body);
-  font-size: 0.66rem;
+  font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.12em;
@@ -1804,8 +1829,8 @@ body { animation: page-fade-in 0.4s ease; }
   margin-top: 2px;
 }
 @media (max-width: 760px) {
-  .brand-badge { width: 46px; height: 46px; }
-  .brand-word { font-size: 1.25rem; }
+  .brand-badge { width: 54px; height: 54px; }
+  .brand-word { font-size: 1.4rem; }
 }
 
 /* ==========================================================================
@@ -1913,31 +1938,6 @@ body { animation: page-fade-in 0.4s ease; }
 }
 
 /* ==========================================================================
-   3D scroll-rotating kebab (uses the side gutter space on wide screens)
-   ========================================================================== */
-
-.scroll3d-rail {
-  position: absolute;
-  top: 140px;
-  width: 140px;
-  height: 140px;
-  perspective: 600px;
-  pointer-events: none;
-  z-index: 1;
-  display: none;
-}
-.scroll3d-rail.left { left: calc((100% - var(--max-width)) / 4 - 70px); }
-.scroll3d-rail.right { right: calc((100% - var(--max-width)) / 4 - 70px); }
-@media (min-width: 1500px) {
-  .scroll3d-rail { display: block; }
-}
-.scroll3d-rail svg {
-  width: 100%; height: 100%;
-  transform-style: preserve-3d;
-  filter: drop-shadow(0 14px 20px var(--shadow));
-}
-
-/* ==========================================================================
    Side rail decoration — fills unused gutter space on very wide screens
    ========================================================================== */
 
@@ -1996,14 +1996,15 @@ body { animation: page-fade-in 0.4s ease; }
 
 .rotisserie-fixed {
   position: fixed;
-  right: 18px;
-  top: 50%;
-  width: 150px;
-  height: 150px;
+  left: 20px;
+  top: 96px;
+  width: 96px;
+  height: 96px;
   z-index: 90;
-  pointer-events: none;
+  pointer-events: auto;
   display: none;
   will-change: transform;
+  cursor: default;
 }
 @media (min-width: 1100px) {
   .rotisserie-fixed { display: block; }
@@ -2012,8 +2013,31 @@ body { animation: page-fade-in 0.4s ease; }
   width: 100%;
   height: 100%;
   object-fit: contain;
-  filter: drop-shadow(0 18px 26px var(--shadow));
+  filter: drop-shadow(0 14px 20px var(--shadow));
 }
+.rotisserie-fixed .rf-tip {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  margin-left: 6px;
+  background: var(--band-bg);
+  color: var(--band-text);
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+  padding: 7px 12px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  box-shadow: 0 6px 16px var(--shadow);
+}
+.rotisserie-fixed:hover .rf-tip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(10px);
+}
+.rotisserie-fixed:hover img { filter: drop-shadow(0 18px 28px var(--shadow)) brightness(1.08); }
 @media (prefers-reduced-motion: reduce) {
   .rotisserie-fixed { display: none; }
 }
@@ -2073,11 +2097,12 @@ body { animation: page-fade-in 0.4s ease; }
 .statement-band .content { position: relative; z-index: 1; padding: 50px 24px; }
 .statement-band .eyebrow { color: var(--gold-light); }
 .statement-band h2 {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-weight: 600;
-  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  font-family: var(--font-bold);
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: clamp(2.6rem, 8vw, 5rem);
   color: #fdf0da;
   text-shadow: 0 6px 30px rgba(0,0,0,0.5);
   margin: 6px 0 0;
+  line-height: 0.95;
 }
