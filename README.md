@@ -209,3 +209,15 @@ Your video showed an actual döner-style rotisserie spit turning under the heati
 - Set it to autoplay muted and loop silently in the background (required for autoplay to work in any browser), with the "Hear it sizzle" button as the separate, deliberate way to add sound
 
 I did try chroma-keying the white background out to transparency first so it would blend seamlessly into the page, but the result didn't come out clean, so I went with a simpler, more reliable approach instead: framing it as a circular porthole window with a rust-colored ring, like a look into the actual grill. It reads as intentional rather than a rough edge.
+
+## Scroll-scrubbed rotisserie (the "3D" section, oryzo.ai-inspired)
+
+Being straight about what this is: oryzo.ai is built by Lusion, an award-winning studio, using a true WebGL 3D model (an actual `.obj` file) rendered in real time — that requires either a professional 3D-scanning rig or hand-modeling in 3D software, neither of which is something I can produce from ordinary photos or video.
+
+What I built instead is the same technique Apple uses on product pages (like the AirPods Pro site): I extracted 48 frames from your rotisserie video, removed the white background from each one (proper alpha transparency, not a crop), and built a scroll-scrubber — as you scroll through that section, it steps through the frames in sync with your scroll position, so it really is your scroll wheel driving the animation, sitting directly in the page (not a small corner window), with a transparent background that blends into the site rather than a white box. It's positioned in the middle of the homepage, between the stats and the dish cards.
+
+## Bigger logo, bolder pages, more real photos
+
+- The logo is noticeably bigger in the nav on every page.
+- Every page (Menu, About, Contact, Support) now opens with a full-width photo banner immediately, before any text — so like kebabsonmaskell.co.nz, food and the shop are the first thing you see on every page, not paragraphs.
+- **These banner photos are placeholders using your existing real photos** (the menu collage, the storefront, the Almaz Platter, chicken & chips) — you mentioned more photos are coming tomorrow/later, so these slots are built and ready. When you send new photos, just tell me which one goes where (e.g. "use this one for the About page banner") and I'll swap them in — the `background-image` on each `.page-banner` div is a one-line change per page.

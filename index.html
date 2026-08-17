@@ -196,23 +196,6 @@
           <a class="btn btn-primary" href="menu.html">View the menu</a>
           <a class="btn btn-ghost" href="contact.html">Get directions</a>
         </div>
-
-        <div class="rotisserie-cluster">
-          <div class="rotisserie-window">
-            <span class="glow-ring" aria-hidden="true"></span>
-            <video autoplay muted loop playsinline aria-label="Live rotisserie cooking, looped footage">
-              <source src="images/rotisserie.mp4" type="video/mp4" />
-            </video>
-          </div>
-          <div class="caption">
-            <strong>On the spit, right now</strong>
-            Marinated meat, slow-turned and always fresh off the grill.
-          </div>
-          <button class="sizzle-toggle" id="sizzle-toggle" type="button" aria-pressed="false" style="margin-top:0;">
-            <span class="bars"><span></span><span></span><span></span></span>
-            <span class="sizzle-label">Hear it sizzle</span>
-          </button>
-        </div>
       </div>
 
       <div class="hero-art">
@@ -241,6 +224,26 @@
         <div class="stat-item reveal">
           <div class="num" data-count="40" data-suffix="+">0</div>
           <div class="label">Seats for groups</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scrub-section" id="scrub-section">
+    <div class="scrub-sticky">
+      <div class="wrap scrub-wrap">
+        <div class="scrub-copy">
+          <span class="eyebrow">Scroll to watch</span>
+          <h2>Straight off the spit.</h2>
+          <p class="lede">Marinated, slow-turned, and always fresh — keep scrolling and watch it cook.</p>
+          <button class="sizzle-toggle" id="sizzle-toggle" type="button" aria-pressed="false">
+            <span class="bars"><span></span><span></span><span></span></span>
+            <span class="sizzle-label">Hear it sizzle</span>
+          </button>
+        </div>
+        <div class="scrub-stage">
+          <div class="scrub-glow" aria-hidden="true"></div>
+          <img id="scrub-frame" src="images/rotisserie/frame_000.webp" alt="Rotisserie meat turning and cooking, controlled by scrolling" width="420" height="420" />
         </div>
       </div>
     </div>
@@ -462,6 +465,7 @@
 <script src="js/carousel.js"></script>
 <script src="js/special.js"></script>
 <script src="js/sizzle.js"></script>
+<script src="js/scrub.js"></script>
 
 <nav class="action-bar" aria-label="Quick actions">
   <div class="wrap">
