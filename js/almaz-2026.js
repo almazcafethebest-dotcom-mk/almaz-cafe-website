@@ -675,91 +675,26 @@
      ---------------------------------------------------------------------- */
   function paperCut() {
     if (REDUCED) return;
-    if (!document.body) return;
+    var stage = document.querySelector(".paper-stage");
+    if (!stage) return;
 
-    var STICKERS = [
-      // skewer
-      '<svg viewBox="0 0 40 40"><path d="M6 34 34 6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="14" cy="26" r="4.2" fill="currentColor"/><circle cx="21" cy="19" r="4.2" fill="currentColor"/><circle cx="28" cy="12" r="4.2" fill="currentColor"/></svg>',
-      // pita / wrap
-      '<svg viewBox="0 0 40 40"><path d="M8 30c0-9 5.5-16 12-16s12 7 12 16Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M14 30c0-6 2.7-10 6-10s6 4 6 10" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>',
-      // chilli
-      '<svg viewBox="0 0 40 40"><path d="M20 9c4 0 6 3 6 7 0 8-4 15-10 15-4 0-6-3-6-6 0-7 5-16 10-16Z" fill="currentColor"/><path d="M20 9c1-3 4-4 6-3" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>',
-      // plate
-      '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="13" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="20" cy="20" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
-      // fork
-      '<svg viewBox="0 0 40 40"><path d="M15 6v9M20 6v9M25 6v9M20 15v19" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M15 15h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
-      // onion ring / lemon
-      '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 8v24M8 20h24M11.5 11.5l17 17M28.5 11.5l-17 17" stroke="currentColor" stroke-width="1.4"/></svg>'
-    ];
-
-    // Fixed positions rather than random ones: a scatter that changes on
-    // every navigation reads as a glitch, not as a printed wrapper. The
-    // two halves get different arrangements so the cut does not look like
-    // the same sheet repeated. [ left%, top%, size px, rotation deg ]
-    var SPOTS = {
-      top: [
-        [6, 14, 74, -14], [24, 62, 48, 9], [41, 20, 88, 6],
-        [58, 74, 56, -20], [74, 30, 70, 12], [88, 56, 44, -8],
-        [14, 82, 60, 20], [50, 6, 52, -11], [67, 48, 80, 4],
-        [32, 40, 46, 16], [84, 8, 66, -6], [2, 48, 54, 8],
-        [46, 88, 42, -17], [93, 78, 50, 13]
-      ],
-      bottom: [
-        [11, 30, 62, 11], [29, 8, 78, -9], [47, 56, 46, 17],
-        [64, 22, 84, -5], [80, 68, 52, 8], [95, 34, 44, -14],
-        [4, 72, 70, -18], [38, 78, 56, 6], [72, 6, 48, 15],
-        [56, 40, 74, -7], [88, 12, 58, 10], [20, 50, 50, -12],
-        [43, 92, 44, 19], [77, 88, 66, -4]
-      ]
-    };
-
-    function sheet(half) {
-      var el = document.createElement("div");
-      el.className = "paper-half paper-" + half;
-      var inner = document.createElement("div");
-      inner.className = "paper-art";
-      (SPOTS[half] || SPOTS.top).forEach(function (sp, i) {
-        var s = document.createElement("span");
-        s.className = "paper-sticker";
-        s.style.left = sp[0] + "%";
-        s.style.top = sp[1] + "%";
-        s.style.width = sp[2] + "px";
-        s.style.transform = "rotate(" + sp[3] + "deg)";
-        s.innerHTML = STICKERS[i % STICKERS.length];
-        inner.appendChild(s);
-      });
-      el.appendChild(inner);
-      return el;
-    }
-
-    var stage = document.createElement("div");
-    stage.className = "paper-stage";
-    stage.setAttribute("aria-hidden", "true");
-    stage.appendChild(sheet("top"));
-    stage.appendChild(sheet("bottom"));
-    var seam = document.createElement("i");
-    seam.className = "paper-seam";
-    stage.appendChild(seam);
-    document.body.appendChild(stage);
-
-    // The opening half only plays if we actually arrived through the
-    // transition. Playing it on every load meant a page opened directly
-    // snapped the paper shut for one frame and then opened it — which is
-    // the flash, and reads as the animation running twice.
     var KEY = "almaz-paper-in";
-    var arrived = false;
-    try { arrived = sessionStorage.getItem(KEY) === "1"; sessionStorage.removeItem(KEY); } catch (e) {}
-    if (arrived) {
-      stage.classList.add("armed");        // sit closed, with no animation
+    var root = document.documentElement;
+
+    /* Arriving. The sheet is already closed over the page — the inline
+       script in <head> put it there before the first paint, which is the
+       whole point: the visitor never sees the new page uncovered between
+       the close and the open. All that is left is to open it. */
+    if (root.classList.contains("paper-in")) {
+      try { sessionStorage.removeItem(KEY); } catch (e) {}
       requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          stage.classList.remove("armed");
-          stage.classList.add("opening");
-          setTimeout(function () { stage.classList.remove("opening"); }, 560);
-        });
+        stage.classList.add("opening");
+        root.classList.remove("paper-in");
+        setTimeout(function () { stage.classList.remove("opening"); }, 600);
       });
     }
 
+    /* Leaving. Close the sheet, then navigate while it is covering. */
     var leaving = false;
     document.addEventListener("click", function (e) {
       if (leaving) return;
@@ -775,21 +710,20 @@
       leaving = true;
       try { sessionStorage.setItem(KEY, "1"); } catch (err) {}
       stage.classList.add("closing");
-      // The paper covers the seam at 300ms; navigating then means the new
-      // page is already loading behind it rather than after it.
+      // Navigate the moment the sheet has met in the middle.
       setTimeout(function () { location.href = a.href; }, 300);
-      // If the browser is slow to leave, do not strand anyone behind paper.
+      // Never strand anyone behind paper if the browser is slow to leave.
       setTimeout(function () { stage.classList.remove("closing"); leaving = false; }, 2500);
     }, true);
 
-    // Coming back with the Back button restores a cached page that may
-    // still be mid-transition. Clear it.
-    window.addEventListener("pageshow", function () {
+    /* Back button restores a cached page that may still be mid-transition. */
+    window.addEventListener("pageshow", function (e) {
+      if (!e.persisted) return;
       stage.classList.remove("closing");
       stage.classList.remove("opening");
-      stage.classList.remove("armed");
+      root.classList.remove("paper-in");
       leaving = false;
-      try { sessionStorage.removeItem(KEY); } catch (e) {}
+      try { sessionStorage.removeItem(KEY); } catch (err) {}
     });
   }
 

@@ -3112,6 +3112,7 @@ h1, .h1 { font-size: clamp(2.8rem, 6.9vw, 6.1rem) !important; }
 }
 .paper-stage.closing,
 .paper-stage.opening { visibility: visible; }
+.paper-stage.opening { pointer-events: none; }
 .paper-stage.closing { pointer-events: auto; }
 
 .paper-half {
@@ -3689,12 +3690,17 @@ h1, .h1 { font-size: clamp(2.8rem, 6.9vw, 6.1rem) !important; }
   .hours-week li { padding: 11px 10px; font-size: 0.9rem; }
 }
 
-/* "armed" is the closed state held for one frame with no animation on it,
-   so the paper never snaps into place in view. */
-.paper-stage.armed { visibility: visible; }
-.paper-stage.armed .paper-top    { transform: translateY(0); }
-.paper-stage.armed .paper-bottom { transform: translateY(0); }
-.paper-stage.armed .paper-seam   { opacity: 1; transform: scaleX(1); }
+/* Arriving through the transition. The class is put on <html> by an inline
+   script in <head>, so the sheet is closed from the very first paint and
+   the page underneath is never seen bare. No animation on this state — it
+   is a position, not a move. */
+html.paper-in .paper-stage { visibility: visible; }
+html.paper-in .paper-top    { transform: translateY(0); }
+html.paper-in .paper-bottom { transform: translateY(0); }
+html.paper-in .paper-seam   { opacity: 1; transform: scaleX(1); }
+
+/* The symbol library the stickers point at must never take up space. */
+.paper-defs { position: absolute; width: 0; height: 0; overflow: hidden; }
 
 /* ==========================================================================
    68. THE BAR AT REST — no colour at all
