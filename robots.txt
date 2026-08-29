@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://almazcafe.netlify.app/sitemap.xml
