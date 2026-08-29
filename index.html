@@ -325,13 +325,18 @@ try{if(location.hash&&/(invite_token|recovery_token|confirmation_token|email_cha
   <!-- Ringing ahead. Written as four things that actually happen rather
        than as a feature list, because the whole point is that people who
        have never done it can picture doing it. -->
-  <section class="section-tight" style="padding-top:0;">
+  <section class="section-tight" id="pickup" style="padding-top:0; scroll-margin-top:90px;">
     <div class="wrap">
       <div class="pickup-flow">
         <div class="pickup-intro">
           <span class="know-eyebrow">Ring ahead</span>
           <h2>Skip the wait,<br>skip the app fee</h2>
           <p>You don&rsquo;t need a delivery app or an account. Ring the shop, say what you want and roughly when, and it&rsquo;s off the grill as you arrive &mdash; to take away, or to sit down and eat.</p>
+          <ul class="pickup-wins">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>No service fee, no delivery fee</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Menu price is the price you pay</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Cooked to order, not sitting in a bag</li>
+          </ul>
           <a class="btn btn-primary" href="tel:+6496222108" data-site-link="phone">
             <span class="btn-label">Call <span data-site="phone">(09) 622 2108</span></span>
           </a>
@@ -342,34 +347,26 @@ try{if(location.hash&&/(invite_token|recovery_token|confirmation_token|email_cha
           <li>
             <span class="pf-num">1</span>
             <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.1 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.68 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.1-.45c.9.32 1.85.55 2.8.68A2 2 0 0 1 22 16.9Z"/></svg></span>
-            <div>
-              <h3>Call the shop</h3>
+            <h3>Call the shop</h3>
               <p>One of the owners answers. Tell them the dish and how you want it &mdash; sauces, spice, salad or no salad.</p>
-            </div>
           </li>
           <li>
             <span class="pf-num">2</span>
             <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"/><path d="M12 6.8V12l3.4 2"/></svg></span>
-            <div>
-              <h3>Say when you&rsquo;ll be there</h3>
+            <h3>Say when you&rsquo;ll be there</h3>
               <p>Fifteen minutes is plenty for most things. Rice meals and the Persian casseroles are worth twenty.</p>
-            </div>
           </li>
           <li>
             <span class="pf-num">3</span>
             <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20.5h15"/><path d="M6 17.5h12a6 6 0 0 0-12 0Z"/><path d="M9.4 4.2c-.7 1 .5 1.6-.2 2.6M12 3.4c-.8 1.1.5 1.8-.3 2.9M14.6 4.2c-.7 1 .5 1.6-.2 2.6"/></svg></span>
-            <div>
-              <h3>It&rsquo;s cooked when you arrive</h3>
+            <h3>It&rsquo;s cooked when you arrive</h3>
               <p>Nothing sits under a lamp. The grill goes on for your order, so it&rsquo;s hot when it reaches you.</p>
-            </div>
           </li>
           <li>
             <span class="pf-num">4</span>
             <span class="pf-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9.6a1 1 0 0 1 .45-.83l7.5-4.9a1 1 0 0 1 1.1 0l7.5 4.9a1 1 0 0 1 .45.83V21"/><path d="M2 21h20"/><path d="M9.4 21v-5.6a2.6 2.6 0 0 1 5.2 0V21"/></svg></span>
-            <div>
-              <h3>Walk in and pay</h3>
+            <h3>Walk in and pay</h3>
               <p>Card, contactless or cash at the counter. Free street parking right outside, and a table if you&rsquo;d rather eat in.</p>
-            </div>
           </li>
         </ol>
       </div>
@@ -551,6 +548,18 @@ try{if(location.hash&&/(invite_token|recovery_token|confirmation_token|email_cha
     </div>
   </div>
 </footer>
+
+
+<!-- The one thing on the site that most directly makes the shop money is a
+     phone order: no commission, no delivery fee, and the kitchen keeps the
+     whole ticket. It gets a permanent, quiet handle on the home page. -->
+<a class="pickup-fab" href="#pickup" aria-label="How to order ahead and pick up">
+  <span class="pf-ring" aria-hidden="true"></span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+    <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.1 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.68 2.8a2 2 0 0 1-.45 2.1L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.1-.45c.9.32 1.85.55 2.8.68A2 2 0 0 1 22 16.9Z"/>
+  </svg>
+  <span class="pf-tip">How pickup works</span>
+</a>
 
 <div id="almaz-chat-root"></div>
 

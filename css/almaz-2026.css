@@ -3688,3 +3688,247 @@ h1, .h1 { font-size: clamp(2.8rem, 6.9vw, 6.1rem) !important; }
   .today-tag { display: none; }
   .hours-week li { padding: 11px 10px; font-size: 0.9rem; }
 }
+
+/* "armed" is the closed state held for one frame with no animation on it,
+   so the paper never snaps into place in view. */
+.paper-stage.armed { visibility: visible; }
+.paper-stage.armed .paper-top    { transform: translateY(0); }
+.paper-stage.armed .paper-bottom { transform: translateY(0); }
+.paper-stage.armed .paper-seam   { opacity: 1; transform: scaleX(1); }
+
+/* ==========================================================================
+   68. THE BAR AT REST — no colour at all
+   At the top of the page the bar is glass with nothing behind it. On the
+   home page that means cream type on a photograph, which needs its own
+   shadow to stay readable; on every other page the ground is already
+   parchment, so the type stays dark and nothing changes.
+   ========================================================================== */
+.site-header.at-top .nav {
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Only where a photograph runs under the bar. */
+body:has(.hero-backdrop) .site-header.at-top .nav a,
+body:has(.hero-backdrop) .site-header.at-top .nav-links a,
+body:has(.hero-backdrop) .site-header.at-top .brand-word,
+body:has(.hero-backdrop) .site-header.at-top .brand-word small {
+  color: #FFF7EA !important;
+  text-shadow: 0 1px 3px rgba(8, 5, 3, 0.85), 0 2px 16px rgba(8, 5, 3, 0.7);
+}
+body:has(.hero-backdrop) .site-header.at-top .nav-links a::after {
+  background: #FFF7EA !important;
+}
+/* The current page keeps its pill. A pale wash of cream over a photograph
+   left the cream label at 4.0:1 — measured, not eyeballed — so the pill is
+   a dark chip instead, which the cream sits on cleanly whatever photograph
+   happens to be behind it. */
+body:has(.hero-backdrop) .site-header.at-top .nav-links a[aria-current],
+body:has(.hero-backdrop) .site-header.at-top .nav-links a.active {
+  background: rgba(18, 11, 5, 0.55) !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 214, 140, 0.55);
+  color: #FFF7EA !important;
+}
+body:has(.hero-backdrop) .site-header.at-top .brand-badge {
+  filter: drop-shadow(0 2px 6px rgba(8, 5, 3, 0.6));
+}
+body:has(.hero-backdrop) .site-header.at-top .nav-toggle {
+  color: #FFF7EA !important;
+  filter: drop-shadow(0 1px 4px rgba(8, 5, 3, 0.8));
+}
+
+/* Once it contracts into the capsule everything returns to normal. */
+.site-header.scrolled .nav a,
+.site-header.scrolled .brand-word,
+.site-header.scrolled .brand-word small { text-shadow: none; }
+
+/* ==========================================================================
+   69. ICON AND HEADING ON THE SAME LINE
+   The icon boxes sat 6 to 12 pixels below their headings, because the text
+   was wrapped in a block of its own and the tall icon aligned to the top of
+   the whole block rather than to the line it belongs with. Heading and icon
+   are now on the same grid row, so they centre on each other at any font
+   size — no nudging, and nothing to re-tune if the type changes.
+   ========================================================================== */
+.pickup-steps li {
+  grid-template-columns: 26px 40px 1fr;
+  align-items: center;
+  column-gap: 14px;
+  row-gap: 3px;
+}
+.pickup-steps .pf-num  { grid-row: 1; grid-column: 1; padding-top: 0; }
+.pickup-steps .pf-icon { grid-row: 1; grid-column: 2; }
+.pickup-steps h3       { grid-row: 1; grid-column: 3; margin: 0; }
+.pickup-steps p        { grid-row: 2; grid-column: 3; }
+
+.support-ways li {
+  grid-template-columns: 38px 1fr;
+  align-items: center;
+  column-gap: 13px;
+  row-gap: 2px;
+}
+.support-ways .sw-icon { grid-row: 1; grid-column: 1; }
+.support-ways strong   { grid-row: 1; grid-column: 2; margin: 0; }
+.support-ways > span   { grid-row: 2; grid-column: 2; }
+.support-ways > a      { grid-row: 3; grid-column: 2; }
+
+@media (max-width: 520px) {
+  .pickup-steps li { grid-template-columns: 20px 34px 1fr; column-gap: 11px; }
+}
+
+/* ==========================================================================
+   70. THE PICKUP HANDLE
+   Bottom left, so it never joins the pile of controls on the right. Glass
+   rather than solid: present the whole way down the page without shouting
+   over the food. The label rides out on hover and is announced to screen
+   readers through the link's own aria-label either way.
+   ========================================================================== */
+.pickup-fab {
+  position: fixed;
+  left: 22px;
+  bottom: 22px;
+  z-index: 880;
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF6E8;
+  background: color-mix(in srgb, var(--rust-deep) 82%, transparent);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1px solid rgba(255, 246, 232, 0.4);
+  box-shadow: 0 12px 34px -14px rgba(20, 12, 4, 0.8);
+  text-decoration: none;
+  transition: width 0.45s var(--ease-out), background 0.3s ease,
+              transform 0.35s var(--ease-out), box-shadow 0.35s ease;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.pickup-fab svg { width: 22px; height: 22px; flex: 0 0 22px; }
+.pickup-fab:hover,
+.pickup-fab:focus-visible {
+  width: 232px;
+  justify-content: flex-start;
+  padding-left: 16px;
+  gap: 11px;
+  background: var(--rust-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -14px rgba(20, 12, 4, 0.9);
+}
+.pf-tip {
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  /* Collapsed to nothing rather than merely transparent: a nowrap label
+     that still occupies its width pushes the icon out of a 54px button. */
+  max-width: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-width 0.45s var(--ease-out), opacity 0.28s ease 0.08s;
+}
+.pickup-fab:hover .pf-tip,
+.pickup-fab:focus-visible .pf-tip { max-width: 170px; opacity: 1; }
+
+/* A slow ring so the eye finds it once, without a pulse that nags. */
+.pf-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 214, 140, 0.55);
+  opacity: 0;
+  animation: fab-ring 5.5s ease-out infinite;
+  pointer-events: none;
+}
+@keyframes fab-ring {
+  0%   { transform: scale(0.86); opacity: 0; }
+  14%  { opacity: 0.9; }
+  40%  { transform: scale(1.28); opacity: 0; }
+  100% { transform: scale(1.28); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .pf-ring { animation: none; } }
+
+/* Phones already carry a permanent Call button in the bottom bar, so this
+   would be a second handle for the same job in a place with no room. */
+@media (max-width: 900px) { .pickup-fab { display: none; } }
+
+/* ---- the three reasons, inside the panel ---- */
+.pickup-wins { list-style: none; margin: 0 0 20px; padding: 0; }
+.pickup-wins li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  padding: 5px 0;
+  color: var(--espresso-deep);
+}
+[data-theme="light"] .pickup-wins li { color: #33220F; }
+.pickup-wins svg {
+  width: 17px; height: 17px;
+  flex: 0 0 17px;
+  margin-top: 2px;
+  color: var(--rust);
+}
+[data-theme="light"] .pickup-wins svg { color: var(--rust-deep); }
+
+/* ==========================================================================
+   71. PHONES — fewer things, more room
+   A phone is not a small desktop. Everything here earns its place twice
+   over or it goes: the bottom bar already offers Call, Directions and
+   Order at all times, so anything on screen repeating one of those is
+   noise competing for the same thumb.
+   ========================================================================== */
+@media (max-width: 900px) {
+
+  /* The back-to-top control duplicates a bar that never leaves the screen. */
+  .to-top { display: none !important; }
+
+  /* A sound toggle is a nice desktop moment and a wasted row on a phone. */
+  .sizzle-toggle { display: none !important; }
+
+  /* The facts bar becomes one line per fact with the label inline, rather
+     than three stacked two-line blocks. Same information, half the height. */
+  .hero-bar .hero-meta { gap: 0 !important; display: block !important; }
+  .hero-bar .hero-meta div {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    padding: 9px 0 9px 12px;
+    border-left-width: 2px;
+  }
+  .hero-bar .hero-meta .label {
+    font-size: 0.6rem !important;
+    letter-spacing: 0.14em;
+    flex: 0 0 68px;
+    white-space: nowrap;
+  }
+  .hero-bar .hero-meta .value { font-size: 1rem !important; }
+
+  /* The pickup pill is the one action worth a full row of its own. */
+  .pickup-callout { width: 100%; }
+  .pickup-callout .pc-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.95em 1.1em !important;
+    font-size: 0.95rem;
+  }
+
+  /* Sections breathe rather than stack. */
+  .section-tight { padding-top: 40px !important; padding-bottom: 40px !important; }
+  .know-band, .pickup-flow, .hours-panel, .gal-close, .support-card {
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 560px) {
+  /* One clear column, generous rows, nothing squeezed side by side. */
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-actions .btn { width: 100%; justify-content: center; }
+  .room-actions .btn, .gal-close-actions .btn { flex: 1 1 100%; justify-content: center; }
+}

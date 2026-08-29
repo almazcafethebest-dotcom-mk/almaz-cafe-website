@@ -595,6 +595,10 @@
      ignored. Any click on the switch counts as understood.
      ---------------------------------------------------------------------- */
   function themeHint() {
+    // Not on a phone. The card would cover a third of the screen to explain
+    // a control that is already lit, and screen space there is the scarcest
+    // thing the design has.
+    if (window.innerWidth < 760) return;
     var KEY = "almaz-theme-hint";
     try { if (localStorage.getItem(KEY)) return; } catch (e) { return; }
 
@@ -738,12 +742,23 @@
     stage.appendChild(seam);
     document.body.appendChild(stage);
 
-    // On arrival the two halves are already closed and part immediately,
-    // so the new page is revealed rather than simply appearing.
-    requestAnimationFrame(function () {
-      stage.classList.add("opening");
-      setTimeout(function () { stage.classList.remove("opening"); }, 560);
-    });
+    // The opening half only plays if we actually arrived through the
+    // transition. Playing it on every load meant a page opened directly
+    // snapped the paper shut for one frame and then opened it — which is
+    // the flash, and reads as the animation running twice.
+    var KEY = "almaz-paper-in";
+    var arrived = false;
+    try { arrived = sessionStorage.getItem(KEY) === "1"; sessionStorage.removeItem(KEY); } catch (e) {}
+    if (arrived) {
+      stage.classList.add("armed");        // sit closed, with no animation
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          stage.classList.remove("armed");
+          stage.classList.add("opening");
+          setTimeout(function () { stage.classList.remove("opening"); }, 560);
+        });
+      });
+    }
 
     var leaving = false;
     document.addEventListener("click", function (e) {
@@ -758,6 +773,7 @@
 
       e.preventDefault();
       leaving = true;
+      try { sessionStorage.setItem(KEY, "1"); } catch (err) {}
       stage.classList.add("closing");
       // The paper covers the seam at 300ms; navigating then means the new
       // page is already loading behind it rather than after it.
@@ -770,7 +786,10 @@
     // still be mid-transition. Clear it.
     window.addEventListener("pageshow", function () {
       stage.classList.remove("closing");
+      stage.classList.remove("opening");
+      stage.classList.remove("armed");
       leaving = false;
+      try { sessionStorage.removeItem(KEY); } catch (e) {}
     });
   }
 
