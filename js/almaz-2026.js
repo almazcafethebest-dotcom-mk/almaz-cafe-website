@@ -43,12 +43,17 @@
      where it is a detail rather than an event. */
   function miniPlate() {
     if (REDUCED) return;
-    if (document.querySelector(".plate-mini-strip")) return;
+    // The strip used to be pinned to the top of the window, above the bar.
+    // The bar is now full width at the top of the page, so there is no gap
+    // for it to live in. It is placed into the page instead, wherever the
+    // markup puts <div id="plate-strip-slot">.
+    var slot = document.getElementById("plate-strip-slot");
+    if (!slot || slot.querySelector(".plate-mini-strip")) return;
     var strip = document.createElement("div");
     strip.className = "plate-mini-strip";
     strip.setAttribute("aria-hidden", "true");
     strip.innerHTML = '<span class="plate-mini"></span>';
-    document.body.appendChild(strip);
+    slot.appendChild(strip);
   }
 
   function nav() {
@@ -58,7 +63,11 @@
     var last = window.scrollY, ticking = false;
     function onScroll() {
       var y = window.scrollY;
-      header.classList.toggle("scrolled", y > 40);
+      // Wide across the page at rest, contracting into the floating capsule
+      // as soon as the visitor moves. 30px is enough that a stray wheel
+      // nudge does not flicker it.
+      header.classList.toggle("scrolled", y > 30);
+      header.classList.toggle("at-top", y <= 30);
       // Only hide well past the fold, and never while a menu is open.
       if (y > 260 && y > last + 4 && !document.querySelector(".nav-links.open")) {
         header.classList.add("nav-hidden");
@@ -463,7 +472,12 @@
      screens that cannot show them.
      ---------------------------------------------------------------------- */
   function menuRails() {
-    if (!document.querySelector(".menu-group")) return;
+    // Everywhere except the two pages already carrying the photography:
+    // the home page has the rotating hero, and the gallery IS the pictures.
+    // Those two say so on their <body> tag rather than being sniffed out,
+    // because the about page also contains a small gallery grid and was
+    // being excluded by accident.
+    if (document.body.dataset.rails === "off") return;
     if (window.innerWidth < 1500) return;
     if (REDUCED) return;
 
@@ -639,12 +653,158 @@
     }, 1800);
   }
 
+
+  /* ----------------------------------------------------------------------
+     THE PAGE CHANGE — a sheet of paper, cut down the middle.
+     Two halves of warm paper meet at the centre line and part sideways,
+     the way a wrapper opens. Kebab stickers ride on the paper so it is a
+     printed thing rather than a blank panel.
+
+     Everything is one composited transform on two elements, which is what
+     keeps it smooth: nothing reflows, nothing repaints. The whole sequence
+     is 520ms because the honest job of a page transition is to cover a
+     hand-off, and anything longer is a toll on the visitor.
+
+     The earlier rolling-plate version failed because it tried to animate
+     the *incoming* page, which the browser captures before its scripts
+     run. This one only ever animates a sheet the current page owns.
+     ---------------------------------------------------------------------- */
+  function paperCut() {
+    if (REDUCED) return;
+    if (!document.body) return;
+
+    var STICKERS = [
+      // skewer
+      '<svg viewBox="0 0 40 40"><path d="M6 34 34 6" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/><circle cx="14" cy="26" r="4.2" fill="currentColor"/><circle cx="21" cy="19" r="4.2" fill="currentColor"/><circle cx="28" cy="12" r="4.2" fill="currentColor"/></svg>',
+      // pita / wrap
+      '<svg viewBox="0 0 40 40"><path d="M8 30c0-9 5.5-16 12-16s12 7 12 16Z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M14 30c0-6 2.7-10 6-10s6 4 6 10" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>',
+      // chilli
+      '<svg viewBox="0 0 40 40"><path d="M20 9c4 0 6 3 6 7 0 8-4 15-10 15-4 0-6-3-6-6 0-7 5-16 10-16Z" fill="currentColor"/><path d="M20 9c1-3 4-4 6-3" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>',
+      // plate
+      '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="13" fill="none" stroke="currentColor" stroke-width="2.2"/><circle cx="20" cy="20" r="7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>',
+      // fork
+      '<svg viewBox="0 0 40 40"><path d="M15 6v9M20 6v9M25 6v9M20 15v19" stroke="currentColor" stroke-width="2.2" fill="none" stroke-linecap="round"/><path d="M15 15h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>',
+      // onion ring / lemon
+      '<svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="12" fill="none" stroke="currentColor" stroke-width="2.2"/><path d="M20 8v24M8 20h24M11.5 11.5l17 17M28.5 11.5l-17 17" stroke="currentColor" stroke-width="1.4"/></svg>'
+    ];
+
+    // Fixed positions rather than random ones: a scatter that changes on
+    // every navigation reads as a glitch, not as a printed wrapper. The
+    // two halves get different arrangements so the cut does not look like
+    // the same sheet repeated. [ left%, top%, size px, rotation deg ]
+    var SPOTS = {
+      top: [
+        [6, 14, 74, -14], [24, 62, 48, 9], [41, 20, 88, 6],
+        [58, 74, 56, -20], [74, 30, 70, 12], [88, 56, 44, -8],
+        [14, 82, 60, 20], [50, 6, 52, -11], [67, 48, 80, 4],
+        [32, 40, 46, 16], [84, 8, 66, -6], [2, 48, 54, 8],
+        [46, 88, 42, -17], [93, 78, 50, 13]
+      ],
+      bottom: [
+        [11, 30, 62, 11], [29, 8, 78, -9], [47, 56, 46, 17],
+        [64, 22, 84, -5], [80, 68, 52, 8], [95, 34, 44, -14],
+        [4, 72, 70, -18], [38, 78, 56, 6], [72, 6, 48, 15],
+        [56, 40, 74, -7], [88, 12, 58, 10], [20, 50, 50, -12],
+        [43, 92, 44, 19], [77, 88, 66, -4]
+      ]
+    };
+
+    function sheet(half) {
+      var el = document.createElement("div");
+      el.className = "paper-half paper-" + half;
+      var inner = document.createElement("div");
+      inner.className = "paper-art";
+      (SPOTS[half] || SPOTS.top).forEach(function (sp, i) {
+        var s = document.createElement("span");
+        s.className = "paper-sticker";
+        s.style.left = sp[0] + "%";
+        s.style.top = sp[1] + "%";
+        s.style.width = sp[2] + "px";
+        s.style.transform = "rotate(" + sp[3] + "deg)";
+        s.innerHTML = STICKERS[i % STICKERS.length];
+        inner.appendChild(s);
+      });
+      el.appendChild(inner);
+      return el;
+    }
+
+    var stage = document.createElement("div");
+    stage.className = "paper-stage";
+    stage.setAttribute("aria-hidden", "true");
+    stage.appendChild(sheet("top"));
+    stage.appendChild(sheet("bottom"));
+    var seam = document.createElement("i");
+    seam.className = "paper-seam";
+    stage.appendChild(seam);
+    document.body.appendChild(stage);
+
+    // On arrival the two halves are already closed and part immediately,
+    // so the new page is revealed rather than simply appearing.
+    requestAnimationFrame(function () {
+      stage.classList.add("opening");
+      setTimeout(function () { stage.classList.remove("opening"); }, 560);
+    });
+
+    var leaving = false;
+    document.addEventListener("click", function (e) {
+      if (leaving) return;
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest("a[href]");
+      if (!a || a.target === "_blank" || a.hasAttribute("download")) return;
+      if (a.origin !== location.origin) return;
+      var href = a.getAttribute("href") || "";
+      if (/^(mailto|tel|#)/.test(href)) return;
+      if (a.pathname === location.pathname && a.hash) return;
+
+      e.preventDefault();
+      leaving = true;
+      stage.classList.add("closing");
+      // The paper covers the seam at 300ms; navigating then means the new
+      // page is already loading behind it rather than after it.
+      setTimeout(function () { location.href = a.href; }, 300);
+      // If the browser is slow to leave, do not strand anyone behind paper.
+      setTimeout(function () { stage.classList.remove("closing"); leaving = false; }, 2500);
+    }, true);
+
+    // Coming back with the Back button restores a cached page that may
+    // still be mid-transition. Clear it.
+    window.addEventListener("pageshow", function () {
+      stage.classList.remove("closing");
+      leaving = false;
+    });
+  }
+
+
+  /* ----------------------------------------------------------------------
+     Mark today in the opening-hours week. Read from Auckland time, not the
+     visitor's clock, so somebody checking from overseas still sees the
+     cafe's today rather than their own.
+     ---------------------------------------------------------------------- */
+  function hoursWeek() {
+    var list = document.getElementById("hours-week");
+    if (!list) return;
+    var name;
+    try {
+      name = new Intl.DateTimeFormat("en-NZ", {
+        timeZone: "Pacific/Auckland", weekday: "long"
+      }).format(new Date());
+    } catch (e) {
+      name = new Date().toLocaleDateString("en-NZ", { weekday: "long" });
+    }
+    Array.prototype.forEach.call(list.children, function (li) {
+      if (li.firstElementChild && li.firstElementChild.textContent.trim() === name) {
+        li.classList.add("is-today");
+        li.insertAdjacentHTML("beforeend", '<span class="today-tag">Today</span>');
+      }
+    });
+  }
+
   /* ----------------------------------------------------------------------
      Boot — each piece isolated, so one failure cannot cascade.
      ---------------------------------------------------------------------- */
   function boot() {
     [miniPlate, nav, toTop, reveals, menuCaps, magnetic, clickableCards, heroDrift,
-     orderAhead, specialLink, menuRails, prefetchLinks, heroLayersLater, themeHint]
+     orderAhead, specialLink, menuRails, prefetchLinks, heroLayersLater, themeHint, paperCut, hoursWeek]
       .forEach(function (fn) {
         try { fn(); } catch (e) { console.warn("[almaz]", fn.name, e); }
       });

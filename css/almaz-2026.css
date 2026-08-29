@@ -3053,3 +3053,638 @@ h1, .h1 { font-size: clamp(2.8rem, 6.9vw, 6.1rem) !important; }
    ========================================================================== */
 .plate-mini-strip { background: none !important; }
 .plate-mini-strip::before { display: none !important; }
+
+/* ==========================================================================
+   58. THE ROLLING PLATE LEAVES WITH THE BAR
+   ========================================================================== */
+.plate-mini-strip {
+  transition: transform 0.45s var(--ease-out), opacity 0.35s ease;
+}
+.plate-mini-strip.gone {
+  transform: translateY(-120%);
+  opacity: 0;
+}
+
+/* ==========================================================================
+   59. THE SIDE RAILS — more air between the photographs
+   The rhythm is one picture, a gap, two pictures, a bigger gap. The small
+   gap was 16px against a 130px photograph, which read as a stack rather
+   than as separate pictures. It is now about four tenths of the photo.
+   ========================================================================== */
+.menu-rail-track { gap: 52px !important; }
+.menu-rail-shot.after-gap { margin-top: 78px !important; }
+
+/* The rails now appear on the inner pages too, where the column of text is
+   narrower and they can sit a little closer in without crowding it. */
+.menu-rail-left  { left: max(10px, calc(50vw - 690px)); }
+.menu-rail-right { right: max(10px, calc(50vw - 690px)); }
+
+/* ==========================================================================
+   60. THE MENU'S ALTERNATING BANDS — one shade deeper
+   Every second category sits on a warmer ground so the eye can find its
+   place in a long list. It was close enough to the page to read as a
+   printing fault rather than as a decision.
+   ========================================================================== */
+[data-theme="light"] .menu-group:nth-of-type(even)::before {
+  background: #E4D3B0;
+}
+[data-theme="vibrant"] .menu-group:nth-of-type(even)::before {
+  background: rgba(255, 236, 200, 0.075);
+}
+
+/* ==========================================================================
+   61. THE PAGE CHANGE — a sheet of paper cut down the middle
+   Two halves of warm paper meet on a centre line and part sideways. Each
+   half carries printed kebab stickers so it reads as a wrapper rather than
+   a blank panel. 520ms end to end.
+
+   Only transform and opacity animate, on two elements, both promoted to
+   their own layer. No layout, no repaint, so it stays smooth on a phone.
+   ========================================================================== */
+.paper-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  overflow: hidden;
+  visibility: hidden;
+  contain: strict;
+}
+.paper-stage.closing,
+.paper-stage.opening { visibility: visible; }
+.paper-stage.closing { pointer-events: auto; }
+
+.paper-half {
+  position: absolute;
+  left: -2%;
+  width: 104%;
+  height: 50.6%;                 /* a hair over half, so no hairline shows */
+  background:
+    radial-gradient(120% 90% at 50% 50%, #FFFDF6 0%, #F6EBD4 62%, #EBDCBD 100%);
+  will-change: transform;
+  backface-visibility: hidden;
+  box-shadow: 0 0 60px -10px rgba(43, 27, 16, 0.45);
+}
+[data-theme="vibrant"] .paper-half {
+  background:
+    radial-gradient(120% 90% at 50% 50%, #2A1D12 0%, #1E140B 62%, #140D06 100%);
+}
+.paper-top    { top: 0;    transform: translateY(-101%); }
+.paper-bottom { bottom: 0; transform: translateY(101%); }
+
+/* A thin rust rule on the cut edge — the line the paper was cut along. */
+.paper-seam {
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 2px;
+  margin-top: -1px;
+  background: linear-gradient(90deg, transparent, var(--rust) 18%, var(--gold) 50%, var(--rust) 82%, transparent);
+  opacity: 0;
+  transform: scaleX(0.2);
+  will-change: transform, opacity;
+}
+
+/* ---- leaving: the halves close onto the seam ---- */
+.paper-stage.closing .paper-top {
+  animation: paper-close-top 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.paper-stage.closing .paper-bottom {
+  animation: paper-close-bottom 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.paper-stage.closing .paper-seam {
+  animation: paper-seam-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+@keyframes paper-close-top    { to { transform: translateY(0); } }
+@keyframes paper-close-bottom { to { transform: translateY(0); } }
+@keyframes paper-seam-in      { 60% { opacity: 1; } to { opacity: 1; transform: scaleX(1); } }
+
+/* ---- arriving: the halves part and let the page through ---- */
+.paper-stage.opening .paper-top {
+  animation: paper-open-top 0.52s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.paper-stage.opening .paper-bottom {
+  animation: paper-open-bottom 0.52s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.paper-stage.opening .paper-seam {
+  animation: paper-seam-out 0.32s ease forwards;
+}
+@keyframes paper-open-top    { from { transform: translateY(0); } to { transform: translateY(-101%); } }
+@keyframes paper-open-bottom { from { transform: translateY(0); } to { transform: translateY(101%); } }
+@keyframes paper-seam-out    { from { opacity: 1; transform: scaleX(1); } to { opacity: 0; transform: scaleX(1.3); } }
+
+/* ---- what is printed on the paper ---- */
+.paper-art { position: absolute; inset: 0; overflow: hidden; }
+.paper-sticker {
+  position: absolute;
+  display: block;
+  color: var(--rust);
+  opacity: 0.2;
+}
+[data-theme="vibrant"] .paper-sticker { color: var(--gold); opacity: 0.17; }
+@media (max-width: 700px) { .paper-sticker { transform-origin: center; opacity: 0.22; } }
+.paper-sticker svg { width: 100%; height: auto; display: block; }
+
+/* Anyone who has asked for less motion gets none of this at all. */
+@media (prefers-reduced-motion: reduce) { .paper-stage { display: none !important; } }
+
+/* ==========================================================================
+   62. RING AHEAD — the four steps
+   Numbered, iconed, and written as things that happen rather than as
+   benefits. The intro holds the left; the steps run down the right as a
+   hairline-ruled list, the same language as the "Before you come in" band
+   so the page reads as one thing.
+   ========================================================================== */
+.pickup-flow {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.92fr) 1.35fr;
+  gap: clamp(26px, 4vw, 60px);
+  align-items: start;
+  padding: clamp(28px, 3.6vw, 44px) clamp(24px, 3.4vw, 46px);
+  background: linear-gradient(150deg,
+      color-mix(in srgb, var(--rust) 7%, var(--surface)) 0%,
+      var(--surface) 58%);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: 0 20px 50px -34px var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.pickup-flow::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rust) 20%, var(--gold) 55%, transparent);
+  opacity: 0.8;
+}
+
+.pickup-intro h2 {
+  font-family: var(--font-bold) !important;
+  font-size: clamp(1.7rem, 2.6vw, 2.35rem) !important;
+  line-height: 0.96 !important;
+  text-transform: uppercase !important;
+  margin: 0 0 12px;
+  color: var(--espresso-deep);
+}
+[data-theme="light"] .pickup-intro h2 { color: #2A1A0C; }
+.pickup-intro p {
+  margin: 0 0 20px;
+  font-size: 0.96rem;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--espresso) 86%, transparent);
+  max-width: 34ch;
+}
+[data-theme="light"] .pickup-intro p { color: #4A3018; }
+.pickup-note {
+  margin: 14px 0 0 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.pickup-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: pf;
+}
+.pickup-steps li {
+  display: grid;
+  grid-template-columns: 26px 40px 1fr;
+  align-items: start;
+  gap: 14px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+}
+.pickup-steps li:last-child { border-bottom: 0; padding-bottom: 0; }
+
+.pf-num {
+  font-family: var(--font-bold);
+  font-size: 1.15rem;
+  line-height: 1.1;
+  color: color-mix(in srgb, var(--rust) 55%, transparent);
+  padding-top: 2px;
+}
+[data-theme="light"] .pf-num { color: color-mix(in srgb, var(--rust-deep) 60%, transparent); }
+
+.pf-icon {
+  width: 40px; height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--rust) 12%, transparent);
+  color: var(--rust);
+  transition: transform 0.4s var(--ease-out), background 0.3s ease;
+}
+[data-theme="light"] .pf-icon { color: var(--rust-deep); }
+.pf-icon svg { width: 21px; height: 21px; }
+.pickup-steps li:hover .pf-icon {
+  transform: translateY(-2px) scale(1.06);
+  background: color-mix(in srgb, var(--rust) 20%, transparent);
+}
+
+.pickup-steps h3 {
+  font-family: var(--font-body) !important;
+  font-size: 1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  margin: 0 0 3px;
+  color: var(--espresso-deep);
+}
+[data-theme="light"] .pickup-steps h3 { color: #2A1A0C; }
+.pickup-steps p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--espresso) 78%, transparent);
+}
+[data-theme="light"] .pickup-steps p { color: #5C4326; }
+
+@media (max-width: 860px) {
+  .pickup-flow { grid-template-columns: 1fr; gap: 22px; }
+  .pickup-intro h2 br { display: none; }
+  .pickup-intro p { max-width: none; }
+}
+@media (max-width: 520px) {
+  .pickup-steps li { grid-template-columns: 20px 34px 1fr; gap: 11px; }
+  .pf-icon { width: 34px; height: 34px; border-radius: 9px; }
+  .pf-icon svg { width: 18px; height: 18px; }
+}
+
+/* ==========================================================================
+   63. OPENING HOURS — the whole week, with today marked
+   ========================================================================== */
+.hours-panel {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.85fr) 1.15fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  padding: clamp(26px, 3.4vw, 40px) clamp(24px, 3.4vw, 44px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: 0 20px 50px -34px var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.hours-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold) 22%, var(--rust) 55%, transparent);
+  opacity: 0.75;
+}
+.hours-head h2 {
+  font-family: var(--font-bold) !important;
+  font-size: clamp(1.6rem, 2.4vw, 2.15rem) !important;
+  line-height: 0.98 !important;
+  text-transform: uppercase !important;
+  margin: 0 0 10px;
+  color: var(--espresso-deep);
+}
+[data-theme="light"] .hours-head h2 { color: #2A1A0C; }
+.hours-head p {
+  margin: 0 0 16px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  max-width: 30ch;
+  color: color-mix(in srgb, var(--espresso) 80%, transparent);
+}
+[data-theme="light"] .hours-head p { color: #5C4326; }
+
+.hours-week { list-style: none; margin: 0; padding: 0; }
+.hours-week li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 12px;
+  margin: 0 -12px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--espresso-deep);
+  border-radius: 8px;
+}
+[data-theme="light"] .hours-week li { color: #33220F; }
+.hours-week li:last-child { border-bottom: 0; }
+.hours-week li.is-today {
+  background: color-mix(in srgb, var(--rust) 11%, transparent);
+  font-weight: 600;
+  border-bottom-color: transparent;
+}
+.today-tag {
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--rust-deep);
+  color: #FFF6E8;
+  flex: 0 0 auto;
+}
+.hours-week li span:nth-child(2) { margin-left: auto; opacity: 0.86; }
+.hours-week li.is-today span:nth-child(2) { opacity: 1; }
+
+@media (max-width: 800px) {
+  .hours-panel { grid-template-columns: 1fr; gap: 20px; }
+  .hours-head h2 br { display: none; }
+  .hours-head p { max-width: none; }
+}
+
+/* ==========================================================================
+   64. GALLERY — the closing band
+   A wall of food photographs ends abruptly otherwise. This gives the page
+   somewhere to go, and asks for the follow at the moment somebody is most
+   likely to give it.
+   ========================================================================== */
+.gal-close {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(26px, 4vw, 56px);
+  align-items: center;
+  padding: clamp(28px, 3.6vw, 44px) clamp(24px, 3.4vw, 46px);
+  background: linear-gradient(150deg,
+      color-mix(in srgb, var(--rust) 8%, var(--surface)) 0%,
+      var(--surface) 60%);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: 0 20px 50px -34px var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.gal-close::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--rust) 22%, var(--gold) 58%, transparent);
+  opacity: 0.8;
+}
+.gal-close-copy h2 {
+  font-family: var(--font-bold) !important;
+  font-size: clamp(1.7rem, 2.7vw, 2.4rem) !important;
+  line-height: 0.96 !important;
+  text-transform: uppercase !important;
+  margin: 0 0 12px;
+  color: var(--espresso-deep);
+}
+[data-theme="light"] .gal-close-copy h2 { color: #2A1A0C; }
+.gal-close-copy p {
+  margin: 0 0 22px;
+  font-size: 0.97rem;
+  line-height: 1.6;
+  max-width: 38ch;
+  color: color-mix(in srgb, var(--espresso) 86%, transparent);
+}
+[data-theme="light"] .gal-close-copy p { color: #4A3018; }
+.gal-close-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+.gal-close-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.gal-close-tiles img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  transition: transform 0.5s var(--ease-out);
+}
+.gal-close-tiles img:nth-child(2) { transform: translateY(-10px); }
+.gal-close-tiles img:nth-child(5) { transform: translateY(-10px); }
+.gal-close:hover .gal-close-tiles img:nth-child(2),
+.gal-close:hover .gal-close-tiles img:nth-child(5) { transform: translateY(-16px); }
+
+@media (max-width: 860px) {
+  .gal-close { grid-template-columns: 1fr; }
+  .gal-close-copy h2 br { display: none; }
+  .gal-close-copy p { max-width: none; }
+}
+@media (max-width: 520px) {
+  .gal-close-tiles { gap: 7px; }
+  .gal-close-tiles img:nth-child(2),
+  .gal-close-tiles img:nth-child(5) { transform: none; }
+}
+
+/* ==========================================================================
+   65. THE BAR — wide at rest, a capsule once you move
+   At the very top of a page the bar runs the full width, sitting on the
+   photograph like a masthead. The moment the visitor scrolls it draws in
+   to the floating capsule, which is what makes the rest of the page feel
+   like it is passing underneath something rather than pushing it away.
+
+   Only max-width, radius, padding and background animate, and they are all
+   on one element, so it is a single cheap transition.
+   ========================================================================== */
+.site-header { top: 0; }
+
+.site-header .nav {
+  max-width: 100%;
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  transition: max-width 0.55s var(--ease-out),
+              border-radius 0.55s var(--ease-out),
+              margin 0.55s var(--ease-out),
+              padding 0.4s var(--ease-out),
+              background 0.4s ease,
+              box-shadow 0.4s ease,
+              border-color 0.4s ease;
+}
+
+/* At rest: full width, square, and barely there so the photograph reads. */
+.site-header.at-top .nav {
+  max-width: 100%;
+  margin: 0;
+  border-radius: 0;
+  background: color-mix(in srgb, var(--surface) 55%, transparent);
+  box-shadow: 0 1px 0 0 color-mix(in srgb, var(--line) 100%, transparent);
+  padding: 16px clamp(20px, 4vw, 46px) !important;
+}
+
+/* Moving: the capsule. */
+.site-header.scrolled .nav {
+  max-width: 1180px;
+  margin: 12px auto 0;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--line) 100%, transparent);
+  background: color-mix(in srgb, var(--surface) 94%, transparent);
+  padding: 12px 16px 12px 20px !important;
+  box-shadow: 0 22px 54px -24px rgba(0, 0, 0, 0.85), 0 2px 10px -6px rgba(0, 0, 0, 0.4);
+}
+
+/* The hero no longer needs to leave a gap for a strip above the bar. */
+.hero .wrap { padding-top: calc(var(--nav-h) + 74px) !important; }
+@media (max-width: 900px) {
+  .hero .wrap { padding-top: calc(var(--nav-h) + 44px) !important; }
+  .site-header.at-top .nav { padding: 12px 16px !important; }
+  .site-header.scrolled .nav { margin: 8px 10px 0; border-radius: var(--r-lg); }
+}
+
+/* ==========================================================================
+   66. THE ROLLING PLATE, MOVED AND ENLARGED
+   It now runs as a band of its own between the practical panel and the
+   special, at a size where the wordmark actually reads.
+   ========================================================================== */
+#plate-strip-slot { position: relative; }
+.plate-mini-strip {
+  position: relative !important;
+  top: auto !important; left: auto !important; right: auto !important;
+  height: 92px !important;
+  margin: 6px 0 -6px !important;
+  z-index: 1 !important;
+  overflow: hidden;
+  pointer-events: none;
+  transform: none !important;
+  opacity: 1 !important;
+  background: none !important;
+}
+.plate-mini {
+  top: 8px !important;
+  width: 74px !important;
+  height: 74px !important;
+  animation: mini-roll 26s linear infinite !important;
+}
+.plate-mini::before { font-size: 13.5px !important; letter-spacing: 0.05em !important; }
+/* 74px across the viewport: turns = distance / (pi x diameter), rounded to
+   a whole number so the wordmark lands upright where it started. */
+@keyframes mini-roll {
+  0%   { transform: translateX(-90px) rotate(0deg); }
+  100% { transform: translateX(calc(100vw + 90px)) rotate(2520deg); }
+}
+@media (max-width: 900px) {
+  .plate-mini-strip { display: block !important; height: 66px !important; }
+  .plate-mini { width: 54px !important; height: 54px !important; top: 6px !important; }
+  .plate-mini::before { font-size: 10px !important; }
+}
+@media (prefers-reduced-motion: reduce) { .plate-mini-strip { display: none !important; } }
+
+/* The wide bar was translucent enough at rest that the active link sat at
+   4.3:1 against the photograph showing through it. Measured, not guessed. */
+.site-header.at-top .nav {
+  background: color-mix(in srgb, var(--surface) 82%, transparent);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+}
+
+/* ==========================================================================
+   67. SUPPORT — a heading that fits, and the answer routes beside it
+   "Support & frequently asked questions" ran to three lines of display type
+   and left the right half of the screen empty. The heading is shorter, and
+   the space now holds the three ways to actually get an answer — which is
+   what somebody on this page is after.
+   ========================================================================== */
+.support-top {
+  display: grid;
+  grid-template-columns: 1.1fr 0.95fr;
+  gap: clamp(28px, 4vw, 60px);
+  align-items: start;
+}
+.support-top h1 {
+  font-size: clamp(2.1rem, 4.2vw, 3.2rem) !important;
+  line-height: 0.94 !important;
+  margin: 6px 0 14px;
+}
+.support-top .lede { max-width: 34ch; }
+
+.support-card {
+  padding: clamp(22px, 2.6vw, 30px) clamp(20px, 2.6vw, 28px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: 0 20px 50px -34px var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+.support-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold) 24%, var(--rust) 60%, transparent);
+  opacity: 0.8;
+}
+.support-card h2 {
+  font-family: var(--font-bold) !important;
+  font-size: 1.15rem !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0.03em !important;
+  text-transform: uppercase !important;
+  margin: 0 0 6px;
+  color: var(--espresso-deep);
+}
+[data-theme="light"] .support-card h2 { color: #2A1A0C; }
+
+.support-ways { list-style: none; margin: 0; padding: 0; }
+.support-ways li {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 13px;
+  align-items: start;
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+}
+.support-ways li:last-child { border-bottom: 0; padding-bottom: 0; }
+.sw-icon {
+  width: 38px; height: 38px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--rust) 12%, transparent);
+  color: var(--rust);
+  transition: transform 0.4s var(--ease-out);
+}
+[data-theme="light"] .sw-icon { color: var(--rust-deep); }
+.sw-icon svg { width: 20px; height: 20px; }
+.support-ways li:hover .sw-icon { transform: translateY(-2px) scale(1.06); }
+
+.support-ways strong {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--espresso-deep);
+  margin-bottom: 2px;
+}
+[data-theme="light"] .support-ways strong { color: #2A1A0C; }
+.support-ways span {
+  display: block;
+  font-size: 0.87rem;
+  line-height: 1.45;
+  color: color-mix(in srgb, var(--espresso) 78%, transparent);
+}
+[data-theme="light"] .support-ways span { color: #5C4326; }
+.support-ways a {
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--rust-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--rust) 45%, transparent);
+}
+[data-theme="vibrant"] .support-ways a { color: var(--gold-light); }
+.support-ways a:hover { text-decoration-color: currentColor; }
+
+@media (max-width: 900px) {
+  .support-top { grid-template-columns: 1fr; }
+  .support-top .lede { max-width: none; }
+}
+/* The blanket display:block on this list's spans was breaking the inline
+   value that site-settings.js writes into a nested span. */
+.support-ways span span { display: inline; }
+
+/* On a narrow screen the TODAY tag squeezed the time onto two lines. The
+   highlighted row already says which day it is, so the tag steps aside. */
+@media (max-width: 520px) {
+  .today-tag { display: none; }
+  .hours-week li { padding: 11px 10px; font-size: 0.9rem; }
+}
