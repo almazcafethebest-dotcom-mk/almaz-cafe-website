@@ -1,0 +1,23 @@
+{
+  "title": "Vegetarian",
+  "halal": false,
+  "items": [
+    {
+      "name": "Almaz Platter",
+      "price": "$18.90",
+      "description": "Hummus, falafel, dolma, tabouli, salad, tzatziki, pita bread & dip.",
+      "photo": "images/food-almaz-platter-real.jpg"
+    },
+    {
+      "name": "Falafel on Rice",
+      "price": "$17.90",
+      "description": "Falafel, salad & sauce, served with rice.",
+      "photo": "images/food-falafel-on-rice.jpg"
+    },
+    {
+      "name": "Falafel Kebab",
+      "price": "$15.90",
+      "description": "Falafel, salad & sauce, wrapped in pita."
+    }
+  ]
+}

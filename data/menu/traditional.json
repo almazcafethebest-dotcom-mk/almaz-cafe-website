@@ -1,0 +1,39 @@
+{
+  "title": "Traditional",
+  "halal": true,
+  "items": [
+    {
+      "name": "Lamb Pasendeh",
+      "price": "$22.90",
+      "name_note": "(mild or spicy)",
+      "description": "Traditional Persian-style lamb casserole with almonds & cream. Served with rice & salad."
+    },
+    {
+      "name": "Moussaka",
+      "price": "$20.90",
+      "description": "Layers of spring potatoes, kofte mince and aubergines with white sauce & cheese. Served with rice & salad.",
+      "photo": "images/food-moussaka-real.jpg"
+    },
+    {
+      "name": "Khoresh Ghormeh Sabzi",
+      "price": "$22.90",
+      "description": "Traditional Persian casserole of tender lamb, spinach & red beans. Served with rice & salad."
+    },
+    {
+      "name": "Khoresh Badenjun",
+      "price": "$20.90",
+      "name_note": "(Eggplant Casserole)",
+      "description": "Traditional Persian casserole of beef & eggplant. Served with rice & salad."
+    },
+    {
+      "name": "Butter Chicken",
+      "price": "$20.90",
+      "description": "Marinated chicken cooked with spices, yoghurt and fenugreek, rich in cream."
+    },
+    {
+      "name": "Spanakopita",
+      "price": "$16.90",
+      "description": "Spinach pie with pastries, feta cheese, topped with our special yoghurt sauce."
+    }
+  ]
+}

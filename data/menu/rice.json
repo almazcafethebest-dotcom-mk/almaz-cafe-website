@@ -1,0 +1,60 @@
+{
+  "title": "Rice Meals",
+  "halal": true,
+  "items": [
+    {
+      "name": "Chicken on Rice",
+      "price": "$20.90",
+      "description": "Marinated chicken, salad & sauce.",
+      "photo": "images/food-chicken-on-rice.jpg"
+    },
+    {
+      "name": "Lamb on Rice",
+      "price": "$22.90",
+      "description": "Marinated lamb, salad & sauce.",
+      "photo": "images/food-lamb-on-rice.jpg"
+    },
+    {
+      "name": "Beef on Rice",
+      "price": "$20.90",
+      "description": "Grilled prime beef mince, salad & sauce.",
+      "photo": "images/food-beef-on-rice.jpg"
+    },
+    {
+      "name": "Mixed on Rice",
+      "price": "$22.90",
+      "description": "Chicken & lamb, salad & sauce."
+    },
+    {
+      "name": "Chicken & Chips",
+      "price": "$20.90",
+      "description": "Marinated chicken & chips.",
+      "photo": "images/food-chicken-chips.jpg"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Salads",
+      "note": "Served with fresh salad, cheese, tomato, cucumber, onion & olives.",
+      "items": [
+        {
+          "name": "Chicken Salad",
+          "price": "$20.90",
+          "photo": "images/food-chicken-salad.jpg"
+        },
+        {
+          "name": "Lamb Salad",
+          "price": "$22.90"
+        },
+        {
+          "name": "Beef Salad",
+          "price": "$20.90"
+        },
+        {
+          "name": "Mixed Salad",
+          "price": "$22.90"
+        }
+      ]
+    }
+  ]
+}

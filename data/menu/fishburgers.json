@@ -1,0 +1,40 @@
+{
+  "title": "Fish & Chips",
+  "halal": false,
+  "items": [
+    {
+      "name": "Fish & Chips",
+      "price": "$19.90",
+      "description": "Buttered fish with salad, chips & sauce."
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Burgers",
+      "note": "",
+      "items": [
+        {
+          "name": "Almaz Beef Burger",
+          "price": "$20.90",
+          "description": "Prime beef patty with salad & sauce."
+        },
+        {
+          "name": "Chicken Burger",
+          "price": "$11.90",
+          "description": "Grilled chicken with salad & sauce."
+        },
+        {
+          "name": "Cheese Burger",
+          "price": "$11.90",
+          "description": "Beef patty with cheese, salad & sauce.",
+          "photo": "images/food-cheeseburger.jpg"
+        },
+        {
+          "name": "Add Combo — Fries & a Can",
+          "price": "+$11.90",
+          "description": "Add fries and a can of soft drink to any burger."
+        }
+      ]
+    }
+  ]
+}

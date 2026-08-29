@@ -1,0 +1,89 @@
+# ==========================================================================
+# ALMAZ CAFE  -  Netlify configuration
+# ==========================================================================
+# Every time the owner clicks Publish in the website editor, Netlify runs
+# the build command below. It reads the files in data/ and writes the menu,
+# the daily specials and the contact details back into the site.
+#
+# Node only, no packages to install, so there is nothing that can go out of
+# date or break on its own.
+[build]
+  command = "node build.js"
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), camera=(), microphone=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Cross-Origin-Opener-Policy = "same-origin"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; frame-src https://www.google.com; connect-src 'self';"
+
+# /admin must resolve before the catch-all below, or the editor would be
+# answered with the "page not found" page.
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/404.html"
+  status = 404
+
+# --- Caching -----------------------------------------------------------
+# Photographs, fonts and icons never change without their filename
+# changing, so they can be cached hard. The HTML must not be, or a
+# menu-price edit would take a year to reach anyone.
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# The admin-facing PDF menu should not be indexed separately from the
+# menu page it belongs to.
+[[headers]]
+  for = "/images/almaz-menu.pdf"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+# --- The website editor ---------------------------------------------------
+# /admin loads Decap CMS and the Netlify Identity widget from their own
+# hosts, so it needs a looser policy than the public pages. This block
+# applies ONLY to /admin - the rest of the site keeps the strict policy
+# above.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "public, max-age=0, must-revalidate"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.netlify.com https://identity.netlify.com https://unpkg.com https://api.github.com; frame-src 'self';"
+
+[[headers]]
+  for = "/admin"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://unpkg.com https://identity.netlify.com; style-src 'self' 'unsafe-inline' https://unpkg.com https://fonts.googleapis.com; font-src 'self' data: https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' https://api.netlify.com https://identity.netlify.com https://unpkg.com https://api.github.com; frame-src 'self';"

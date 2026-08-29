@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  ALMAZ CAFE  -  THE 'PAGE NOT FOUND' PAGE
+
+  Shown when somebody follows a broken or out-of-date link. You will almost never need to touch this.
+
+  Not sure where to start? Open OWNER-GUIDE.html in this same
+  folder. It explains, in plain English, how to change a price,
+  swap a photo, and put changes live.
+
+  Phone, email, address and opening hours are NOT edited here.
+  They all come from one file: site-settings.js
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("almaz-theme")||"light");}catch(e){}
+</script>
+<meta name="description" content="That page could not be found. Almaz Cafe, 157 Onehunga Mall, Auckland - open daily 11am-9pm." />
+<meta name="robots" content="noindex" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Page not found — Almaz Cafe</title>
+<meta name="robots" content="noindex" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/almaz-2026.css" />
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav wrap">
+    <a class="brand" href="index.html">
+      <img class="brand-badge" src="images/almaz-badge-logo.png" alt="Almaz Cafe" loading="lazy" decoding="async">
+      <span class="brand-word">almaz<small>The Real Turkish Taste</small></span>
+    </a>
+  </nav>
+</header>
+<main>
+  <section style="padding:110px 0; text-align:center;">
+    <div class="wrap">
+      <span class="eyebrow">404</span>
+      <h1>This plate isn't on the menu.</h1>
+      <p class="lede" style="margin:0 auto 30px;">The page you're looking for doesn't exist — but the menu definitely does.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a class="btn btn-primary" href="index.html">Back to Home</a>
+        <a class="btn btn-ghost" href="menu.html">View the Menu</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Almaz Cafe, Onehunga</span>
+    </div>
+  </div>
+</footer>
+<script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+<!-- Contact details, hours and social links. Loaded first so every
+     other script can read them. -->
+<script src="site-settings.js"></script>
+<script src="js/almaz-2026.js"></script>
+</body>
+</html>

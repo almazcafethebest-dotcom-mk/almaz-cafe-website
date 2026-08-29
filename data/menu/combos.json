@@ -1,0 +1,75 @@
+{
+  "title": "Deal Combos — A meal, a drink & chips",
+  "halal": false,
+  "items": [],
+  "sections": [],
+  "cards": [
+    {
+      "photo": "images/food-chicken-chips.jpg",
+      "alt": "Chicken and loaded fries",
+      "tag": "Combo 1",
+      "name": "Kebab Wrap Combo",
+      "description": "Any kebab wrap, chips, and your choice of Coke, Diet Coke or Sprite.",
+      "price": "$21.90"
+    },
+    {
+      "photo": "images/food-lamb-on-rice.jpg",
+      "alt": "Lamb on Rice with fresh salad",
+      "tag": "Combo 2",
+      "name": "Rice Meal Combo",
+      "description": "Any rice meal, chips, and your choice of Coke, Diet Coke or Sprite.",
+      "price": "$21.90"
+    }
+  ],
+  "sauces": [
+    {
+      "name": "Hummus",
+      "colour": "#e7d3a8",
+      "text_colour": "#1B1006",
+      "tilt": "-6deg"
+    },
+    {
+      "name": "Tomato",
+      "colour": "#c1402b",
+      "text_colour": "#FFF3E2",
+      "tilt": "4deg"
+    },
+    {
+      "name": "Mayo",
+      "colour": "#f5f0e6",
+      "text_colour": "#1B1006",
+      "tilt": "-3deg"
+    },
+    {
+      "name": "Garlic Yoghurt",
+      "colour": "#eae4c9",
+      "text_colour": "#1B1006",
+      "tilt": "5deg"
+    },
+    {
+      "name": "Sweet Chilli",
+      "colour": "#e07a2e",
+      "text_colour": "#1B1006",
+      "tilt": "-4deg"
+    },
+    {
+      "name": "Hot Chilli",
+      "colour": "#b5321f",
+      "text_colour": "#FFF3E2",
+      "tilt": "6deg"
+    },
+    {
+      "name": "BBQ",
+      "colour": "#5a2e18",
+      "text_colour": "#FFF3E2",
+      "tilt": "-5deg"
+    },
+    {
+      "name": "Satay",
+      "colour": "#c98a3b",
+      "text_colour": "#1B1006",
+      "tilt": "3deg"
+    }
+  ],
+  "sauces_title": "Choose up to 3 sauces"
+}

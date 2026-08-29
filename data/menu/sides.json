@@ -1,0 +1,54 @@
+{
+  "title": "Side Dishes",
+  "halal": false,
+  "items": [
+    {
+      "name": "Vegetable Samosa",
+      "price": "$4.50"
+    },
+    {
+      "name": "Lamb or Chicken Samosa",
+      "price": "$6.00"
+    },
+    {
+      "name": "Vegetarian Samosa w/ Salad",
+      "price": "$8.90"
+    },
+    {
+      "name": "Hummus & Garlic Pita Bread",
+      "price": "$8.00"
+    },
+    {
+      "name": "Garlic Pita Bread",
+      "price": "$4.00"
+    },
+    {
+      "name": "Wedges with Sour Cream",
+      "price": "$6.90"
+    },
+    {
+      "name": "Chips",
+      "price": "$5.00"
+    }
+  ],
+  "sections": [
+    {
+      "heading": "Desserts",
+      "note": "",
+      "items": [
+        {
+          "name": "Baklava",
+          "price": "$4.50"
+        },
+        {
+          "name": "Baklava with Ice Cream",
+          "price": "$8.50"
+        },
+        {
+          "name": "Turkish Delights",
+          "price": "$2.90"
+        }
+      ]
+    }
+  ]
+}

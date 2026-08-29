@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  ALMAZ CAFE  -  THE WEBSITE EDITOR
+
+  This is the page the cafe owner logs into to change prices,
+  specials, photos and contact details. It is not part of the
+  public website and search engines are told to ignore it.
+
+  What the editor can change is decided by config.yml, in this
+  same folder.
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Almaz Cafe — Website Editor</title>
+<link rel="icon" type="image/svg+xml" href="../images/favicon.svg">
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body>
+<script src="https://unpkg.com/decap-cms@3.8.3/dist/decap-cms.js"></script>
+<script>
+  // After the owner sets a password from the invitation email, send them
+  // straight into the editor rather than leaving them on a blank page.
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function (user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function () {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+</body>
+</html>

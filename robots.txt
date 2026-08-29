@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /OWNER-GUIDE.html
+
+Sitemap: https://almazcafe.netlify.app/sitemap.xml

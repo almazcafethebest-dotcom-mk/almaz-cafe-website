@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  ALMAZ CAFE  -  THE MENU PAGE
+
+  Every dish and every price. This is the page you will edit most often. Each dish is one line beginning with <div class="menu-item">.
+
+  Not sure where to start? Open OWNER-GUIDE.html in this same
+  folder. It explains, in plain English, how to change a price,
+  swap a photo, and put changes live.
+
+  Phone, email, address and opening hours are NOT edited here.
+  They all come from one file: site-settings.js
+  ============================================================
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<script>try{document.documentElement.setAttribute("data-theme",localStorage.getItem("almaz-theme")||"light");}catch(e){}
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Menu — Almaz Cafe, Onehunga</title>
+<meta name="description" content="Almaz Cafe menu: halal kebabs, rice meals, Persian specials, vegetarian and vegan dishes. Onehunga Mall, Auckland. Open daily 11am-9pm." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
+<script type="speculationrules">
+{"prefetch":[{"source":"document","where":{"and":[{"href_matches":"/*"},{"not":{"selector_matches":"[download], [target=_blank], [href^='mailto:'], [href^='tel:']"}}]},"eagerness":"moderate"}]}
+</script>
+<link rel="manifest" href="site.webmanifest" />
+<meta name="apple-mobile-web-app-title" content="Almaz Cafe" />
+<meta name="theme-color" content="#F2E7D3" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Menu — Almaz Cafe, Onehunga" />
+<meta property="og:description" content="The full halal menu at Almaz Cafe, Onehunga — kebabs, rice meals, Persian & Turkish traditional dishes, vegetarian options, sides, desserts and deal combos." />
+<meta property="og:locale" content="en_NZ" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Menu — Almaz Cafe, Onehunga" />
+<meta name="twitter:description" content="The full halal menu at Almaz Cafe, Onehunga — kebabs, rice meals, Persian & Turkish traditional dishes, vegetarian options, sides, desserts and deal combos." />
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Almaz Cafe",
+  "servesCuisine": ["Turkish", "Middle Eastern", "Persian", "Mediterranean"],
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "157 Onehunga Mall",
+    "addressLocality": "Onehunga, Auckland",
+    "postalCode": "1061",
+    "addressCountry": "NZ"
+  },
+  "telephone": "+64-9-622-2108",
+  "priceRange": "$10-$25",
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+    "opens": "11:00",
+    "closes": "21:00"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.2",
+    "reviewCount": "222"
+  }
+}
+</script>
+<link rel="canonical" href="https://almazcafe.netlify.app/menu.html" />
+<link rel="stylesheet" href="css/style.css" />
+<link rel="stylesheet" href="css/almaz-2026.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav wrap">
+    <a class="brand" href="index.html">
+      <img class="brand-badge" src="images/almaz-badge-logo.png" alt="Almaz Cafe" loading="lazy" decoding="async">
+      <span class="brand-word">almaz<small>The Real Turkish Taste</small></span>
+    </a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="menu.html" aria-current="page">Menu</a>
+      <a href="about.html">About</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact &amp; Location</a>
+      <a href="support.html">Support / FAQ</a>
+    </div>
+    <div id="theme-switch-root"></div>
+  </nav>
+</header>
+
+<main>
+  <section class="section-tight" style="position:relative;">
+    <div class="wrap">
+      <span class="eyebrow">Halal · Kebabs · Rice Meals · Persian &amp; Turkish Traditional<svg class="eyebrow-charm" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--teal)"/><circle cx="20" cy="20" r="13" fill="var(--surface)"/><circle cx="20" cy="20" r="8" fill="var(--rust)"/><circle cx="20" cy="20" r="3.4" fill="var(--espresso-deep)"/></svg></span>
+      <h1>The menu</h1>
+      <div style="margin: 10px 0 4px;"><span id="status-badge" class="status-badge"></span></div>
+      <p class="lede">Everything's halal, made fresh daily. Most people spend around $15–25 per person.</p>
+      <div class="order-links">
+        <a href="https://www.ubereats.com/nz/store/almaz-cafe/1CzXzYeQVOqqjAGNo8NTgg" target="_blank" rel="noopener">Order on Uber Eats →</a>
+        <a href="https://www.doordash.com/en-NZ/store/almaz-cafe-auckland-41214841/" target="_blank" rel="noopener">Order on DoorDash →</a>
+        <a href="images/almaz-menu.pdf" target="_blank" rel="noopener">Download menu (PDF) ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="statement-band" style="background-image:url('images/food-collage-hero.jpg');">
+    <div class="content">
+      <span class="eyebrow">Onehunga Mall</span>
+      <h2>The Real Turkish Taste.</h2>
+    </div>
+  </div>
+
+  <section style="padding-top:0; position:relative;">
+
+    <div class="wrap">
+
+      <div class="menu-tabs" role="tablist" aria-label="Filter the menu">
+        <button class="menu-tab active" data-filter="all" type="button">All</button>
+        <button class="menu-tab" data-filter="kebabs" type="button">Kebabs</button>
+        <button class="menu-tab" data-filter="rice" type="button">Rice &amp; Salads</button>
+        <button class="menu-tab" data-filter="traditional" type="button">Traditional</button>
+        <button class="menu-tab" data-filter="veg" type="button">Vegetarian</button>
+        <button class="menu-tab" data-filter="fishburgers" type="button">Fish &amp; Burgers</button>
+        <button class="menu-tab" data-filter="sides" type="button">Sides &amp; Desserts</button>
+        <button class="menu-tab" data-filter="drinks" type="button">Drinks</button>
+        <button class="menu-tab" data-filter="combos" type="button">Deal Combos</button>
+      </div>
+
+      <!-- Everything between MENU:START and MENU:END is generated from the
+           files in data/menu/ by build.js. Editing it here works until the
+           next Publish and is then overwritten. Edit data/menu/ instead. -->
+      <!-- MENU:START -->
+      <div class="menu-group" data-category="combos">
+        <h2>Deal Combos — A meal, a drink &amp; chips</h2>
+        <div class="grid-3" style="margin-bottom:10px;">
+          <div class="dish-card tilt-card">
+            <div class="gallery-item" style="border-radius:0; aspect-ratio:4/3;">
+              <img src="images/food-chicken-chips.jpg" alt="Chicken and loaded fries" style="width:100%; height:100%; object-fit:cover;" loading="lazy" decoding="async">
+              <span class="cap">Combo 1</span>
+            </div>
+            <div class="dish-body">
+              <h3>Kebab Wrap Combo</h3>
+              <p>Any kebab wrap, chips, and your choice of Coke, Diet Coke or Sprite.</p>
+              <p class="menu-item-price" style="margin-top:8px;">$21.90</p>
+            </div>
+          </div>
+          <div class="dish-card tilt-card">
+            <div class="gallery-item" style="border-radius:0; aspect-ratio:4/3;">
+              <img src="images/food-lamb-on-rice.jpg" alt="Lamb on Rice with fresh salad" style="width:100%; height:100%; object-fit:cover;" loading="lazy" decoding="async">
+              <span class="cap">Combo 2</span>
+            </div>
+            <div class="dish-body">
+              <h3>Rice Meal Combo</h3>
+              <p>Any rice meal, chips, and your choice of Coke, Diet Coke or Sprite.</p>
+              <p class="menu-item-price" style="margin-top:8px;">$21.90</p>
+            </div>
+          </div>
+          <div class="dish-card tilt-card">
+            <div class="dish-body" style="padding-top:24px;">
+              <h3>Choose up to 3 sauces</h3>
+              <div class="sauce-stickers">
+                <span class="sauce-sticker" style="--sc:#e7d3a8; --st:#1B1006; --rot:-6deg;">Hummus</span>
+                <span class="sauce-sticker" style="--sc:#c1402b; --st:#FFF3E2; --rot:4deg;">Tomato</span>
+                <span class="sauce-sticker" style="--sc:#f5f0e6; --st:#1B1006; --rot:-3deg;">Mayo</span>
+                <span class="sauce-sticker" style="--sc:#eae4c9; --st:#1B1006; --rot:5deg;">Garlic Yoghurt</span>
+                <span class="sauce-sticker" style="--sc:#e07a2e; --st:#1B1006; --rot:-4deg;">Sweet Chilli</span>
+                <span class="sauce-sticker" style="--sc:#b5321f; --st:#FFF3E2; --rot:6deg;">Hot Chilli</span>
+                <span class="sauce-sticker" style="--sc:#5a2e18; --st:#FFF3E2; --rot:-5deg;">BBQ</span>
+                <span class="sauce-sticker" style="--sc:#c98a3b; --st:#1B1006; --rot:3deg;">Satay</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-group" data-category="kebabs">
+        <h2>Kebabs <span class="dish-tag" style="position:static; display:inline-block; vertical-align:middle;">Halal</span></h2>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Kebab</div><div class="menu-item-desc">Marinated boneless chicken with sauces &amp; salad.</div></div><div class="menu-item-price">$16.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Kebab</div><div class="menu-item-desc">Marinated tender lamb with sauces &amp; salad.</div></div><div class="menu-item-price">$18.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mixed Kebab</div><div class="menu-item-desc">Chicken &amp; lamb with sauces &amp; salad.</div></div><div class="menu-item-price">$19.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Beef Kebab</div><div class="menu-item-desc">Marinated prime beef with sauces &amp; salad.</div></div><div class="menu-item-price">$16.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Souvlaki Kebab</div><div class="menu-item-desc">Cooked with homemade garlic sauce.</div></div><div class="menu-item-price">$17.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Souvlaki Kebab</div><div class="menu-item-desc">Cooked with homemade garlic sauce.</div></div><div class="menu-item-price">$19.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Satay Kebab</div><div class="menu-item-desc">Cooked with homemade satay sauce.</div></div><div class="menu-item-price">$17.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Satay Kebab</div><div class="menu-item-desc">Cooked with homemade satay sauce.</div></div><div class="menu-item-price">$19.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Works Kebab</div><div class="menu-item-desc">Chicken with salad, cheese, hummus &amp; sauces.</div></div><div class="menu-item-price">$19.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Works Kebab</div><div class="menu-item-desc">Lamb with salad, cheese, hummus &amp; sauces.</div></div><div class="menu-item-price">$21.90</div></div>
+      </div>
+
+      <div class="menu-group" data-category="rice">
+        <h2>Rice Meals <span class="dish-tag" style="position:static; display:inline-block; vertical-align:middle;">Halal</span></h2>
+        <div class="menu-item has-photo" data-img="images/food-chicken-on-rice.jpg" data-name="Chicken on Rice"><img class="menu-item-thumb" src="images/food-chicken-on-rice-thumb.jpg" alt="Chicken on Rice" loading="lazy" /><div class="menu-item-main"><div><div class="menu-item-name">Chicken on Rice</div><div class="menu-item-desc">Marinated chicken, salad &amp; sauce.</div></div><div class="menu-item-price">$20.90</div></div></div>
+        <div class="menu-item has-photo" data-img="images/food-lamb-on-rice.jpg" data-name="Lamb on Rice"><img class="menu-item-thumb" src="images/food-lamb-on-rice-thumb.jpg" alt="Lamb on Rice" loading="lazy" /><div class="menu-item-main"><div><div class="menu-item-name">Lamb on Rice</div><div class="menu-item-desc">Marinated lamb, salad &amp; sauce.</div></div><div class="menu-item-price">$22.90</div></div></div>
+        <div class="menu-item has-photo" data-img="images/food-beef-on-rice.jpg" data-name="Beef on Rice"><img class="menu-item-thumb" src="images/food-beef-on-rice-thumb.jpg" alt="Beef on Rice" loading="lazy" /><div class="menu-item-main"><div><div class="menu-item-name">Beef on Rice</div><div class="menu-item-desc">Grilled prime beef mince, salad &amp; sauce.</div></div><div class="menu-item-price">$20.90</div></div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mixed on Rice</div><div class="menu-item-desc">Chicken &amp; lamb, salad &amp; sauce.</div></div><div class="menu-item-price">$22.90</div></div>
+        <div class="menu-item has-photo" data-img="images/food-chicken-chips.jpg" data-name="Chicken &amp; Chips"><img class="menu-item-thumb" src="images/food-chicken-chips-thumb.jpg" alt="Chicken &amp; Chips" loading="lazy" /><div class="menu-item-main"><div><div class="menu-item-name">Chicken &amp; Chips</div><div class="menu-item-desc">Marinated chicken &amp; chips.</div></div><div class="menu-item-price">$20.90</div></div></div>
+
+        <h3 style="margin-top:26px; font-family:var(--font-display); color:var(--espresso-deep);">Salads</h3>
+        <p class="form-note" style="margin-top:-4px;">Served with fresh salad, cheese, tomato, cucumber, onion &amp; olives.</p>
+        <div class="menu-item has-photo" data-img="images/food-chicken-salad.jpg" data-name="Chicken Salad"><img class="menu-item-thumb" src="images/food-chicken-salad-thumb.jpg" alt="Chicken Salad" loading="lazy" /><div class="menu-item-main"><div><div class="menu-item-name">Chicken Salad</div></div><div class="menu-item-price">$20.90</div></div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Salad</div></div><div class="menu-item-price">$22.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Beef Salad</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mixed Salad</div></div><div class="menu-item-price">$22.90</div></div>
+      </div>
+
+      <div class="menu-group" data-category="traditional">
+        <h2>Traditional <span class="dish-tag" style="position:static; display:inline-block; vertical-align:middle;">Halal</span></h2>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb Pasendeh <span style="font-weight:400; opacity:0.7;">(mild or spicy)</span></div><div class="menu-item-desc">Traditional Persian-style lamb casserole with almonds &amp; cream. Served with rice &amp; salad.</div></div><div class="menu-item-price">$22.90</div></div>
+        <div class="menu-item has-photo" data-img="images/food-moussaka-real.jpg" data-name="Moussaka"><img class="menu-item-thumb" src="images/food-moussaka-real-thumb.jpg" alt="Moussaka" loading="lazy" /><div class="menu-item-main"><div><div class="menu-item-name">Moussaka</div><div class="menu-item-desc">Layers of spring potatoes, kofte mince and aubergines with white sauce &amp; cheese. Served with rice &amp; salad.</div></div><div class="menu-item-price">$20.90</div></div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Khoresh Ghormeh Sabzi</div><div class="menu-item-desc">Traditional Persian casserole of tender lamb, spinach &amp; red beans. Served with rice &amp; salad.</div></div><div class="menu-item-price">$22.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Khoresh Badenjun <span style="font-weight:400; opacity:0.7;">(Eggplant Casserole)</span></div><div class="menu-item-desc">Traditional Persian casserole of beef &amp; eggplant. Served with rice &amp; salad.</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Butter Chicken</div><div class="menu-item-desc">Marinated chicken cooked with spices, yoghurt and fenugreek, rich in cream.</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Spanakopita</div><div class="menu-item-desc">Spinach pie with pastries, feta cheese, topped with our special yoghurt sauce.</div></div><div class="menu-item-price">$16.90</div></div>
+      </div>
+
+      <div class="menu-group" data-category="veg">
+        <h2>Vegetarian</h2>
+        <div class="menu-item has-photo" data-img="images/food-almaz-platter-real.jpg" data-name="Almaz Platter"><img class="menu-item-thumb" src="images/food-almaz-platter-real-thumb.jpg" alt="Almaz Platter" loading="lazy" /><div class="menu-item-main"><div><div class="menu-item-name">Almaz Platter</div><div class="menu-item-desc">Hummus, falafel, dolma, tabouli, salad, tzatziki, pita bread &amp; dip.</div></div><div class="menu-item-price">$18.90</div></div></div>
+        <div class="menu-item has-photo" data-img="images/food-falafel-on-rice.jpg" data-name="Falafel on Rice"><img class="menu-item-thumb" src="images/food-falafel-on-rice-thumb.jpg" alt="Falafel on Rice" loading="lazy" /><div class="menu-item-main"><div><div class="menu-item-name">Falafel on Rice</div><div class="menu-item-desc">Falafel, salad &amp; sauce, served with rice.</div></div><div class="menu-item-price">$17.90</div></div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Falafel Kebab</div><div class="menu-item-desc">Falafel, salad &amp; sauce, wrapped in pita.</div></div><div class="menu-item-price">$15.90</div></div>
+      </div>
+
+      <div class="menu-group" data-category="fishburgers">
+        <h2>Fish &amp; Chips</h2>
+        <div class="menu-item"><div><div class="menu-item-name">Fish &amp; Chips</div><div class="menu-item-desc">Buttered fish with salad, chips &amp; sauce.</div></div><div class="menu-item-price">$19.90</div></div>
+
+        <h3 style="margin-top:26px; font-family:var(--font-display); color:var(--espresso-deep);">Burgers</h3>
+        <div class="menu-item"><div><div class="menu-item-name">Almaz Beef Burger</div><div class="menu-item-desc">Prime beef patty with salad &amp; sauce.</div></div><div class="menu-item-price">$20.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chicken Burger</div><div class="menu-item-desc">Grilled chicken with salad &amp; sauce.</div></div><div class="menu-item-price">$11.90</div></div>
+        <div class="menu-item has-photo" data-img="images/food-cheeseburger.jpg" data-name="Cheese Burger"><img class="menu-item-thumb" src="images/food-cheeseburger-thumb.jpg" alt="Cheese Burger" loading="lazy" /><div class="menu-item-main"><div><div class="menu-item-name">Cheese Burger</div><div class="menu-item-desc">Beef patty with cheese, salad &amp; sauce.</div></div><div class="menu-item-price">$11.90</div></div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Add Combo — Fries &amp; a Can</div><div class="menu-item-desc">Add fries and a can of soft drink to any burger.</div></div><div class="menu-item-price">+$11.90</div></div>
+      </div>
+
+      <div class="menu-group" data-category="sides">
+        <h2>Side Dishes</h2>
+        <div class="menu-item"><div><div class="menu-item-name">Vegetable Samosa</div></div><div class="menu-item-price">$4.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Lamb or Chicken Samosa</div></div><div class="menu-item-price">$6.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Vegetarian Samosa w/ Salad</div></div><div class="menu-item-price">$8.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Hummus &amp; Garlic Pita Bread</div></div><div class="menu-item-price">$8.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Garlic Pita Bread</div></div><div class="menu-item-price">$4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Wedges with Sour Cream</div></div><div class="menu-item-price">$6.90</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chips</div></div><div class="menu-item-price">$5.00</div></div>
+
+        <h3 style="margin-top:26px; font-family:var(--font-display); color:var(--espresso-deep);">Desserts</h3>
+        <div class="menu-item"><div><div class="menu-item-name">Baklava</div></div><div class="menu-item-price">$4.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Baklava with Ice Cream</div></div><div class="menu-item-price">$8.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Turkish Delights</div></div><div class="menu-item-price">$2.90</div></div>
+      </div>
+
+      <div class="menu-group" data-category="drinks">
+        <h2>Coffee</h2>
+        <div class="menu-item"><div><div class="menu-item-name">Short Black</div></div><div class="menu-item-price">$4.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Long Black</div></div><div class="menu-item-price">$5.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Flat White</div></div><div class="menu-item-price">$5.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Cappuccino</div></div><div class="menu-item-price">$5.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Latte</div></div><div class="menu-item-price">$6.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Hot Chocolate</div></div><div class="menu-item-price">$5.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Mochaccino</div></div><div class="menu-item-price">$6.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Chai Latte</div></div><div class="menu-item-price">$6.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Turkish Coffee</div></div><div class="menu-item-price">$4.50</div></div>
+
+        <h3 style="margin-top:26px; font-family:var(--font-display); color:var(--espresso-deep);">Tea</h3>
+        <div class="menu-item"><div><div class="menu-item-name">English Breakfast</div></div><div class="menu-item-price">$4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Earl Grey</div></div><div class="menu-item-price">$4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Green Tea</div></div><div class="menu-item-price">$4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Peppermint Tea</div></div><div class="menu-item-price">$4.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Apple Tea</div></div><div class="menu-item-price">$4.00</div></div>
+
+        <h3 style="margin-top:26px; font-family:var(--font-display); color:var(--espresso-deep);">Specialty</h3>
+        <div class="menu-item"><div><div class="menu-item-name">Iced Coffee</div></div><div class="menu-item-price">$7.50</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Iced Chocolate</div></div><div class="menu-item-price">$7.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Milkshake <span style="font-weight:400; opacity:0.7;">(all flavours)</span></div></div><div class="menu-item-price">$6.00</div></div>
+        <div class="menu-item"><div><div class="menu-item-name">Thickshake <span style="font-weight:400; opacity:0.7;">(all flavours)</span></div></div><div class="menu-item-price">$7.00</div></div>
+      </div>
+<!-- MENU:END -->
+
+      <p class="form-note">Vegetarian and vegan options are available across the menu — ask your server, or see our <a href="support.html">Support / FAQ page</a>.</p>
+      <p class="form-note">Please let your server know of any food allergies or intolerances before ordering. Prices and availability are subject to change.</p>
+
+    </div>
+  </section>
+
+  <section class="section-tight" style="padding-top:0;">
+    <div class="wrap">
+      <div class="surprise-box">
+        <span class="eyebrow" style="color:var(--gold-light);">Can't decide?</span>
+        <h3>Let Almaz pick for you</h3>
+        <p class="lede center" style="max-width:46ch; margin:10px auto 0;">Tap the button and we'll suggest something off the menu.</p>
+        <div class="surprise-result" id="surprise-result" aria-live="polite"></div>
+        <button class="btn btn-primary" id="surprise-btn" type="button" style="margin-top:14px;">Surprise me</button>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Almaz Cafe <svg class="footer-charm" width="16" height="16" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="20" cy="20" r="18" fill="var(--teal-light)"/><circle cx="20" cy="20" r="13" fill="var(--surface)"/><circle cx="20" cy="20" r="8" fill="var(--rust)"/><circle cx="20" cy="20" r="3.4" fill="var(--espresso-deep)"/></svg></h4>
+        <p>157 Onehunga Mall, Onehunga, Auckland 1061. Turkish, Middle Eastern &amp; Persian kitchen, open daily.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <div class="footer-links">
+          <a href="menu.html">Menu</a>
+          <a href="about.html">About</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="contact.html">Contact &amp; Location</a>
+          <a href="support.html">Support / FAQ</a>
+        </div>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <div class="footer-links">
+          <span data-site="hours">Daily, 11am–9pm</span>
+          <a href="tel:+6496222108" data-site-link="phone"><span data-site="phone">(09) 622 2108</span></a>
+          <a href="contact.html">Get directions</a>
+          <a href="#" data-site-link="email"><span data-site="email">almazcafethebest@gmail.com</span></a>
+        </div>
+      </div>
+      <div class="footer-social">
+        <h4>Follow</h4>
+        <div class="social-row">
+          <a href="https://www.facebook.com/profile.php?id=61593177522414" data-site-link="facebook" target="_blank" rel="noopener noreferrer" aria-label="Almaz Cafe on Facebook" title="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.16 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.52 1.5-3.91 3.77-3.91 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.78-1.63 1.57v1.89h2.78l-.45 2.91h-2.33V22C18.34 21.22 22 17.06 22 12.06Z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/almazcafeonehunga/" data-site-link="instagram" target="_blank" rel="noopener noreferrer" aria-label="Almaz Cafe on Instagram" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.6" y="2.6" width="18.8" height="18.8" rx="5.4"/><circle cx="12" cy="12" r="4.1"/><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"/></svg>
+          </a>
+        </div>
+        <p class="social-note">Daily specials and new dishes go up here first.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year"></span> Almaz Cafe, Onehunga</span>
+      <span>Family-run, Turkish &amp; Middle Eastern kitchen — proudly local for over 20 years.</span>
+      <span><a href="privacy.html" style="color:inherit;">Privacy Policy</a></span>
+    </div>
+  </div>
+</footer>
+
+<div id="almaz-chat-root"></div>
+
+<!-- Contact details, hours and social links. Loaded first so every
+     other script can read them. -->
+<script src="site-settings.js"></script>
+<script src="js/script.js"></script>
+<script src="js/chat.js"></script>
+<script src="js/theme.js"></script>
+<script src="js/reveal.js"></script>
+<script src="js/interactive-fx.js"></script>
+<script src="js/menu-interactive.js"></script>
+<script src="js/item-preview.js"></script>
+
+<nav class="action-bar" aria-label="Quick actions">
+  <div class="wrap">
+    <a data-site-link="phone" href="tel:+6496222108">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92Z"/></svg>
+      Call
+    </a>
+    <a href="contact.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Directions
+    </a>
+    <a href="menu.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20M4 19.5A2.5 2.5 0 0 0 6.5 22H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15Z"/></svg>
+      Order
+    </a>
+  </div>
+</nav>
+<script src="js/almaz-2026.js"></script>
+</body>
+</html>

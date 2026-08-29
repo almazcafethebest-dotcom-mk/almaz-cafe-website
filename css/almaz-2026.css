@@ -1,0 +1,3055 @@
+/* ============================================================
+   ALMAZ CAFE  -  css/almaz-2026.css
+
+   The 2026 redesign stylesheet. It loads AFTER style.css, so anything in here wins. Organised into numbered sections with a comment explaining each one.
+
+   Plain-English guide: open OWNER-GUIDE.html in the main folder.
+   Phone, email, address and hours live in site-settings.js
+   ============================================================ */
+/* ==========================================================================
+   ALMAZ — 2026 REDESIGN LAYER
+   Loaded AFTER style.css. Everything here deliberately overrides the older
+   sheet rather than editing it, so the original stays intact and readable.
+
+   The brief, in order:
+     1  one unified image-led opening, not separate columns
+     2  see the food MORE — the photos were being dimmed to 32%
+     3  the display type back to Fraunces, at the size it was before an
+        inline style started overriding it
+     4  no pattern band at the top and bottom
+     5  buttons barely curved, halo-lit, never the generic pill or the
+        hard offset block
+     6  everything clickable and alive
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. TOKENS
+   One scale, one set of easings. Every animation in this file pulls from
+   these, which is what stops a site with this much motion feeling like
+   several different sites stitched together.
+   -------------------------------------------------------------------------- */
+:root {
+  --r-btn: 7px;             /* barely curved — not a pill, not a square */
+  --r-card: 10px;
+  --r-lg: 16px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --halo: 0 0 0 1px rgba(255, 205, 130, 0.28),
+          0 0 22px -4px rgba(240, 169, 22, 0.55),
+          0 0 60px -18px rgba(239, 90, 23, 0.5);
+  --halo-strong: 0 0 0 1px rgba(255, 216, 155, 0.5),
+          0 0 30px -2px rgba(240, 169, 22, 0.8),
+          0 0 84px -14px rgba(239, 90, 23, 0.7);
+
+  --nav-h: 72px;
+}
+
+[data-theme="light"] {
+  --halo: 0 0 0 1px rgba(120, 74, 26, 0.18),
+          0 0 20px -6px rgba(201, 138, 46, 0.5),
+          0 10px 30px -16px rgba(42, 26, 12, 0.4);
+  --halo-strong: 0 0 0 1px rgba(120, 74, 26, 0.32),
+          0 0 28px -4px rgba(201, 138, 46, 0.7),
+          0 16px 40px -18px rgba(42, 26, 12, 0.5);
+}
+
+/* --------------------------------------------------------------------------
+   2. REMOVALS
+   The tile band top and bottom, and the hard offset shadows that were
+   making every control read as the same free template.
+   -------------------------------------------------------------------------- */
+.tile-border { display: none !important; }
+
+/* --------------------------------------------------------------------------
+   3. TYPE — Anton display, Fraunces for text
+
+   Matched to the reference: a heavy condensed cap face for the headline,
+   and a warm serif carrying the navigation, the trust strip and the body.
+
+   Anton is single-weight and caps-only. Two consequences:
+     - never set font-weight on it; the browser will fake a bold and smear
+       the stems
+     - its cap height nearly fills the em box, so display sizes want
+       line-height around 0.86, not 1.1
+   -------------------------------------------------------------------------- */
+:root {
+  --font-display: "Anton", "Oswald", "Haettenschweiler", Impact, sans-serif;
+  --font-body: "Jost", "Segoe UI", system-ui, sans-serif;
+  --font-ui: "Jost", "Segoe UI", system-ui, sans-serif;
+  --font-bold: "Anton", "Oswald", Impact, sans-serif;
+}
+
+h1, .h1 {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: clamp(2.9rem, 7.2vw, 6.3rem) !important;
+  line-height: 0.86 !important;
+  letter-spacing: -0.005em !important;
+  text-transform: uppercase !important;
+  text-wrap: balance;
+}
+h2 {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: clamp(2.2rem, 5.2vw, 3.9rem) !important;
+  line-height: 0.9 !important;
+  letter-spacing: 0 !important;
+  text-transform: uppercase !important;
+  text-wrap: balance;
+}
+h3 {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: 1.6rem !important;
+  line-height: 1.05;
+  letter-spacing: 0.012em !important;
+  text-transform: uppercase !important;
+}
+h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+/* Fraunces has an optical-size axis — letting it run means small text gets
+   sturdier letterforms and large text gets finer ones, automatically. */
+body, p, li, td, .lede, .nav-links a, .menu-item-desc,
+.trust-item, .footer-links a, input, textarea, select {
+  font-family: var(--font-body);
+}
+
+.lede {
+  font-size: clamp(1.02rem, 1.35vw, 1.16rem);
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+/* --- small type -------------------------------------------------------- */
+
+/* Labels stay in Jost. A serif tracked out to 0.3em at 11px turns to mush;
+   a geometric sans holds its shape. */
+.eyebrow, .sign-tag, .hero-meta .label, .stat-item .label,
+.taste-shot span, .form-note, .footer-bottom, .dish-tag, .cap {
+  font-family: var(--font-body) !important;
+  font-weight: 500;
+  font-size: 0.68rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+/* Numbers in the display face — prices, stats, the rating. */
+.stat-item .num, .menu-item-price, .rating-badge .score, .est-badge .num {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+}
+.stat-item .num { font-size: clamp(2.6rem, 4.6vw, 3.7rem) !important; line-height: 0.92; }
+.menu-item-price { font-size: 1.28rem !important; }
+
+.menu-item-name, .dish-card h3 {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: 1.24rem;
+  letter-spacing: 0.02em !important;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+/* Nav in the serif, as the reference has it. */
+.nav-links a {
+  font-family: var(--font-body) !important;
+  font-weight: 500;
+  font-size: 0.86rem;
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+/* Buttons keep the sans — a serif in caps at 0.16em tracking reads as a
+   certificate, not a call to action. */
+.btn, .see-more, .action-bar a {
+  font-family: var(--font-body) !important;
+}
+
+.brand-word {
+  font-family: var(--font-display) !important;
+  font-weight: 400 !important;
+  font-size: 1.5rem;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
+  text-transform: lowercase;
+}
+.brand-word small {
+  font-family: var(--font-body) !important;
+  font-weight: 600;
+  font-size: 0.56rem !important;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 4px;
+  color: var(--rust);
+}
+
+/* --------------------------------------------------------------------------
+   4. BUTTONS
+   A barely-curved rectangle with a light that lives on its edge. The sweep
+   runs on a masked conic gradient so the light travels the border itself
+   rather than glowing from behind the whole shape.
+   -------------------------------------------------------------------------- */
+@property --sweep {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.btn {
+  border-radius: var(--r-btn) !important;
+  font-family: var(--font-body) !important;
+  font-weight: 600 !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase;
+  padding: 1.05em 2.1em !important;
+  box-shadow: none !important;
+  isolation: isolate;
+  overflow: hidden;
+  transition: transform 0.45s var(--ease-out),
+              box-shadow 0.45s var(--ease-out),
+              background 0.3s ease,
+              color 0.3s ease;
+  will-change: transform;
+}
+
+/* The travelling edge light. Two stacked backgrounds, masked to a 1.5px
+   frame, so only the border area is painted. */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: conic-gradient(from var(--sweep),
+      transparent 0deg,
+      transparent 300deg,
+      rgba(255, 236, 200, 0.25) 330deg,
+      #fff3d6 352deg,
+      rgba(255, 236, 200, 0.25) 8deg,
+      transparent 40deg,
+      transparent 360deg);
+  /* Standard property first, -webkit- last: in Chromium the two are
+     aliases and the LAST one declared wins for both. The -webkit-
+     property does not accept "exclude", only "xor". */
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  animation: btn-sweep 3.4s linear infinite;
+  opacity: 0.5;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+.btn:hover::before, .btn:focus-visible::before { opacity: 1; }
+
+@keyframes btn-sweep { to { --sweep: 360deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .btn::before { animation: none; opacity: 0.65; }
+}
+
+/* Fill wipe from the bottom on hover */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: currentColor;
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.5s var(--ease-out), opacity 0.5s var(--ease-out);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.btn > * { position: relative; z-index: 3; }
+
+.btn:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: var(--halo) !important;
+}
+.btn:active { transform: translateY(-1px) scale(0.985) !important; }
+.btn:focus-visible {
+  outline: none;
+  box-shadow: var(--halo-strong) !important;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--rust) 0%, var(--rust-deep) 100%) !important;
+  color: #fff6e8 !important;
+  border-color: transparent !important;
+}
+.btn-primary:hover { box-shadow: var(--halo-strong) !important; }
+
+.btn-ghost {
+  background: color-mix(in srgb, var(--surface) 55%, transparent) !important;
+  border: 1px solid color-mix(in srgb, var(--espresso) 42%, transparent) !important;
+  color: var(--espresso) !important;
+  backdrop-filter: blur(10px);
+}
+.btn-ghost:hover {
+  background: color-mix(in srgb, var(--espresso) 12%, transparent) !important;
+  border-color: color-mix(in srgb, var(--gold) 70%, transparent) !important;
+}
+
+/* Any other control gets the same halo language so nothing feels foreign */
+.pc-btn, .sizzle-toggle, .cat-tab, .see-more, .to-top, .nav-toggle,
+input[type="submit"], button.chip {
+  border-radius: var(--r-btn);
+  transition: transform 0.4s var(--ease-out), box-shadow 0.4s var(--ease-out),
+              background 0.3s ease, border-color 0.3s ease;
+}
+.pc-btn:hover, .sizzle-toggle:hover, .cat-tab:hover, .see-more:hover,
+.to-top:hover, button.chip:hover {
+  box-shadow: var(--halo);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   5. NAV — floating capsule
+   It detaches from the top edge, tucks away as you read down, and comes
+   back the moment you scroll up. The active-page marker is a single pill
+   that slides between items rather than six separate underlines.
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: fixed !important;
+  top: 14px;
+  left: 0; right: 0;
+  background: transparent !important;
+  border: 0 !important;
+  z-index: 900;
+  transition: transform 0.55s var(--ease-out), opacity 0.35s ease;
+}
+.site-header.nav-hidden { transform: translateY(calc(-100% - 24px)); opacity: 0; }
+
+.site-header .nav {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 10px 14px 10px 18px !important;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 72%, transparent);
+  backdrop-filter: blur(20px) saturate(1.5);
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  border: 1px solid color-mix(in srgb, var(--line) 100%, transparent);
+  box-shadow: 0 18px 44px -26px rgba(0, 0, 0, 0.75);
+  transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.site-header.scrolled .nav {
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
+  box-shadow: 0 22px 54px -24px rgba(0, 0, 0, 0.85);
+}
+
+.brand-badge { height: 40px; width: auto; transition: transform 0.5s var(--ease-out); }
+.brand:hover .brand-badge { transform: rotate(-6deg) scale(1.07); }
+.brand-word small { letter-spacing: 0.12em; }
+
+.nav-links { gap: 2px !important; position: relative; }
+.nav-links a {
+  position: relative;
+  padding: 9px 15px !important;
+  border-radius: 999px;
+  font-size: 0.83rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  z-index: 1;
+  transition: color 0.3s ease;
+}
+/* the old per-link underline is replaced by the sliding pill */
+.nav-links a::after { display: none !important; }
+
+.nav-pill {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--rust) 16%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 42%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 0.5s var(--ease-out), width 0.5s var(--ease-out),
+              opacity 0.3s ease;
+}
+.nav-links:hover .nav-pill, .nav-pill.pinned { opacity: 1; }
+
+.nav-links a[aria-current="page"] { color: var(--gold-light) !important; }
+
+/* Push page content below the now-fixed bar */
+body { padding-top: calc(var(--nav-h) + 14px); }
+
+@media (max-width: 900px) {
+  .site-header { top: 8px; }
+  .site-header .nav { border-radius: var(--r-lg); margin: 0 10px; }
+  .nav-links {
+    background: color-mix(in srgb, var(--surface) 96%, transparent);
+    border-radius: var(--r-card);
+    margin-top: 10px;
+    padding: 6px;
+  }
+  .nav-links a { padding: 12px 14px !important; }
+  .nav-pill { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   6. HERO — one composition
+   Previously a 1.25fr / 0.75fr grid: copy in one column, photo in another,
+   and the photography knocked back to 32% opacity so it read as texture
+   rather than food. Now it is a single full-bleed stage with the type
+   sitting on the image, and the photos run at full strength with a scrim
+   only where the text actually needs one.
+   -------------------------------------------------------------------------- */
+.hero {
+  min-height: min(94vh, 940px);
+  display: grid;
+  align-items: end;
+  padding: 0 !important;
+  margin-top: calc(-1 * (var(--nav-h) + 14px));
+  border-radius: 0;
+}
+
+.hero-backdrop { opacity: 1 !important; }
+[data-theme="vibrant"] .hero-backdrop { opacity: 1 !important; }
+@media (max-width: 760px) { .hero-backdrop { opacity: 1 !important; } }
+
+.hero-backdrop-layer {
+  opacity: 0;
+  /* Kept close to 1. These photographs are 1100-2400px wide; drifting to
+     1.13 was enlarging them past their own detail and reading as blur. */
+  transform: scale(1.0);
+  transition: opacity 2.2s var(--ease-io), transform 12s linear;
+  filter: saturate(1.06) contrast(1.05);
+}
+.hero-backdrop-layer.active { opacity: 1; transform: scale(1.045); }
+
+/* A scrim that is heavy only at the bottom, where the words are. The top
+   two thirds of the photograph stay untouched. */
+.hero-backdrop::after {
+  background:
+    linear-gradient(180deg,
+      rgba(10, 7, 4, 0.55) 0%,
+      rgba(10, 7, 4, 0.12) 22%,
+      rgba(10, 7, 4, 0.05) 42%,
+      rgba(10, 7, 4, 0.72) 78%,
+      var(--parchment) 100%) !important;
+}
+[data-theme="light"] .hero-backdrop::after {
+  background:
+    linear-gradient(180deg,
+      rgba(20, 12, 6, 0.42) 0%,
+      rgba(20, 12, 6, 0.06) 26%,
+      rgba(20, 12, 6, 0.04) 44%,
+      rgba(20, 12, 6, 0.62) 78%,
+      var(--parchment) 100%) !important;
+}
+
+.hero .wrap {
+  display: block !important;
+  grid-template-columns: none !important;
+  padding-top: calc(var(--nav-h) + 90px) !important;
+  padding-bottom: 60px !important;
+  width: 100%;
+}
+
+.hero-copy { max-width: 900px; }
+.hero-copy h1 { color: #fff7ea !important; margin: 0.1em 0 0.34em; }
+[data-theme="light"] .hero-copy h1 { color: #fff7ea !important; }
+.hero-copy h1 .accent { color: var(--gold-light); font-style: normal; }
+.hero-copy .lede { color: rgba(255, 246, 232, 0.86) !important; }
+.hero-copy .sign-tag { color: var(--gold-light); }
+
+/* The arch line-drawing and the scattered kebab/tea/nazar SVGs were the
+   "too much going on". Retired — the food carries it now. */
+.heritage-deco, .arch-motif { display: none !important; }
+
+/* Storefront photo becomes a small inset card riding the bottom-right of
+   the stage, instead of owning half the opening. */
+.hero-art {
+  position: absolute !important;
+  right: max(24px, calc(50vw - 560px));
+  bottom: 54px;
+  width: 210px;
+  z-index: 3;
+}
+.hero-art .visit-photo {
+  border-radius: var(--r-card);
+  overflow: hidden;
+  box-shadow: 0 26px 60px -20px rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(255, 220, 170, 0.22);
+  transform: rotate(2deg);
+  transition: transform 0.6s var(--ease-out), box-shadow 0.6s var(--ease-out);
+}
+.hero-art:hover .visit-photo {
+  transform: rotate(0deg) scale(1.05);
+  box-shadow: 0 30px 70px -18px rgba(0, 0, 0, 0.9), var(--halo);
+}
+@media (max-width: 1000px) { .hero-art { display: none !important; } }
+
+.hero-meta { gap: 30px; margin: 26px 0 6px; }
+.hero-meta .label { color: var(--gold-light) !important; }
+.hero-meta .value { color: #fff3e2 !important; font-family: var(--font-display); font-size: 1.25rem; letter-spacing: 0.02em; text-transform: uppercase; }
+.hero-meta div { border-left-color: var(--gold) !important; }
+
+.hero-actions { margin-top: 28px; }
+
+/* Scroll cue */
+.hero-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  color: rgba(255, 243, 226, 0.6);
+  font-size: 0.62rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  pointer-events: none;
+  z-index: 4;
+}
+.hero-cue i {
+  display: block;
+  width: 1px; height: 34px;
+  background: linear-gradient(180deg, transparent, var(--gold-light));
+  animation: cue 2.4s var(--ease-io) infinite;
+}
+@keyframes cue { 0%,100% { transform: scaleY(0.35); opacity: 0.35; } 50% { transform: scaleY(1); opacity: 1; } }
+
+@media (max-width: 860px) {
+  .hero { min-height: 88vh; }
+  .hero .wrap { padding-top: calc(var(--nav-h) + 60px) !important; }
+  .hero-art { order: 0; }
+}
+
+/* --------------------------------------------------------------------------
+   7. THE TASTE STRIP — more imagery, immediately
+   A full-bleed edge-to-edge run of real dish photos directly under the
+   hero. It answers "show more imaging" without another grid of cards.
+   -------------------------------------------------------------------------- */
+.taste-strip {
+  padding: 0 !important;
+  overflow: hidden;
+  background: var(--band-bg);
+  border-block: 1px solid var(--line);
+}
+.taste-track {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  animation: taste-roll 46s linear infinite;
+}
+.taste-strip:hover .taste-track { animation-play-state: paused; }
+.taste-shot {
+  position: relative;
+  flex: 0 0 auto;
+  width: clamp(190px, 21vw, 300px);
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 6px;
+  filter: saturate(1.05);
+  transition: transform 0.6s var(--ease-out), filter 0.5s ease;
+}
+.taste-shot img { width: 100%; height: 100%; object-fit: cover; }
+.taste-shot span {
+  position: absolute;
+  left: 12px; bottom: 10px;
+  font-size: 0.68rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #fff4e4;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.9);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s var(--ease-out);
+}
+.taste-shot:hover { transform: scale(1.04); filter: saturate(1.2) brightness(1.06); z-index: 2; }
+.taste-shot:hover span { opacity: 1; transform: translateY(0); }
+@keyframes taste-roll { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .taste-track { animation: none; overflow-x: auto; }
+}
+
+/* --------------------------------------------------------------------------
+   8. CARDS & IMAGERY — bigger, clickable, alive
+   -------------------------------------------------------------------------- */
+.dish-grid { gap: 22px; }
+.dish-card {
+  border-radius: var(--r-card);
+  overflow: hidden;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+.dish-card .gallery-item { aspect-ratio: 3 / 2 !important; overflow: hidden; }
+.dish-card img { transition: transform 0.9s var(--ease-out), filter 0.6s ease; }
+.dish-card:hover img { transform: scale(1.07); filter: saturate(1.14); }
+.dish-card:hover { box-shadow: 0 30px 60px -30px rgba(0,0,0,0.8), var(--halo); }
+
+.feature-item {
+  border-radius: var(--r-btn);
+  cursor: default;
+  transition: transform 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out),
+              border-color 0.4s ease;
+}
+.feature-item:hover { box-shadow: var(--halo); }
+
+.gallery-item { border-radius: var(--r-card); }
+
+.review-card {
+  border-radius: var(--r-card);
+  transition: transform 0.45s var(--ease-out), box-shadow 0.45s var(--ease-out);
+}
+.review-card:hover { transform: translateY(-4px); box-shadow: var(--halo); }
+
+.stat-item .num { font-family: var(--font-display); letter-spacing: -0.02em; }
+
+/* --------------------------------------------------------------------------
+   9. REVEALS — everything arrives, nothing pops
+   -------------------------------------------------------------------------- */
+[data-rise] {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  transition-delay: var(--d, 0ms);
+}
+[data-rise].risen { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  [data-rise] { opacity: 1 !important; transform: none !important; }
+}
+
+/* --------------------------------------------------------------------------
+   10. BACK TO TOP
+   -------------------------------------------------------------------------- */
+.to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 96px;
+  width: 48px; height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-btn);
+  background: color-mix(in srgb, var(--surface) 88%, transparent);
+  backdrop-filter: blur(14px);
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  color: var(--gold-light);
+  cursor: pointer;
+  z-index: 880;
+  opacity: 0;
+  transform: translateY(14px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease-out), transform 0.45s var(--ease-out),
+              box-shadow 0.4s ease;
+}
+.to-top.show { opacity: 1; transform: none; pointer-events: auto; }
+.to-top:hover { box-shadow: var(--halo-strong); }
+.to-top svg { width: 20px; height: 20px; }
+/* A ring that fills as you scroll, so the control also reports position */
+.to-top .ring { position: absolute; inset: -1px; border-radius: inherit; }
+@media (max-width: 720px) { .to-top { bottom: 84px; right: 14px; } }
+
+/* --------------------------------------------------------------------------
+   12. MENU — five per category, then "see more"
+   -------------------------------------------------------------------------- */
+.menu-item.is-hidden {
+  display: none;
+}
+.see-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 0.78em 1.5em;
+  background: transparent;
+  border: 1px solid color-mix(in srgb, var(--gold) 48%, transparent);
+  color: var(--gold-light);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.74rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+[data-theme="light"] .see-more { color: var(--rust-deep); border-color: color-mix(in srgb, var(--rust) 42%, transparent); }
+.see-more .chev { transition: transform 0.4s var(--ease-out); }
+.see-more[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.see-more .count { opacity: 0.7; }
+
+/* --------------------------------------------------------------------------
+   13. LINKS & SMALL PRINT — make the rest of it feel handled too
+   -------------------------------------------------------------------------- */
+.footer-links a, .footer-bottom a {
+  position: relative;
+  transition: color 0.3s ease;
+}
+.footer-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 1px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.45s var(--ease-out);
+}
+.footer-links a:hover { color: var(--gold-light); }
+.footer-links a:hover::after { transform: scaleX(1); transform-origin: left; }
+
+.action-bar a { transition: color 0.3s ease, transform 0.35s var(--ease-out); }
+.action-bar a:hover { color: var(--gold-light); transform: translateY(-2px); }
+
+/* Selection and focus, sitewide */
+::selection { background: var(--rust); color: #fff6e8; }
+:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 3px; }
+
+/* --------------------------------------------------------------------------
+   14. HERO BAR
+   Opening hours, address, phone, the pickup popover and the sizzle toggle.
+   All of it used to sit inside the hero, which is what made the hero feel
+   busy. Down here it reads as a service counter under the photograph.
+   -------------------------------------------------------------------------- */
+.hero-bar {
+  padding: 22px 0 !important;
+  background: color-mix(in srgb, var(--surface) 70%, transparent);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(8px);
+}
+.hero-bar .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+.hero-bar .hero-meta { margin: 0; gap: 34px; }
+.hero-bar .hero-meta .value { color: var(--espresso-deep) !important; }
+.hero-bar-acts { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 720px) {
+  .hero-bar .wrap { justify-content: flex-start; }
+  .hero-bar .hero-meta { gap: 20px; }
+}
+
+/* The rating row now sits with the hero copy, on the photograph */
+.hero-copy .rating-badge, .hero-copy .status-badge {
+  backdrop-filter: blur(10px);
+}
+
+/* The angular orange flag on the eyebrow was doing a lot of shouting for a
+   two-word label. A hairline rule and letterspacing say it more quietly. */
+.hero-copy .sign-tag {
+  background: none !important;
+  clip-path: none !important;
+  padding: 0 0 0 46px !important;
+  color: var(--gold-light) !important;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+.hero-copy .sign-tag::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 50%;
+  width: 34px; height: 1px;
+  background: var(--gold);
+}
+
+/* --------------------------------------------------------------------------
+   15. LOOSE ENDS FROM THE OLD SHEET
+   -------------------------------------------------------------------------- */
+
+/* .sign-tag carried a hard gold offset shadow and a clip-path skew from the
+   old sheet. Section 14 restyles it as a hairline label, but those two
+   properties were still painting an orange sliver off its right edge. */
+.hero-copy .sign-tag {
+  box-shadow: none !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.7rem !important;
+  border: 0 !important;
+}
+
+/* The "20+ Years Local" disc was pinned to the bottom-left of a
+   half-width column. That column is now a 210px inset, so the disc was
+   larger than the photo it was badging. Scaled to suit, and moved to the
+   corner it now has room in. */
+.hero-art .est-badge {
+  width: 76px;
+  height: 76px;
+  bottom: -14px;
+  left: -14px;
+  box-shadow: 0 12px 30px -12px rgba(0,0,0,0.8);
+}
+.hero-art .est-badge .num { font-size: 1.15rem; }
+.hero-art .est-badge .label { font-size: 0.44rem; letter-spacing: 0.1em; }
+
+/* Section rhythm: the old sheet used 84px everywhere, which at these type
+   sizes reads as cramped between a 3.4rem heading and the next one. */
+section { padding: 104px 0; }
+.section-tight { padding: 72px 0; }
+@media (max-width: 760px) {
+  section { padding: 66px 0; }
+  .section-tight { padding: 48px 0; }
+}
+
+.section-head { margin-bottom: 38px; }
+.section-head .eyebrow { display: inline-block; margin-bottom: 12px; }
+
+/* The floating chat launcher and the fixed bottom action bar were both
+   sitting in the same corner as the new back-to-top control. */
+@media (max-width: 720px) {
+  .to-top { bottom: 150px; }
+}
+
+/* --------------------------------------------------------------------------
+   16. LEGIBILITY OVER THE PHOTOGRAPH
+   The bottom scrim alone is not enough once the hero runs a sharp, busy
+   plate at full strength — the body copy was sitting on rice and sauce.
+   This is a scrim shaped to the text column only, so the right two thirds
+   of the food stay completely clear.
+   -------------------------------------------------------------------------- */
+.hero .wrap { position: relative; }
+.hero .wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 -50vw;
+  width: 150vw;
+  background: linear-gradient(100deg,
+    rgba(8, 5, 3, 0.9) 0%,
+    rgba(8, 5, 3, 0.82) 42%,
+    rgba(8, 5, 3, 0.5) 58%,
+    rgba(8, 5, 3, 0.12) 70%,
+    rgba(8, 5, 3, 0) 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+[data-theme="light"] .hero .wrap::before {
+  background: linear-gradient(100deg,
+    rgba(12, 8, 4, 0.82) 0%,
+    rgba(12, 8, 4, 0.72) 42%,
+    rgba(12, 8, 4, 0.42) 58%,
+    rgba(12, 8, 4, 0.1) 70%,
+    rgba(12, 8, 4, 0) 80%);
+}
+.hero-copy, .hero-art, .hero-cue { position: relative; z-index: 2; }
+
+@media (max-width: 860px) {
+  /* On a phone the column is the whole width, so the shaped scrim becomes
+     a straight vertical one. */
+  .hero .wrap::before {
+    inset: 0;
+    width: auto;
+    background: linear-gradient(180deg,
+      rgba(8,5,3,0.5) 0%, rgba(8,5,3,0.72) 45%, rgba(8,5,3,0.9) 100%);
+  }
+}
+
+/* The storefront inset was anchored to the bottom of a hero that grows
+   with its content, which pushed it under the fold. Anchored to the top
+   instead so it always sits in view, beside the headline. */
+.hero-art {
+  top: calc(var(--nav-h) + 110px);
+  bottom: auto;
+}
+
+/* Tags sitting inside a heading must not inherit the new display scale —
+   "Kebabs Halal" was rendering the badge at 3.4rem alongside the title. */
+h1 .dish-tag, h2 .dish-tag, h3 .dish-tag,
+h1 .tag, h2 .tag, h3 .tag {
+  font-family: var(--font-body) !important;
+  font-size: 0.62rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase;
+  line-height: 1;
+  vertical-align: middle;
+  padding: 6px 11px;
+  border-radius: 4px;
+  margin-left: 12px;
+  position: relative;
+  top: -6px;
+}
+
+/* --------------------------------------------------------------------------
+   17. MOBILE HEADER
+   The wordmark's strapline was wrapping to four lines inside the new
+   capsule and pushing the bar to 200px tall, with the burger sitting on
+   top of it. On a phone the badge and the name are enough.
+   -------------------------------------------------------------------------- */
+@media (max-width: 700px) {
+  .site-header .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 8px 12px !important;
+  }
+  .brand { flex: 0 1 auto; min-width: 0; gap: 10px; }
+  .brand-word { font-size: 1.15rem; line-height: 1; white-space: nowrap; }
+  .brand-word small { display: none; }
+  .brand-badge { height: 34px; }
+  .nav-toggle { flex: 0 0 auto; margin-left: auto; }
+  #theme-switch-root { flex: 0 0 auto; }
+  .nav-links { flex: 1 0 100%; }
+}
+
+/* The floating chat launcher was landing on top of the rating row and the
+   fixed action bar on small screens. */
+@media (max-width: 700px) {
+  #almaz-chat-root { bottom: 78px !important; }
+}
+
+/* The collapsed link list still claimed a full flex row, which pushed the
+   theme switch onto a third line and left the capsule ~340px tall with
+   nothing in it. Ordered explicitly and given no box of its own while shut. */
+@media (max-width: 700px) {
+  .brand            { order: 1; }
+  #theme-switch-root{ order: 2; margin-left: auto; }
+  .nav-toggle       { order: 3; margin-left: 6px; }
+  .nav-links        { order: 4; }
+
+  .nav-links:not(.open) {
+    max-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    overflow: hidden;
+  }
+  .nav-links.open {
+    max-height: 420px !important;
+    margin-top: 8px !important;
+    padding: 6px !important;
+  }
+}
+
+/* The old sheet gave the theme switch a 16px vertical margin under 760px,
+   from when it sat inside the dropdown. Inside the capsule that margin was
+   the whole extra 32px of header height. */
+@media (max-width: 760px) {
+  .theme-switch { margin: 0 !important; }
+}
+@media (max-width: 700px) {
+  .theme-switch button { width: 28px; height: 28px; }
+  .theme-switch button svg { width: 15px; height: 15px; }
+}
+
+/* ==========================================================================
+   18. LIFTING THE DULLNESS
+   The complaint on the Kasa site was "premium but dull", and the cause was
+   the same both times: a very dark, very flat, very even background. Dark
+   is not the problem — flat is. Three things fix it, in this order:
+
+     1  lift the darkest values a little and warm them (a kebab shop is
+        charcoal and fire, not black and grey)
+     2  give the page depth with a warm ambient light rather than a single
+        uniform fill
+     3  let the accent colours actually glow instead of sitting flat
+   ========================================================================== */
+
+:root, [data-theme="vibrant"] {
+  /* Lifted roughly 3-5 points and pushed warm. Still dark enough for the
+     food to be the brightest thing on screen, which is the whole point. */
+  --parchment: #1B130C;
+  --parchment-warm: #2A1E13;
+  --surface: #291E15;
+  --band-bg: #140E08;
+  --line: rgba(255, 214, 156, 0.17);
+
+  /* The accents carry more light so they read as fire, not as brown */
+  --rust: #F4631C;
+  --rust-deep: #D64B10;
+  --gold: #FBB828;
+  --gold-light: #FFD770;
+}
+
+/* A warm ambient wash over the whole page. Fixed, so it behaves like a
+   light source in the room rather than a gradient that scrolls past. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(70vw 60vh at 78% -8%,  rgba(251, 184, 40, 0.10), transparent 62%),
+    radial-gradient(60vw 55vh at 6% 105%,  rgba(244, 99, 28, 0.09),  transparent 60%);
+}
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(70vw 60vh at 78% -8%, rgba(201, 138, 46, 0.12), transparent 62%),
+    radial-gradient(60vw 55vh at 6% 105%, rgba(217, 88, 31, 0.07), transparent 60%);
+}
+body > * { position: relative; z-index: 1; }
+
+/* Film grain. A few percent of noise is the difference between "dark" and
+   "flat" — it gives the large empty areas something to hold. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* The dark bands were the flattest part of the page. Given a gradient and
+   a hairline of warm light along the top edge. */
+.band-dark, .taste-strip {
+  background: linear-gradient(180deg,
+    color-mix(in srgb, var(--band-bg) 100%, transparent) 0%,
+    color-mix(in srgb, var(--parchment-warm) 45%, var(--band-bg)) 55%,
+    color-mix(in srgb, var(--band-bg) 100%, transparent) 100%);
+  position: relative;
+}
+.band-dark::before, .taste-strip::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0.4;
+}
+
+/* Cards lift off the page instead of sitting in it */
+.dish-card, .review-card, .feature-item, .special-banner {
+  background: linear-gradient(160deg,
+    color-mix(in srgb, var(--surface) 100%, transparent),
+    color-mix(in srgb, var(--parchment) 92%, var(--surface))) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: 0 20px 44px -30px rgba(0, 0, 0, 0.9);
+}
+
+/* ==========================================================================
+   19. A BRIGHTER HERO
+   The plate was being read through two stacked scrims plus a page-wide
+   dim. Pulled back so the food is genuinely lit, with the text scrim
+   doing the legibility work on its own.
+   ========================================================================== */
+.hero-backdrop-layer {
+  filter: saturate(1.14) contrast(1.06) brightness(1.14);
+}
+.hero-backdrop::after {
+  background:
+    linear-gradient(180deg,
+      rgba(12, 8, 4, 0.34) 0%,
+      rgba(12, 8, 4, 0.00) 24%,
+      rgba(12, 8, 4, 0.00) 52%,
+      rgba(12, 8, 4, 0.58) 84%,
+      var(--parchment) 100%) !important;
+}
+.hero .wrap::before {
+  background: linear-gradient(100deg,
+    rgba(10, 6, 3, 0.86) 0%,
+    rgba(10, 6, 3, 0.70) 38%,
+    rgba(10, 6, 3, 0.34) 56%,
+    rgba(10, 6, 3, 0.06) 70%,
+    rgba(10, 6, 3, 0) 78%) !important;
+}
+/* A warm rim of light along the bottom of the hero, so the fold reads as
+   heat coming off the grill rather than the photo simply stopping. */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 220px;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(80% 100% at 50% 130%,
+    rgba(244, 99, 28, 0.26), rgba(251, 184, 40, 0.08) 45%, transparent 70%);
+}
+
+/* --------------------------------------------------------------------------
+   20. HEADLINE FIT
+   Bebas is condensed, which is exactly why it tempted me too large: at
+   9.5rem "SERVED WITH PRIDE." measured about 1260px and ran off the right
+   edge of a 1140px column. It did not show up as page overflow because
+   the hero clips — it was silently cutting the last word off.
+
+   Sized so the longest line in the headline fits the column, with a hard
+   ceiling rather than a purely viewport-relative one.
+   -------------------------------------------------------------------------- */
+h1, .h1 { font-size: clamp(2.9rem, 7.8vw, 7rem) !important; }
+.hero-copy h1 { max-width: 15ch; }
+
+@media (max-width: 600px) {
+  h1, .h1 { font-size: clamp(2.6rem, 12vw, 4.2rem) !important; }
+  .hero-copy h1 { max-width: none; }
+}
+
+/* The text scrim was shaped for a narrower column than the headline now
+   occupies, so the tail of each line was sitting on bare photograph. */
+.hero .wrap::before {
+  background: linear-gradient(100deg,
+    rgba(10, 6, 3, 0.88) 0%,
+    rgba(10, 6, 3, 0.78) 46%,
+    rgba(10, 6, 3, 0.46) 62%,
+    rgba(10, 6, 3, 0.10) 76%,
+    rgba(10, 6, 3, 0) 84%) !important;
+}
+
+/* The 15ch cap constrained the h1's box but not the line inside it, so
+   "SERVED WITH PRIDE." still measured 1188px against a 1140px column and
+   spilled. Sized off the longest line instead, and the copy block is
+   allowed the full column width. */
+h1, .h1 { font-size: clamp(2.9rem, 7.4vw, 6.6rem) !important; }
+.hero-copy { max-width: 100%; }
+.hero-copy h1 { max-width: none; }
+.hero-copy .lede { max-width: 46ch; }
+@media (max-width: 600px) {
+  h1, .h1 { font-size: clamp(2.5rem, 11.5vw, 4rem) !important; }
+}
+
+h1, .h1 { font-size: clamp(2.9rem, 7.2vw, 6.3rem) !important; }
+
+/* ==========================================================================
+   21. THE CREAM THEME — now the default
+   Sampled from the reference: a warm parchment field, espresso brown for
+   text, and one rust accent doing all the shouting. This is what makes it
+   read bright and appetising rather than dark and dull.
+   ========================================================================== */
+[data-theme="light"] {
+  --parchment: #F2E7D3;
+  --parchment-warm: #EADCC2;
+  --surface: #FFFBF3;
+  --charcoal: #2B1B10;
+  --espresso: #3A2617;
+  --espresso-deep: #21140A;
+  --line: rgba(43, 27, 16, 0.13);
+  --band-bg: #EADCC2;
+  --band-text: #2B1B10;
+  --cream-text: #FFF8EA;
+  --shadow: rgba(43, 27, 16, 0.14);
+
+  --rust: #C4562A;
+  --rust-deep: #A5401B;
+  --gold: #C89238;
+  --gold-light: #E0AC55;
+  --teal: #2F7A72;
+  --teal-deep: #235A54;
+  --olive: #7A5C26;
+
+  --halo: 0 0 0 1px rgba(196, 86, 42, 0.22),
+          0 0 22px -6px rgba(196, 86, 42, 0.45),
+          0 14px 34px -18px rgba(43, 27, 16, 0.35);
+  --halo-strong: 0 0 0 1px rgba(196, 86, 42, 0.4),
+          0 0 30px -4px rgba(196, 86, 42, 0.6),
+          0 18px 44px -18px rgba(43, 27, 16, 0.45);
+}
+
+/* Ambient warmth, cream version — a light room, not a dark one. */
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(70vw 60vh at 80% -10%, rgba(200, 146, 56, 0.16), transparent 62%),
+    radial-gradient(60vw 55vh at 4% 104%, rgba(196, 86, 42, 0.08), transparent 60%);
+}
+[data-theme="light"] body::after { opacity: 0.022; mix-blend-mode: multiply; }
+
+[data-theme="light"] .dish-card,
+[data-theme="light"] .feature-item {
+  background: linear-gradient(160deg, #FFFDF7, #FBF2E1) !important;
+  border: 1px solid var(--line) !important;
+  box-shadow: 0 18px 40px -28px rgba(43, 27, 16, 0.45);
+}
+
+/* The white trust strip from the reference */
+[data-theme="light"] .trust-strip {
+  background: #FFFBF3;
+  border-bottom: 1px solid var(--line);
+  padding: 15px 0;
+}
+.trust-strip .wrap {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 22px; flex-wrap: wrap;
+}
+.trust-strip .trust-item { display: flex; align-items: center; gap: 10px; font-size: 0.95rem; color: var(--espresso); }
+.trust-strip .trust-item .icon { width: 22px; height: 22px; color: var(--rust); flex: 0 0 auto; }
+
+/* Nav capsule in cream */
+[data-theme="light"] .site-header .nav {
+  background: rgba(255, 251, 243, 0.86);
+  border-color: rgba(43, 27, 16, 0.10);
+  box-shadow: 0 16px 40px -28px rgba(43, 27, 16, 0.5);
+}
+[data-theme="light"] .site-header.scrolled .nav { background: rgba(255, 251, 243, 0.96); }
+[data-theme="light"] .nav-links a { color: var(--espresso); }
+[data-theme="light"] .nav-links a[aria-current="page"] { color: var(--rust) !important; }
+[data-theme="light"] .nav-pill {
+  background: rgba(196, 86, 42, 0.10);
+  border-color: rgba(196, 86, 42, 0.30);
+}
+
+/* ==========================================================================
+   22. THE CREAM HERO
+   Dark type on a warm field, with the photograph present but sitting back
+   — the reference's balance. The food still reads; it is no longer
+   competing with the headline for the same pixels.
+   ========================================================================== */
+[data-theme="light"] .hero {
+  background: linear-gradient(165deg, #F6EDDC 0%, #F2E7D3 45%, #EADCC2 100%);
+}
+[data-theme="light"] .hero-backdrop { opacity: 0.5 !important; }
+[data-theme="light"] .hero-backdrop-layer {
+  filter: saturate(1.1) contrast(0.96) brightness(1.16);
+}
+/* A cream veil instead of a black one — this is what keeps it bright. */
+[data-theme="light"] .hero-backdrop::after {
+  background:
+    linear-gradient(180deg,
+      rgba(242, 231, 211, 0.82) 0%,
+      rgba(242, 231, 211, 0.42) 30%,
+      rgba(242, 231, 211, 0.46) 60%,
+      rgba(242, 231, 211, 0.88) 88%,
+      var(--parchment) 100%) !important;
+}
+[data-theme="light"] .hero .wrap::before {
+  background: linear-gradient(100deg,
+    rgba(242, 231, 211, 0.94) 0%,
+    rgba(242, 231, 211, 0.86) 42%,
+    rgba(242, 231, 211, 0.55) 60%,
+    rgba(242, 231, 211, 0.12) 74%,
+    rgba(242, 231, 211, 0) 82%) !important;
+}
+[data-theme="light"] .hero::after { display: none; }
+
+[data-theme="light"] .hero-copy h1 { color: var(--espresso-deep) !important; }
+[data-theme="light"] .hero-copy h1 .accent { color: var(--rust); }
+[data-theme="light"] .hero-copy .lede { color: #4A3423 !important; }
+[data-theme="light"] .hero-copy .sign-tag { color: var(--rust) !important; }
+[data-theme="light"] .hero-copy .sign-tag::before { background: var(--rust); }
+[data-theme="light"] .hero-meta .label { color: var(--rust) !important; }
+[data-theme="light"] .hero-meta .value { color: var(--espresso-deep) !important; }
+[data-theme="light"] .hero-meta div { border-left-color: var(--rust) !important; }
+[data-theme="light"] .hero-cue { color: rgba(43, 27, 16, 0.5); }
+[data-theme="light"] .hero-cue i { background: linear-gradient(180deg, transparent, var(--rust)); }
+
+/* The illustrated skewer, tea glass and nazar were part of what you liked
+   in the reference — they were hidden in the dark rebuild. Back, but kept
+   quiet enough that they never fight the headline. */
+[data-theme="light"] .heritage-deco {
+  display: block !important;
+  opacity: 0.55;
+  pointer-events: none;
+}
+[data-theme="light"] .heritage-deco.left  { z-index: 1; }
+[data-theme="light"] .heritage-deco.right { z-index: 1; }
+@media (max-width: 1000px) { .heritage-deco { display: none !important; } }
+
+/* Ghost buttons on cream */
+[data-theme="light"] .btn-ghost {
+  background: rgba(255, 251, 243, 0.7) !important;
+  border-color: rgba(43, 27, 16, 0.22) !important;
+  color: var(--espresso-deep) !important;
+}
+[data-theme="light"] .btn::before {
+  background: conic-gradient(from var(--sweep),
+      transparent 0deg, transparent 300deg,
+      rgba(196, 86, 42, 0.22) 330deg,
+      #C4562A 352deg,
+      rgba(196, 86, 42, 0.22) 8deg,
+      transparent 40deg, transparent 360deg);
+}
+
+/* Anton runs wider per character than Bebas, and the headline was landing
+   exactly on the column edge with nothing in hand. A little margin. */
+h1, .h1 { font-size: clamp(2.8rem, 6.9vw, 6.1rem) !important; }
+
+/* ==========================================================================
+   23. CONTRAST — the whole class of bug, not just the one that showed
+
+   A contrast sweep across both themes found text rendering at ratios
+   around 1.1:1 — literally the same colour as what was behind it — in the
+   footer, the stat strip, the parallax band and the review cards.
+
+   One cause: those components set a light text colour because they were
+   built to sit on a dark band. Restyling their backgrounds for the cream
+   theme without touching their text colour left cream on cream.
+
+   The fix is to keep the dark bands genuinely dark in BOTH themes. On a
+   cream page a dark band is not a mistake, it is the rhythm — and it means
+   one set of text colours is correct everywhere.
+   ========================================================================== */
+[data-theme="light"] .band-dark,
+[data-theme="light"] .taste-strip,
+[data-theme="light"] .parallax-band,
+[data-theme="light"] .site-footer {
+  background: linear-gradient(180deg, #241708, #2E1E0D 55%, #241708) !important;
+  color: #F6EBD8 !important;
+}
+[data-theme="light"] .band-dark h2,
+[data-theme="light"] .band-dark h3,
+[data-theme="light"] .parallax-band h2,
+[data-theme="light"] .site-footer h4 { color: #FFF6E6 !important; }
+[data-theme="light"] .band-dark p,
+[data-theme="light"] .parallax-band p,
+[data-theme="light"] .site-footer p,
+[data-theme="light"] .site-footer .footer-links a,
+[data-theme="light"] .site-footer .footer-links span,
+[data-theme="light"] .footer-bottom,
+[data-theme="light"] .footer-bottom a { color: rgba(246, 235, 216, 0.82) !important; }
+[data-theme="light"] .band-dark .eyebrow,
+[data-theme="light"] .parallax-band .eyebrow { color: var(--gold-light) !important; }
+[data-theme="light"] .stat-item .num { color: var(--gold-light) !important; }
+[data-theme="light"] .stat-item .label { color: rgba(246, 235, 216, 0.78) !important; }
+
+/* --- review cards ------------------------------------------------------
+   These were rust-coloured cards with cream text. Section 18 replaced the
+   background and left the text alone, which is the bug you spotted.
+   Rebuilt properly: the card now states its own text colour alongside its
+   own background, so the two can never drift apart again.
+   ----------------------------------------------------------------------- */
+.review-card {
+  background: linear-gradient(158deg,
+    color-mix(in srgb, var(--surface) 100%, transparent),
+    color-mix(in srgb, var(--parchment) 90%, var(--surface))) !important;
+  color: var(--charcoal) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: var(--r-card) !important;
+  box-shadow: 0 20px 44px -30px rgba(0,0,0,0.75) !important;
+  padding: 30px 26px 26px !important;
+  position: relative;
+  overflow: hidden;
+}
+[data-theme="light"] .review-card {
+  background: linear-gradient(158deg, #FFFDF7, #F8EFDD) !important;
+  color: #3A2617 !important;
+  box-shadow: 0 18px 40px -28px rgba(43,27,16,0.4) !important;
+}
+.review-card p { color: inherit !important; opacity: 0.9; font-size: 1rem !important; line-height: 1.6 !important; }
+.review-card strong { color: inherit !important; font-size: 0.9rem !important; letter-spacing: 0.01em; }
+.review-card .stars-sm { color: var(--gold) !important; }
+[data-theme="light"] .review-card .stars-sm { color: var(--rust) !important; }
+.review-card .avatar-circle {
+  background: linear-gradient(140deg, var(--rust), var(--gold)) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 16px -8px var(--rust) !important;
+}
+/* An oversized quote mark, set low in the corner so it reads as paper
+   rather than as an icon. */
+.review-card::before {
+  content: "“";
+  position: absolute;
+  top: -26px; right: 10px;
+  font-family: var(--font-display);
+  font-size: 8rem;
+  line-height: 1;
+  color: var(--rust);
+  opacity: 0.09;
+  pointer-events: none;
+}
+.review-card:hover { transform: translateY(-5px); box-shadow: var(--halo) !important; }
+
+/* --- the remaining sub-4.5 items the sweep found ----------------------- */
+.est-badge { background: var(--rust-deep) !important; color: #FFF3E2 !important; }
+.est-badge .num, .est-badge .label { color: #FFF3E2 !important; }
+.dish-tag {
+  background: var(--rust-deep) !important;
+  color: #FFF3E2 !important;
+}
+.menu-tab.active, .menu-tab[aria-selected="true"] {
+  background: var(--rust-deep) !important;
+  color: #FFF3E2 !important;
+  border-color: var(--rust-deep) !important;
+}
+.sauce-sticker { color: #22150B !important; font-weight: 600; }
+.chat-launcher { background: var(--teal-deep) !important; color: #FFF6E8 !important; }
+.gallery-item .cap, .taste-shot span {
+  color: #FFF6E8 !important;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.95), 0 2px 14px rgba(0,0,0,0.8);
+}
+[data-theme="light"] .nav-links a { color: #35220F !important; }
+[data-theme="light"] .sign-tag { color: var(--rust-deep) !important; }
+[data-theme="light"] .eyebrow { color: var(--rust-deep) !important; }
+[data-theme="light"] .menu-item-price { color: var(--rust-deep) !important; }
+[data-theme="light"] .rating-badge .stars { color: var(--rust) !important; }
+
+/* ==========================================================================
+   24. THE FEATURE PANEL
+   Eight separate boxes reads as a checklist. One panel, divided by
+   hairlines, reads as a plaque — same information, far less noise, which
+   is the "less is more" note.
+   ========================================================================== */
+.feature-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 0 !important;
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: color-mix(in srgb, var(--surface) 60%, transparent);
+  backdrop-filter: blur(6px);
+}
+.feature-item {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  /* hairlines instead of eight outlines */
+  border-right: 1px solid var(--line) !important;
+  border-bottom: 1px solid var(--line) !important;
+  padding: 30px 18px !important;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  gap: 13px;
+  text-align: center;
+  position: relative;
+  transition: background 0.45s var(--ease-out);
+}
+.feature-item:nth-child(4n) { border-right: 0 !important; }
+.feature-item:nth-last-child(-n+4) { border-bottom: 0 !important; }
+.feature-item .icon {
+  width: 26px; height: 26px;
+  color: var(--rust);
+  transition: transform 0.5s var(--ease-out), color 0.35s ease;
+}
+.feature-item span {
+  font-family: var(--font-body);
+  font-size: 0.83rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  line-height: 1.35;
+  color: var(--espresso);
+}
+[data-theme="light"] .feature-item span { color: #3A2617; }
+/* A wash of warmth that rises from the bottom of the cell on hover, so
+   the whole panel stays calm and only the one you are on lights up. */
+.feature-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg,
+    color-mix(in srgb, var(--rust) 16%, transparent), transparent 68%);
+  opacity: 0;
+  transition: opacity 0.45s var(--ease-out);
+  pointer-events: none;
+}
+.feature-item:hover::after { opacity: 1; }
+.feature-item:hover .icon { transform: translateY(-4px) scale(1.12); color: var(--gold-light); }
+[data-theme="light"] .feature-item:hover .icon { color: var(--rust-deep); }
+@media (max-width: 900px) {
+  .feature-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .feature-item:nth-child(4n) { border-right: 1px solid var(--line) !important; }
+  .feature-item:nth-child(2n) { border-right: 0 !important; }
+  .feature-item:nth-last-child(-n+4) { border-bottom: 1px solid var(--line) !important; }
+  .feature-item:nth-last-child(-n+2) { border-bottom: 0 !important; }
+}
+
+/* ==========================================================================
+   25. TODAY'S SPECIAL
+   Was a thin strip with a badge. Given the weight of an actual daily
+   board: the day, the dish in the display face, and a way through to it.
+   ========================================================================== */
+.special-banner {
+  display: grid !important;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 28px;
+  padding: 26px 30px !important;
+  border-radius: var(--r-lg) !important;
+  border: 1px solid color-mix(in srgb, var(--gold) 34%, transparent) !important;
+  background: linear-gradient(112deg,
+    color-mix(in srgb, var(--rust) 14%, var(--surface)) 0%,
+    color-mix(in srgb, var(--surface) 100%, transparent) 46%) !important;
+  position: relative;
+  overflow: hidden;
+}
+.special-banner .badge {
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  border: 1px solid color-mix(in srgb, var(--gold) 46%, transparent);
+  border-radius: 999px;
+  padding: 8px 15px;
+  white-space: nowrap;
+  background: transparent;
+}
+[data-theme="light"] .special-banner .badge { color: var(--rust-deep); border-color: color-mix(in srgb, var(--rust) 40%, transparent); }
+#special-text strong {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  letter-spacing: 0.012em;
+  text-transform: uppercase;
+  line-height: 1;
+  color: var(--espresso-deep);
+  margin-bottom: 5px;
+}
+#special-text p { margin: 0; font-size: 0.95rem; opacity: 0.82; }
+.special-go {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--font-body);
+  font-size: 0.72rem; font-weight: 600;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-light);
+  white-space: nowrap;
+  transition: gap 0.4s var(--ease-out), color 0.3s ease;
+}
+[data-theme="light"] .special-go { color: var(--rust-deep); }
+.special-banner:hover .special-go { gap: 15px; }
+/* one slow pass of light across the board, so it reads as today's */
+.special-banner::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(100deg, transparent 38%,
+    color-mix(in srgb, var(--gold) 22%, transparent) 50%, transparent 62%);
+  transform: translateX(-100%);
+  animation: special-sheen 7s var(--ease-io) infinite;
+  pointer-events: none;
+}
+@keyframes special-sheen { 0%,72% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+@media (prefers-reduced-motion: reduce) { .special-banner::after { display: none; } }
+@media (max-width: 720px) {
+  .special-banner { grid-template-columns: 1fr; gap: 16px; text-align: left; }
+}
+
+/* ==========================================================================
+   26. ORDER-AHEAD DIALOG
+   The pickup prompt was a popover anchored to its button, which meant it
+   could open off the edge of a phone screen and had no obvious way out.
+   Now a real dialog with a close control.
+   ========================================================================== */
+.pc-pop { display: none !important; }
+
+.oa-scrim {
+  position: fixed; inset: 0;
+  background: rgba(8, 5, 3, 0.72);
+  backdrop-filter: blur(6px);
+  z-index: 9990;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s var(--ease-out);
+}
+.oa-scrim.open { opacity: 1; pointer-events: auto; }
+
+.oa-card {
+  position: fixed;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -46%) scale(0.96);
+  width: min(430px, calc(100vw - 32px));
+  z-index: 9991;
+  background: linear-gradient(158deg, var(--surface), color-mix(in srgb, var(--parchment) 88%, var(--surface)));
+  border: 1px solid color-mix(in srgb, var(--gold) 32%, transparent);
+  border-radius: var(--r-lg);
+  padding: 34px 30px 28px;
+  text-align: center;
+  box-shadow: 0 50px 100px -40px rgba(0,0,0,0.9), var(--halo);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.35s var(--ease-out), transform 0.45s var(--ease-out);
+}
+.oa-card.open { opacity: 1; transform: translate(-50%, -50%) scale(1); pointer-events: auto; }
+[data-theme="light"] .oa-card { background: linear-gradient(158deg, #FFFDF7, #F6EBD6); }
+
+.oa-close {
+  position: absolute; top: 12px; right: 12px;
+  width: 34px; height: 34px;
+  display: grid; place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--r-btn);
+  background: transparent;
+  color: var(--espresso);
+  cursor: pointer;
+  font-size: 1.1rem; line-height: 1;
+  transition: background 0.3s ease, box-shadow 0.35s var(--ease-out), transform 0.3s var(--ease-out);
+}
+.oa-close:hover { box-shadow: var(--halo); transform: rotate(90deg); }
+
+.oa-icon {
+  width: 54px; height: 54px; margin: 0 auto 16px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--rust) 18%, transparent);
+  border: 1px solid color-mix(in srgb, var(--rust) 42%, transparent);
+  color: var(--rust);
+}
+.oa-icon svg { width: 24px; height: 24px; }
+.oa-card h3 { margin: 0 0 10px; color: var(--espresso-deep); font-size: 1.7rem !important; }
+.oa-card p { margin: 0 0 22px; font-size: 0.96rem; opacity: 0.84; }
+.oa-card .btn { width: 100%; justify-content: center; }
+.oa-hours {
+  margin-top: 16px !important;
+  font-family: var(--font-body);
+  font-size: 0.64rem !important;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6 !important;
+}
+
+/* ==========================================================================
+   27. A LITTLE MORE LIGHT, NOT MORE NOISE
+   The halo already exists; these just let it reach the handful of things
+   that were still inert. Nothing new is introduced.
+   ========================================================================== */
+.dish-card:focus-visible, .review-card:focus-visible,
+.gallery-item:hover, .taste-shot:focus-visible,
+.rating-badge:hover, .status-badge:hover, .menu-tab:hover {
+  box-shadow: var(--halo) !important;
+}
+.rating-badge, .status-badge, .menu-tab {
+  transition: box-shadow 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+.rating-badge:hover, .status-badge:hover { transform: translateY(-2px); }
+
+/* Menu rows: a warm bar slides in from the left as you run down the list. */
+.menu-item { position: relative; transition: background 0.35s ease, padding-left 0.4s var(--ease-out); }
+.menu-item::before {
+  content: "";
+  position: absolute; left: 0; top: 8%; bottom: 8%;
+  width: 2px;
+  background: var(--rust);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.4s var(--ease-out);
+}
+.menu-item:hover::before { transform: scaleY(1); }
+.menu-item:hover { padding-left: 14px; background: color-mix(in srgb, var(--rust) 6%, transparent); }
+
+/* The section rule under each heading draws itself in on reveal. */
+.section-head { position: relative; }
+
+/* ==========================================================================
+   28. THE LIGHT HERO — the photograph gets the frame
+
+   It was running at 50% opacity under a cream veil that peaked at 0.88.
+   Between the two, the food was barely present. Both reference sites do
+   the opposite: the hero is a photograph at full strength with light type
+   on it, and the pale palette starts *below* the fold.
+
+   So the hero is now identical in both themes — photo at full strength,
+   cream type, and a scrim shaped to the text column only. That also means
+   one set of hero colours instead of two, which is one fewer place for a
+   contrast bug to hide.
+   ========================================================================== */
+[data-theme="light"] .hero-backdrop { opacity: 1 !important; }
+[data-theme="light"] .hero-backdrop-layer {
+  filter: saturate(1.16) contrast(1.05) brightness(1.1);
+}
+[data-theme="light"] .hero-backdrop::after {
+  background:
+    linear-gradient(180deg,
+      rgba(12, 8, 4, 0.30) 0%,
+      rgba(12, 8, 4, 0.00) 24%,
+      rgba(12, 8, 4, 0.00) 54%,
+      rgba(12, 8, 4, 0.52) 84%,
+      var(--parchment) 100%) !important;
+}
+/* The scrim tucks in tighter than the dark theme's — it only has to carry
+   one short line of copy now, not a paragraph. */
+[data-theme="light"] .hero .wrap::before {
+  background: linear-gradient(100deg,
+    rgba(10, 6, 3, 0.82) 0%,
+    rgba(10, 6, 3, 0.68) 34%,
+    rgba(10, 6, 3, 0.30) 52%,
+    rgba(10, 6, 3, 0.04) 66%,
+    rgba(10, 6, 3, 0) 74%) !important;
+}
+[data-theme="light"] .hero { background: #150E07; }
+[data-theme="light"] .hero-copy h1 { color: #FFF7EA !important; }
+[data-theme="light"] .hero-copy h1 .accent { color: var(--gold-light) !important; }
+[data-theme="light"] .hero-copy .lede { color: rgba(255, 246, 232, 0.9) !important; }
+[data-theme="light"] .hero-copy .sign-tag { color: var(--gold-light) !important; }
+[data-theme="light"] .hero-copy .sign-tag::before { background: var(--gold); }
+[data-theme="light"] .hero-cue { color: rgba(255, 243, 226, 0.6); }
+[data-theme="light"] .hero-cue i { background: linear-gradient(180deg, transparent, var(--gold-light)); }
+/* The illustrated skewer and tea glass sat on cream. On a photograph they
+   are clutter over the one thing we want seen. */
+[data-theme="light"] .heritage-deco { display: none !important; }
+[data-theme="light"] .hero::after {
+  display: block;
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0; height: 200px;
+  pointer-events: none; z-index: 1;
+  background: radial-gradient(80% 100% at 50% 130%,
+    rgba(196, 86, 42, 0.22), rgba(200, 146, 56, 0.07) 45%, transparent 70%);
+}
+
+/* At a 4-second hold, a 2.2s crossfade means the hero spends more time
+   dissolving than showing a picture. Shortened so each dish gets a clear
+   moment of its own. */
+.hero-backdrop-layer { transition: opacity 1.05s var(--ease-io), transform 8s linear !important; }
+
+/* ==========================================================================
+   29. COLOUR — one family, no strays
+
+   The palette is rust, gold and warm brown. Teal was inherited from the
+   badge logo's ring and had leaked into UI chrome: the help launcher was
+   a green pill sitting on cream next to rust buttons, which is the one
+   combination on the page that did not belong to the same family.
+
+   Teal stays where it is meaningful — the nazar charm — and is out of
+   everything else.
+   ========================================================================== */
+.chat-launcher {
+  background: linear-gradient(135deg, var(--rust), var(--rust-deep)) !important;
+  color: #FFF6E8 !important;
+  border: 1px solid color-mix(in srgb, var(--gold) 34%, transparent) !important;
+  box-shadow: 0 14px 32px -16px rgba(0,0,0,0.7);
+}
+.chat-launcher:hover { background: var(--rust-deep) !important; box-shadow: var(--halo) !important; }
+.chat-head { background: linear-gradient(135deg, var(--rust), var(--rust-deep)) !important; color: #FFF6E8 !important; }
+.chat-head h4, .chat-head p { color: #FFF6E8 !important; }
+.chat-msg.bot { border-left: 2px solid var(--gold) !important; }
+#chat-send { background: var(--rust) !important; color: #FFF6E8 !important; }
+
+/* Same story on the two other teal survivors */
+.trust-strip .trust-item .icon { color: var(--rust) !important; }
+.status-badge { border-color: color-mix(in srgb, var(--gold) 40%, transparent) !important; }
+
+/* ==========================================================================
+   30. LESS SMALL TEXT
+   The brief, and both reference sites: big emphasised words, very little
+   fine print. Where a line has to stay, it gets bigger rather than
+   smaller — small grey text is what makes a page feel busy.
+   ========================================================================== */
+.dish-body p, .review-card p { font-size: 1rem !important; line-height: 1.55 !important; }
+.form-note { font-size: 0.82rem !important; letter-spacing: 0.12em; opacity: 0.62; }
+.footer-bottom { font-size: 0.66rem !important; letter-spacing: 0.14em; opacity: 0.6; }
+.site-footer p { font-size: 0.92rem; }
+/* The trust strip repeated the rating and the 20-years line that the hero
+   and the stat band already state. Two facts, not four. */
+.trust-strip .trust-item:nth-child(1),
+.trust-strip .trust-item:nth-child(3) { display: none; }
+.trust-strip .wrap { justify-content: center; gap: 56px; }
+@media (max-width: 640px) { .trust-strip .wrap { gap: 22px; } .trust-strip .trust-item { font-size: 0.85rem; } }
+
+/* ==========================================================================
+   31. THE HEADLINE MUST SURVIVE ANY PHOTOGRAPH
+
+   "SERVED WITH PRIDE." was measuring 1020px inside a 1092px column, so it
+   was not clipping — the last two letters were landing on the white rim
+   of the plate and disappearing. Cream type on white porcelain.
+
+   The scrim alone cannot fix this: the hero cycles through a different
+   dish every four seconds, so there is no single photograph to tune
+   against. Two defences, and it needs both:
+
+     1  the scrim now stays dense across the full width the headline
+        actually occupies, rather than fading out at 74%
+     2  the type carries its own shadow, so even on a blown-out highlight
+        every letter keeps an edge
+   ========================================================================== */
+.hero .wrap::before,
+[data-theme="light"] .hero .wrap::before {
+  background: linear-gradient(100deg,
+    rgba(10, 6, 3, 0.86) 0%,
+    rgba(10, 6, 3, 0.76) 46%,
+    rgba(10, 6, 3, 0.62) 64%,
+    rgba(10, 6, 3, 0.34) 80%,
+    rgba(10, 6, 3, 0.06) 92%,
+    rgba(10, 6, 3, 0) 100%) !important;
+}
+
+.hero-copy h1 {
+  text-shadow: 0 2px 4px rgba(8, 5, 2, 0.55), 0 6px 30px rgba(8, 5, 2, 0.45);
+}
+.hero-copy .lede {
+  text-shadow: 0 1px 3px rgba(8, 5, 2, 0.7), 0 2px 14px rgba(8, 5, 2, 0.5);
+}
+.hero-copy .sign-tag { text-shadow: 0 1px 4px rgba(8, 5, 2, 0.8); }
+
+/* The storefront inset was overlapping the end of the headline's second
+   line. Nudged clear of the text column. */
+.hero-art { top: calc(var(--nav-h) + 74px); width: 190px; }
+@media (max-width: 1180px) { .hero-art { display: none !important; } }
+
+/* ==========================================================================
+   32. THE LAST STRAYS
+
+   A hue audit of every colour declared across both stylesheets: 65 of the
+   71 chromatic values sit between 15 and 43 degrees — one continuous warm
+   ramp from rust through amber to cream. Six did not belong to it.
+
+   Five were the teal inherited from the badge logo's ring. In the dark
+   theme --teal had already been redefined to a warm brown, so the clash
+   only appeared in the cream theme, where chips, the help panel and the
+   input button all turned green next to rust buttons.
+
+   Teal is not deleted — it is genuinely meaningful in the nazar charm,
+   which is a blue amulet or it is nothing. It gets its own token so the
+   charm stays blue while the interface stops being.
+   ========================================================================== */
+:root { --nazar: #2F7A72; --nazar-deep: #235A54; }
+
+[data-theme="light"] {
+  --teal: #A85A2E;
+  --teal-deep: #8A4420;
+  --teal-light: #C98A5E;
+}
+
+/* The charm keeps its own blue, independent of the UI token */
+.deco-nazar circle:first-child,
+.footer-charm circle:first-child { fill: var(--nazar) !important; }
+
+/* The "open now" dot stays green — it is a status signal and green means
+   open everywhere — but warmed slightly so it sits in the same light as
+   the rest of the page rather than glowing out of it. */
+.status-badge::before, .status-dot, .is-open::before { background: #5F9E4A !important; }
+
+/* ==========================================================================
+   33. BIG WORDS, LITTLE TEXT — final pass
+   Matching the two reference sites: the eye should land on a photograph
+   or a large word, never on a paragraph.
+   ========================================================================== */
+.section-head { margin-bottom: 44px; }
+.section-head h2 { margin: 0; }
+.section-head .eyebrow { margin-bottom: 14px; }
+
+/* Section headings get more air above them so each block reads as its own
+   moment instead of a continuous scroll of content. */
+.band-dark .section-head, .section-tight .section-head { margin-bottom: 46px; }
+
+.dish-body { padding: 24px 22px 26px !important; }
+.dish-body h3 { font-size: 1.5rem !important; margin: 0 0 8px !important; }
+.dish-body p { opacity: 0.78; }
+.dish-tag { font-size: 0.6rem !important; letter-spacing: 0.2em !important; }
+
+/* ==========================================================================
+   34. THE CREAM HALO — white light, not yellow
+
+   The halo was built from the gold and rust tokens, which on a warm cream
+   field reads as a yellow smudge rather than a light. Rebuilt from white
+   with only a whisper of warmth in the outer falloff, so it reads as a
+   cool glow sitting on top of the page.
+
+   The travelling edge light on buttons is rebuilt the same way — it was
+   drawing a rust-coloured segment, which on cream disappeared into the
+   button it was supposed to be tracing.
+   ========================================================================== */
+[data-theme="light"] {
+  --halo:
+    0 0 0 1px rgba(255, 255, 255, 0.9),
+    0 0 0 2px rgba(43, 27, 16, 0.07),
+    0 0 18px -2px rgba(255, 255, 255, 0.95),
+    0 0 44px -8px rgba(255, 252, 245, 0.9),
+    0 16px 38px -20px rgba(43, 27, 16, 0.42);
+  --halo-strong:
+    0 0 0 1px rgba(255, 255, 255, 1),
+    0 0 0 2px rgba(43, 27, 16, 0.1),
+    0 0 26px 0 rgba(255, 255, 255, 1),
+    0 0 66px -6px rgba(255, 253, 248, 0.95),
+    0 22px 48px -20px rgba(43, 27, 16, 0.5);
+}
+
+/* The edge light: white core, warm only at the very tail of the falloff */
+[data-theme="light"] .btn::before {
+  background: conic-gradient(from var(--sweep),
+      transparent 0deg,
+      transparent 296deg,
+      rgba(255, 255, 255, 0.28) 326deg,
+      #FFFFFF 350deg,
+      #FFFFFF 356deg,
+      rgba(255, 246, 232, 0.3) 8deg,
+      transparent 42deg,
+      transparent 360deg) !important;
+  opacity: 0.62;
+  mix-blend-mode: screen;
+}
+[data-theme="light"] .btn:hover::before,
+[data-theme="light"] .btn:focus-visible::before { opacity: 1; }
+
+/* On the rust primary the white edge needs no blend mode to be seen; on
+   the pale ghost button it does, or it washes into the surface. */
+[data-theme="light"] .btn-primary::before { mix-blend-mode: normal; }
+
+/* ==========================================================================
+   35. "LET ALMAZ PICK FOR YOU"
+   The supporting line carried a hardcoded rgba(251,244,231,.8) inline —
+   near-white text, which on the cream theme was invisible. The inline is
+   gone; this makes sure the block reads as a panel rather than as text
+   floating on a flat field.
+   ========================================================================== */
+.surprise-box, .surprise-wrap, section:has(> .wrap > .surprise-result), .surprise {
+  border-radius: var(--r-lg);
+}
+#surprise-result {
+  margin-top: 18px;
+  min-height: 2.4em;
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--rust-deep);
+}
+#surprise-result .tag {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  color: var(--espresso);
+  opacity: 0.65;
+  margin-bottom: 6px;
+}
+
+/* ==========================================================================
+   36. MENU ROWS
+
+   They were a dotted-underline list: name left, price right, repeat. The
+   problem is not decoration, it is that nothing separates one dish from
+   the next except a dotted line, so the eye slides down without stopping.
+
+   Three changes, all structural rather than ornamental:
+     - a leader rule that actually connects the name to its price, the way
+       a printed menu does, instead of a border under the whole row
+     - the price set as a real figure, in the display face, right-aligned
+       on its own baseline
+     - an index number that appears on hover, so a row you are looking at
+       is visibly the row you are looking at
+   ========================================================================== */
+.menu-group { counter-reset: dish; }
+
+.menu-item {
+  counter-increment: dish;
+  align-items: baseline !important;
+  gap: 0 !important;
+  padding: 17px 0 !important;
+  border-bottom: 0 !important;
+  position: relative;
+}
+/* The hairline sits under the row but stops short of the price, so the
+   two are read as one line rather than two columns. */
+.menu-item::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--espresso) 22%, transparent) 0%,
+    color-mix(in srgb, var(--espresso) 10%, transparent) 60%,
+    transparent 100%);
+}
+.menu-item:last-of-type::after { opacity: 0; }
+
+/* The dot leader. Radial-gradient dots rather than a dotted border, so
+   they sit on the text baseline and stay evenly spaced at any width. */
+.menu-item-main, .menu-item > div:first-child { flex: 1 1 auto; min-width: 0; }
+.menu-item-name {
+  display: inline;
+  font-size: 1.24rem !important;
+}
+.menu-item-name::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  margin: 0 10px 0 12px;
+  height: 1px;
+  vertical-align: 0.28em;
+  background-image: radial-gradient(circle, currentColor 1px, transparent 1.4px);
+  background-size: 7px 2px;
+  background-repeat: repeat-x;
+  opacity: 0.28;
+}
+/* Rows that carry a photo already have a visual anchor and do not need
+   the leader as well. */
+.menu-item.has-photo .menu-item-name::after { display: none; }
+
+.menu-item-price {
+  align-self: baseline;
+  font-variant-numeric: tabular-nums;
+  min-width: 4.6ch;
+  text-align: right;
+}
+
+/* The index, revealed on hover. Sits in the gutter so it never reflows
+   the row when it appears. */
+.menu-item::before {
+  content: counter(dish, decimal-leading-zero);
+  position: absolute;
+  left: -34px;
+  top: 20px;
+  font-family: var(--font-body);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--rust);
+  opacity: 0;
+  transform: translateX(6px);
+  transition: opacity 0.35s var(--ease-out), transform 0.35s var(--ease-out);
+}
+.menu-item:hover::before { opacity: 0.75; transform: translateX(0); }
+@media (max-width: 900px) { .menu-item::before { display: none; } }
+
+/* The hover bar from section 27 stays, but the row no longer shifts —
+   shifting every row on hover made the list feel unstable. */
+.menu-item:hover { padding-left: 0 !important; }
+.menu-item:hover .menu-item-name { color: var(--rust-deep); }
+[data-theme="vibrant"] .menu-item:hover .menu-item-name { color: var(--gold-light); }
+
+/* Photo rows: the thumbnail grows a little and lifts, so a row with a
+   picture rewards the hover more than one without. */
+.menu-item-thumb {
+  border-radius: 6px;
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
+}
+.menu-item.has-photo:hover .menu-item-thumb {
+  transform: scale(1.06) rotate(-1.5deg);
+  box-shadow: var(--halo);
+}
+
+/* Sub-headings inside a category ("Salads") were the same weight as the
+   category title. Demoted so the hierarchy reads. */
+.menu-group > h3 {
+  font-size: 1.05rem !important;
+  letter-spacing: 0.2em !important;
+  opacity: 0.7;
+  margin: 34px 0 6px !important;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+/* ==========================================================================
+   37. MENU RAILS
+   Two slow columns of dishes in the outer margins. They run in opposite
+   directions so the page does not feel like it is sliding one way, and
+   they are masked to nothing at top and bottom so they arrive and leave
+   rather than being cut off.
+   ========================================================================== */
+.menu-rail {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 118px;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  /* fade to nothing at both ends */
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 16%, #000 84%, transparent 100%);
+}
+.menu-rail-left  { left: max(10px, calc(50vw - 700px)); }
+.menu-rail-right { right: max(10px, calc(50vw - 700px)); }
+
+.menu-rail-track {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  will-change: transform;
+}
+.menu-rail-left  .menu-rail-track { animation: rail-up 68s linear infinite; }
+.menu-rail-right .menu-rail-track { animation: rail-down 68s linear infinite; }
+
+@keyframes rail-up   { from { transform: translateY(0); }    to { transform: translateY(-50%); } }
+@keyframes rail-down { from { transform: translateY(-50%); } to { transform: translateY(0); } }
+
+.menu-rail-shot {
+  margin: 0;
+  flex: 0 0 auto;
+  width: 118px;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.menu-rail-shot img { width: 100%; height: 100%; object-fit: cover; }
+
+[data-theme="light"] .menu-rail { opacity: 0.42; }
+
+/* The rails must never sit on the content. Below this width they are not
+   built at all (see menuRails in the JS), so this is belt and braces. */
+@media (max-width: 1500px) { .menu-rail { display: none !important; } }
+@media (prefers-reduced-motion: reduce) { .menu-rail { display: none !important; } }
+
+/* ==========================================================================
+   38. THE WORDMARK
+   Bigger and heavier in the bar — it was competing on equal terms with
+   six navigation links and losing.
+   ========================================================================== */
+.brand { gap: 15px !important; }
+.brand-badge { height: 54px !important; }
+.brand-word {
+  font-size: 2.1rem !important;
+  letter-spacing: 0.005em !important;
+  line-height: 0.86 !important;
+  color: var(--espresso-deep);
+}
+[data-theme="light"] .brand-word { color: #21140A; }
+.brand-word small {
+  font-size: 0.6rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.19em !important;
+  margin-top: 5px !important;
+}
+.site-header .nav { padding: 12px 16px 12px 20px !important; }
+
+@media (max-width: 900px) {
+  .brand-badge { height: 42px !important; }
+  .brand-word { font-size: 1.7rem !important; }
+}
+@media (max-width: 700px) {
+  .brand-badge { height: 38px !important; }
+  .brand-word { font-size: 1.5rem !important; }
+}
+
+/* With the strip gone the hero now starts at the very top of the page, so
+   the nav floats directly on the photograph. It needs its own separation
+   from the image rather than relying on a bar behind it. */
+.site-header .nav { box-shadow: 0 20px 50px -30px rgba(0,0,0,0.8), 0 2px 10px -6px rgba(0,0,0,0.4); }
+
+/* Combo cards are dish cards that happen to live on the menu page; they
+   follow dish-card rules, not menu-row rules. */
+.dish-card h3 { opacity: 1 !important; border-bottom: 0 !important; margin: 0 0 8px !important;
+  font-size: 1.45rem !important; letter-spacing: 0.02em !important; padding-bottom: 0 !important; }
+.dish-card .menu-item-price { font-size: 1.3rem !important; }
+
+/* ==========================================================================
+   39. QUIETER MENU
+
+   Three changes, all subtraction:
+     - categories open with three rows, not five
+     - alternating category backgrounds, so the eye can tell where one
+       ends and the next begins without extra rules or spacing
+     - the hover marker is the dish's own code (K1, R2) rather than a
+       decorative index
+   ========================================================================== */
+
+/* Alternating bands. Full-bleed via a pseudo-element so the tint runs to
+   the window edge while the content stays in its column. */
+.menu-group { position: relative; padding: 8px 0 26px; }
+.menu-group::before {
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%; right: 50%;
+  margin-left: -50vw; margin-right: -50vw;
+  z-index: -1;
+  background: transparent;
+}
+.menu-group:nth-of-type(even)::before {
+  background: color-mix(in srgb, var(--espresso) 8%, transparent);
+}
+[data-theme="light"] .menu-group:nth-of-type(even)::before {
+  background: #EADCC2;
+}
+[data-theme="vibrant"] .menu-group:nth-of-type(even)::before {
+  background: rgba(255, 236, 200, 0.045);
+}
+
+/* The row code, in the gutter, on hover */
+.menu-item::before {
+  content: attr(data-code);
+  color: var(--rust);
+  opacity: 0;
+  font-size: 0.66rem;
+  letter-spacing: 0.1em;
+  left: -40px;
+  top: 21px;
+}
+.menu-item:hover::before { opacity: 1; transform: translateX(0); }
+[data-theme="vibrant"] .menu-item::before { color: var(--gold-light); }
+
+/* Rails: one, gap, two, gap. The extra margin lands on every third
+   image, which produces that rhythm from a single rule. */
+.menu-rail-shot.after-gap { margin-top: 74px; }
+.menu-rail-track { gap: 16px; }
+.menu-rail { width: 104px; opacity: 0.4; }
+.menu-rail-shot { width: 104px; }
+[data-theme="light"] .menu-rail { opacity: 0.36; }
+
+/* Sub-headings inside a group sit quietly now the bands do the dividing */
+.menu-group > h3 { border-bottom: 0 !important; opacity: 0.55; }
+
+/* ==========================================================================
+   40. THE PLATE MARQUEE
+   A small plate rolling along the strip above the bar. Same physics as
+   the big one — turns = distance / (pi x diameter) — so it rolls rather
+   than slides, at a size where it reads as a detail and not an event.
+   ========================================================================== */
+.plate-mini-strip {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 15px;
+  z-index: 899;
+  overflow: hidden;
+  pointer-events: none;
+}
+.plate-mini {
+  position: absolute;
+  top: 1px;
+  left: 0;
+  width: 13px; height: 13px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 36% 30%, #FFFFFF 0%, #F7EEDC 52%, #E0CDAB 88%, #C9B08A 100%);
+  box-shadow: 0 1px 2px rgba(43,27,16,0.35), inset 0 0 0 0.5px rgba(255,255,255,0.9);
+  animation: mini-roll 15s linear infinite;
+}
+/* 13px plate over ~100vw: at 1440px that is 1440/(pi*13) = 35 turns.
+   Rounded to a whole number so the rim marking lands where it started. */
+@keyframes mini-roll {
+  0%   { transform: translateX(-24px) rotate(0deg); }
+  100% { transform: translateX(calc(100vw + 24px)) rotate(12600deg); }
+}
+/* a hairline rim mark, so the rotation is actually visible at this size */
+.plate-mini::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 1.5px;
+  width: 1px; height: 3px;
+  margin-left: -0.5px;
+  border-radius: 1px;
+  background: rgba(196, 86, 42, 0.85);
+}
+.plate-mini-strip { background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 60%, transparent), transparent); }
+.plate-mini-strip::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line), transparent);
+}
+@media (prefers-reduced-motion: reduce) { .plate-mini-strip { display: none; } }
+@media (max-width: 700px) { .plate-mini-strip { display: none; } }
+
+/* The bar drops below the strip */
+.site-header { top: 20px; }
+
+/* --- the marquee plate ------------------------------------------------
+   Enlarged until the wordmark actually reads. At 38px the name sits at
+   about 7px, which is legible when it passes the upright part of its
+   roll. Turns still follow distance / (pi x diameter) so it rolls rather
+   than slides — at 38px across 1440px that is 12 turns.
+   ---------------------------------------------------------------------- */
+.plate-mini-strip { height: 54px; }
+.plate-mini {
+  top: 5px;
+  width: 46px; height: 46px;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 5px rgba(43,27,16,0.3), inset 0 0 0 1px rgba(255,255,255,0.95),
+              inset 0 0 0 4px rgba(198,165,116,0.16);
+  animation: mini-roll 22s linear infinite;
+}
+.plate-mini::before {
+  content: "almaz";
+  font-family: var(--font-display);
+  font-size: 8.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #B01D08;
+  line-height: 1;
+}
+.plate-mini::after { display: none; }
+@keyframes mini-roll {
+  0%   { transform: translateX(-52px) rotate(0deg); }
+  100% { transform: translateX(calc(100vw + 52px)) rotate(4320deg); }
+}
+.site-header { top: 58px; }
+.hero .wrap { padding-top: calc(var(--nav-h) + 124px) !important; }
+
+@media (max-width: 900px) {
+  .plate-mini-strip { display: none; }
+  .site-header { top: 8px; }
+  .hero .wrap { padding-top: calc(var(--nav-h) + 60px) !important; }
+}
+
+/* ==========================================================================
+   42. THE HEADLINE ON A PHONE
+
+   At 390px the longest line measured exactly the column width with the
+   fallback face — zero margin — so once Anton loads (wider per character)
+   it ran past the edge and the hero clipped it.
+
+   Chasing a font size that fits is fragile: it depends on metrics that
+   differ between the loaded font and the fallback. Dropping the hard line
+   breaks lets the headline wrap to whatever the width allows, which
+   cannot overflow no matter which face is in use.
+   ========================================================================== */
+@media (max-width: 700px) {
+  .hero-copy h1 br { display: none; }
+  .hero-copy h1 {
+    font-size: clamp(2.1rem, 10.2vw, 3.6rem) !important;
+    line-height: 0.92 !important;
+    overflow-wrap: break-word;
+  }
+  .hero-copy h1 .accent { display: block; }
+  .hero .wrap { padding-bottom: 44px !important; }
+  .hero { min-height: 84vh; }
+}
+
+/* The collapsed mobile menu was hidden with max-height and overflow only,
+   so its links still had a 46px box: clipped from view but still in the
+   tab order, and still swallowing pointer events aimed at the bar behind
+   them. visibility:hidden takes them out of both. */
+@media (max-width: 700px) {
+  .nav-links:not(.open) { visibility: hidden; }
+  .nav-links.open { visibility: visible; }
+}
+
+/* ==========================================================================
+   44. CARDS DECLARE THEIR OWN TEXT COLOUR
+
+   "What people order" sits in a .band-dark section, which sets cream text
+   for the dark field behind it. The dish cards inside were given a pale
+   background without a matching text colour, so the titles and
+   descriptions were cream on cream — present, but invisible.
+
+   This is the third time this exact mistake has appeared (review cards,
+   the footer, now these). The rule that prevents it: any component that
+   sets its own background must set its own colour in the same block.
+   Nothing here inherits text colour from a band any more.
+   ========================================================================== */
+.dish-card, .feature-item, .special-banner, .review-card, .card {
+  color: var(--charcoal);
+}
+.dish-card h3, .dish-card h4,
+.special-banner strong, .card h3 {
+  color: var(--espresso-deep) !important;
+}
+.dish-card p, .feature-item span, .special-banner p, .card p {
+  color: var(--espresso) !important;
+  opacity: 0.86;
+}
+
+[data-theme="light"] .dish-card,
+[data-theme="light"] .feature-item,
+[data-theme="light"] .special-banner,
+[data-theme="light"] .review-card,
+[data-theme="light"] .card { color: #3A2617; }
+[data-theme="light"] .dish-card h3,
+[data-theme="light"] .special-banner strong,
+[data-theme="light"] .card h3 { color: #21140A !important; }
+[data-theme="light"] .dish-card p,
+[data-theme="light"] .feature-item span,
+[data-theme="light"] .special-banner p,
+[data-theme="light"] .card p { color: #4A3423 !important; }
+
+/* The band's own heading and eyebrow still belong to the band */
+.band-dark > .wrap > .section-head h2 { color: var(--band-text); }
+
+/* ==========================================================================
+   45. CONTRAST SWEEP
+
+   A pixel-level audit — comparing each element's declared text colour
+   against what is actually painted around it — turned up 28 failures.
+   The worst were sitting at 1.0:1, which is text exactly the colour of its
+   own background. Every one below is fixed at the cause, not patched.
+   ========================================================================== */
+
+/* Captions sit directly on photographs, where a text-shadow alone is not
+   enough on a bright plate. They get a scrim of their own. */
+.gallery-item, .taste-shot { position: relative; }
+.gallery-item .cap, .taste-shot span {
+  color: #FFF8EC !important;
+  background: linear-gradient(180deg, rgba(10,6,3,0) 0%, rgba(10,6,3,0.82) 100%);
+  padding: 26px 14px 10px;
+  left: 0; right: 0; bottom: 0;
+  width: 100%;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.9);
+}
+.gallery-item .cap { position: absolute; }
+
+/* The parallax band carries a photograph behind it, so its label was
+   gold-on-gold wherever the image ran light. */
+.parallax-band { position: relative; }
+.parallax-band::after {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(12,8,4,0.72), rgba(12,8,4,0.86));
+  pointer-events: none;
+}
+.parallax-band > * { position: relative; z-index: 1; }
+.parallax-band .eyebrow { color: #FFD770 !important; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+.parallax-band h2 { color: #FFF7EA !important; }
+.parallax-band p { color: rgba(255,246,232,0.9) !important; }
+
+/* Button labels were cream on rust at 3.6:1. Lifted to near-white and the
+   rust deepened a shade — both moves, because either alone left it short. */
+.btn-primary {
+  background: linear-gradient(135deg, #E05516 0%, #B93C0C 100%) !important;
+  color: #FFFDF8 !important;
+}
+[data-theme="light"] .btn-primary {
+  background: linear-gradient(135deg, #B4491F 0%, #92330F 100%) !important;
+  color: #FFFDF8 !important;
+}
+.btn-primary .btn-label { color: #FFFDF8; }
+
+/* Nav links on the cream capsule */
+[data-theme="light"] .nav-links a { color: #2B1B10 !important; }
+.nav-links a { color: var(--espresso-deep); }
+
+/* The order-ahead dialog */
+.oa-card p { color: var(--espresso) !important; opacity: 1 !important; }
+.oa-card .oa-hours { color: var(--espresso) !important; opacity: 0.78 !important; }
+[data-theme="light"] .oa-card p { color: #3A2617 !important; }
+
+/* Sauce chips and the gallery sign tag */
+.sauce-sticker { color: #1B1006 !important; font-weight: 700; }
+.sign-tag { text-shadow: 0 1px 4px rgba(0,0,0,0.55); }
+[data-theme="light"] .sign-tag { color: #93340F !important; text-shadow: none; }
+.gallery-page .sign-tag, body:has(.gallery-grid) .sign-tag { color: #93340F !important; }
+
+/* Three left over from the sweep, each with a different cause. */
+
+/* 1. .statement-band carries a photograph as its background, so a gold
+      label sat on a bright storefront wall. Scrim plus forced colour. */
+.statement-band { position: relative; }
+.statement-band::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(12,8,4,0.66), rgba(12,8,4,0.84));
+  pointer-events: none;
+}
+.statement-band > * { position: relative; z-index: 1; }
+.statement-band .eyebrow { color: #FFD770 !important; text-shadow: 0 1px 4px rgba(0,0,0,0.85); }
+.statement-band h2, .statement-band h3 { color: #FFF7EA !important; }
+.statement-band p, .statement-band .content { color: rgba(255,246,232,0.92) !important; }
+
+/* 2. Outside the hero, .sign-tag is a filled rust chip — my previous fix
+      set dark rust text, which put dark rust on rust. It needs near-white
+      on the chip; only the hero version is a bare hairline label. */
+.sign-tag:not(.hero-copy .sign-tag) { color: #FFF8EC !important; }
+[data-theme="light"] .sign-tag { color: #FFF8EC !important; text-shadow: none; }
+.hero-copy .sign-tag,
+[data-theme="light"] .hero-copy .sign-tag { color: var(--gold-light) !important; background: none !important; }
+[data-theme="light"] .hero-copy .sign-tag { color: #FFD770 !important; }
+
+/* 3. The current-page nav link was rust on cream at 4.1:1. */
+[data-theme="light"] .nav-links a[aria-current="page"] { color: #8E300E !important; }
+.nav-links a[aria-current="page"] { color: var(--gold-light) !important; }
+
+.sauce-sticker { color: #170D04 !important; }
+
+/* The last nine, all near-misses between 2.5 and 4.3 against a 4.5 bar. */
+.hero-cue { color: rgba(255,247,235,0.92) !important; text-shadow: 0 1px 4px rgba(0,0,0,0.8); }
+.hero-meta .label { color: #FFD770 !important; }
+[data-theme="light"] .hero-meta .label { color: #FFD770 !important; }
+.stars-sm, .rating-badge .stars { color: #C4441A !important; }
+[data-theme="vibrant"] .stars-sm, [data-theme="vibrant"] .rating-badge .stars { color: #FFB733 !important; }
+.oa-card p { color: #2B1B10 !important; opacity: 1 !important; }
+.oa-card .oa-hours { color: #4A3423 !important; opacity: 1 !important; }
+[data-theme="vibrant"] .oa-card p { color: #F6EBD8 !important; }
+[data-theme="vibrant"] .oa-card .oa-hours { color: rgba(246,235,216,0.86) !important; }
+.sign-tag { background: #A5401B !important; color: #FFF9F0 !important; }
+.hero-copy .sign-tag { background: none !important; }
+.sauce-sticker { color: #120A03 !important; font-weight: 700 !important; }
+
+/* The hero-meta labels live in two places now: on the photograph inside
+   the hero, and on the cream bar below it. Gold works on one and vanishes
+   on the other, so they are scoped separately. */
+.hero-copy .hero-meta .label { color: #FFD770 !important; }
+.hero-bar .hero-meta .label { color: #93340F !important; }
+[data-theme="vibrant"] .hero-bar .hero-meta .label { color: #FFB733 !important; }
+.stars-sm { color: #A5401B !important; }
+[data-theme="vibrant"] .stars-sm { color: #FFC356 !important; }
+.sauce-sticker { color: #0D0702 !important; }
+
+/* ==========================================================================
+   46. "BEFORE YOU COME IN" — the practical band
+   This replaced an eight-cell icon grid that had no heading, stood a full
+   screen tall, and used borrowed icons that did not depict what they
+   labelled (a map pin for vegetarian, a briefcase for takeaway). It is now
+   a titled editorial band: the heading holds the left, the answers run in
+   a compact hairline-ruled grid on the right, and every icon is drawn for
+   the thing it names.
+   ========================================================================== */
+.know-band {
+  display: grid;
+  grid-template-columns: minmax(200px, 0.72fr) 2fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+  padding: clamp(26px, 3.4vw, 40px) clamp(24px, 3.4vw, 44px);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  box-shadow: 0 20px 50px -34px var(--shadow);
+  position: relative;
+  overflow: hidden;
+}
+/* A single hairline of gold along the top edge — the one flourish. */
+.know-band::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold) 22%, var(--rust) 55%, transparent);
+  opacity: 0.75;
+}
+
+.know-eyebrow {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 10px;
+}
+[data-theme="light"] .know-eyebrow { color: var(--rust-deep); }
+
+.know-head h2 {
+  /* The global h2 rule is !important, so this has to answer in kind. */
+  font-family: var(--font-bold) !important;
+  font-size: clamp(1.65rem, 2.5vw, 2.25rem) !important;
+  line-height: 0.96 !important;
+  letter-spacing: 0.005em !important;
+  text-transform: uppercase !important;
+  margin: 0 0 10px;
+  color: var(--espresso-deep);
+}
+[data-theme="light"] .know-head h2 { color: #2A1A0C; }
+
+.know-head p {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--espresso) 78%, transparent);
+  max-width: 26ch;
+}
+[data-theme="light"] .know-head p { color: #5C4326; }
+
+.know-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(20px, 3vw, 40px);
+}
+.know-list li {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 2px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--font-body);
+  font-size: 0.925rem;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--espresso-deep);
+}
+[data-theme="light"] .know-list li { color: #33220F; }
+/* Last item in each column loses its rule, so the block ends cleanly. */
+.know-list li:nth-last-child(-n + 2) { border-bottom: 0; }
+
+.know-list .icon {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 24px;
+  color: var(--rust);
+  transition: transform 0.4s var(--ease-out), color 0.3s ease;
+}
+[data-theme="light"] .know-list .icon { color: var(--rust-deep); }
+.know-list li:hover .icon { transform: scale(1.14) rotate(-4deg); color: var(--gold); }
+[data-theme="light"] .know-list li:hover .icon { color: var(--rust); }
+
+@media (max-width: 900px) {
+  .know-band { grid-template-columns: 1fr; gap: 20px; }
+  .know-head h2 br { display: none; }
+  .know-head p { max-width: none; }
+}
+@media (max-width: 560px) {
+  .know-list { grid-template-columns: 1fr; }
+  .know-list li { padding: 11px 2px; font-size: 0.9rem; }
+  .know-list li:nth-last-child(-n + 2) { border-bottom: 1px solid var(--line); }
+  .know-list li:last-child { border-bottom: 0; }
+}
+
+/* ==========================================================================
+   47. THEME SWITCH — findable, and a hint the first time
+   The control was a pair of small grey icons in a grey capsule; nobody
+   found it. It is now larger, higher-contrast, and carries a slow band of
+   light travelling around its edge, which is the one thing on a still page
+   the eye reliably goes to. A one-time card explains what it does.
+   ========================================================================== */
+@property --ring {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.theme-switch {
+  position: relative;
+  gap: 3px;
+  padding: 4px;
+  background: color-mix(in srgb, var(--surface) 92%, var(--gold) 8%);
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, var(--line));
+  box-shadow: 0 2px 12px -6px var(--shadow);
+}
+/* The travelling light. A conic gradient is painted into the 1.5px gap
+   between two rounded rectangles, so it reads as an edge, not a glow. */
+.theme-switch::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  padding: 1.6px;
+  background: conic-gradient(from var(--ring),
+      transparent 0deg, transparent 250deg,
+      color-mix(in srgb, var(--gold-light) 92%, transparent) 300deg,
+      var(--rust) 330deg,
+      transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask-composite: exclude;
+  animation: ring-spin 4.2s linear infinite;
+  pointer-events: none;
+}
+@keyframes ring-spin { to { --ring: 360deg; } }
+
+.theme-switch button {
+  width: 32px;
+  height: 32px;
+  color: color-mix(in srgb, var(--espresso-deep) 72%, transparent);
+}
+[data-theme="light"] .theme-switch button { color: #6B4E2C; }
+.theme-switch button svg { width: 17px; height: 17px; stroke-width: 2.1; }
+.theme-switch button[aria-pressed="true"] {
+  background: var(--rust);
+  color: #FFF6E8;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--gold) 60%, transparent);
+}
+.theme-switch button:hover:not([aria-pressed="true"]) {
+  background: color-mix(in srgb, var(--gold) 22%, transparent);
+  color: var(--rust-deep);
+}
+.theme-switch button:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-switch::before { animation: none; background: color-mix(in srgb, var(--gold) 60%, transparent); }
+}
+
+/* ---- the one-time hint ---- */
+.theme-hint {
+  position: fixed;
+  z-index: 1200;
+  width: min(272px, calc(100vw - 28px));
+  padding: 15px 16px 13px;
+  background: var(--surface);
+  color: var(--espresso-deep);
+  border: 1px solid color-mix(in srgb, var(--gold) 46%, var(--line));
+  border-radius: 12px;
+  box-shadow: 0 22px 48px -22px rgba(20, 12, 4, 0.55);
+  font-family: var(--font-body);
+  opacity: 0;
+  transform: translateY(-8px) scale(0.97);
+  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+}
+.theme-hint.show { opacity: 1; transform: none; }
+[data-theme="light"] .theme-hint { color: #33220F; }
+.theme-hint::after {
+  content: "";
+  position: absolute;
+  top: -6px;
+  width: 11px;
+  height: 11px;
+  background: inherit;
+  border-left: 1px solid color-mix(in srgb, var(--gold) 46%, var(--line));
+  border-top: 1px solid color-mix(in srgb, var(--gold) 46%, var(--line));
+  transform: rotate(45deg);
+}
+.theme-hint strong {
+  display: block;
+  font-family: var(--font-bold);
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+  margin-bottom: 4px;
+  color: inherit;
+}
+.theme-hint p { margin: 0 0 11px; font-size: 0.845rem; line-height: 1.45; color: inherit; opacity: 0.86; }
+.theme-hint button {
+  border: 0;
+  background: var(--rust);
+  color: #FFF6E8;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.76rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.62em 1.2em;
+  border-radius: var(--r-btn);
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.25s ease;
+}
+.theme-hint button:hover { background: var(--rust-deep); box-shadow: var(--halo); }
+.theme-hint::after { left: var(--arrow, 24px); }
+
+/* ==========================================================================
+   48. FOOTER — social
+   A fourth column, so the footer stays a grid rather than growing a
+   stray row. The icons are real marks, sized to be tapped on a phone.
+   ========================================================================== */
+.footer-grid { grid-template-columns: 1.4fr 1fr 1fr 1fr; }
+@media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px)  { .footer-grid { grid-template-columns: 1fr; } }
+
+.social-row { display: flex; gap: 10px; }
+.social-row a {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--band-text);
+  background: rgba(251, 244, 231, 0.08);
+  border: 1px solid rgba(251, 244, 231, 0.18);
+  transition: transform 0.35s var(--ease-out), background 0.25s ease,
+              border-color 0.25s ease, box-shadow 0.3s ease;
+}
+.social-row a svg { width: 21px; height: 21px; }
+.social-row a:hover {
+  transform: translateY(-3px);
+  background: var(--rust);
+  border-color: var(--rust);
+  color: #FFF6E8;
+  box-shadow: 0 10px 22px -12px rgba(0, 0, 0, 0.8);
+}
+.social-row a:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+.social-note {
+  margin: 12px 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  max-width: 22ch;
+  color: rgba(251, 244, 231, 0.62);
+}
+
+/* ==========================================================================
+   49. SECONDARY BUTTONS — they were reading as disabled
+   The light-theme ghost rule painted a pale cream fill with a dark hairline
+   and then applied everywhere, including on the dark bands, where the
+   result was a grey lozenge that looks switched off. A secondary button
+   should be quiet, not dead. Two treatments, one for each ground.
+   ========================================================================== */
+
+/* ---- on cream: an outlined button with a real edge ---- */
+[data-theme="light"] .btn-ghost,
+.btn-ghost {
+  background: transparent !important;
+  border: 1.5px solid var(--rust) !important;
+  color: var(--rust-deep) !important;
+  backdrop-filter: none;
+  transition: background 0.28s var(--ease-out), color 0.28s var(--ease-out),
+              border-color 0.28s var(--ease-out), box-shadow 0.3s ease,
+              transform 0.28s var(--ease-out);
+}
+[data-theme="light"] .btn-ghost:hover,
+.btn-ghost:hover {
+  background: var(--rust) !important;
+  border-color: var(--rust) !important;
+  color: #FFF6E8 !important;
+  transform: translateY(-2px);
+  box-shadow: var(--halo);
+}
+
+/* ---- on the dark bands: gold hairline, cream type ---- */
+.band-dark .btn-ghost,
+.parallax-band .btn-ghost,
+.statement-band .btn-ghost,
+[data-theme="light"] .band-dark .btn-ghost,
+[data-theme="light"] .parallax-band .btn-ghost {
+  background: transparent !important;
+  border: 1.5px solid color-mix(in srgb, var(--gold-light) 68%, transparent) !important;
+  color: #FBF3E4 !important;
+}
+.band-dark .btn-ghost:hover,
+.parallax-band .btn-ghost:hover,
+[data-theme="light"] .band-dark .btn-ghost:hover,
+[data-theme="light"] .parallax-band .btn-ghost:hover {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #24160A !important;
+}
+
+/* ==========================================================================
+   50. THE ROOM — a real photograph of the actual shop
+   ========================================================================== */
+.room-block {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
+  gap: clamp(24px, 4vw, 54px);
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.room-shot {
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: 0 26px 60px -34px var(--shadow);
+  border: 1px solid var(--line);
+}
+.room-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  /* Full brightness. The point of a picture is that you can see it. */
+  transition: transform 1.4s var(--ease-out);
+}
+.room-shot:hover img { transform: scale(1.04); }
+
+.room-copy h2 { margin: 6px 0 12px; }
+.room-copy p {
+  margin: 0 0 22px;
+  font-size: 1.02rem;
+  line-height: 1.62;
+  max-width: 40ch;
+  color: color-mix(in srgb, var(--espresso) 88%, transparent);
+}
+[data-theme="light"] .room-copy p { color: #4A3018; }
+.room-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+@media (max-width: 760px) {
+  .room-block { grid-template-columns: 1fr; }
+  .room-shot img { aspect-ratio: 4 / 3; }
+  .room-copy p { max-width: none; }
+}
+
+/* ==========================================================================
+   51. FOOTER CLEARANCE + SMALL CONTROLS
+   The chat launcher and the back-to-top control are both fixed to the
+   bottom-right. At the very bottom of the page they landed on top of the
+   privacy link. The footer now ends above them. The back-to-top control
+   was also cream-on-cream, which is a control you cannot see.
+   ========================================================================== */
+.site-footer { padding-bottom: 96px; }
+@media (max-width: 700px) { .site-footer { padding-bottom: 130px; } }
+
+.to-top {
+  background: var(--rust) !important;
+  color: #FFF6E8 !important;
+  border: 1px solid color-mix(in srgb, var(--gold) 55%, transparent) !important;
+}
+.to-top:hover { background: var(--rust-deep) !important; }
+
+/* The one cool-coloured mark on an entirely warm site. */
+.footer-charm circle:first-child { fill: var(--gold) !important; }
+.footer-charm circle:nth-child(2) { fill: #FBF3E4 !important; }
+
+.social-row a { background: rgba(251, 244, 231, 0.13); border-color: rgba(251, 244, 231, 0.3); }
+
+/* ==========================================================================
+   52. SAUCE STICKERS — the text was black on three dark chips
+   A blanket "make it near-black" rule was applied to every sticker, which
+   works on hummus and mayo and disappears entirely on BBQ. Each sticker
+   now carries its own text colour, chosen against its own background.
+   ========================================================================== */
+.sauce-sticker { color: var(--st, #1B1006) !important; }
+
+/* ==========================================================================
+   53. THE LAST OF THE CONTRAST SWEEP
+   Every item here was measured off the rendered pixels, not guessed.
+   ========================================================================== */
+
+/* 1. The order-ahead dialog set its own cream background and then inherited
+      cream text from the page. Measured 1.06 to 1 — invisible. */
+.oa-card, .oa-card p, .oa-card h3 { color: #2A1A0C !important; }
+.oa-card p { opacity: 1 !important; }
+.oa-hours { opacity: 1 !important; color: #6B4E2C !important; }
+[data-theme="vibrant"] .oa-card,
+[data-theme="vibrant"] .oa-card p,
+[data-theme="vibrant"] .oa-card h3 { color: #FBF3E4 !important; }
+[data-theme="vibrant"] .oa-hours { color: #D8C29C !important; }
+
+/* 2. "Get directions" beside the hero — a cream label on a cream button. */
+.hero-actions .btn-ghost .btn-label,
+.hero-actions .btn-ghost { color: var(--rust-deep) !important; }
+[data-theme="vibrant"] .hero-actions .btn-ghost,
+[data-theme="vibrant"] .hero-actions .btn-ghost .btn-label { color: #FFF3E2 !important; }
+.parallax-band .btn-ghost .btn-label,
+.band-dark .btn-ghost .btn-label { color: inherit !important; }
+
+/* 3. The scroll cue. Meant to be quiet, was nearly gone. */
+.hero-cue { color: rgba(255, 247, 235, 0.96) !important; text-shadow: 0 1px 5px rgba(0,0,0,0.9); }
+[data-theme="light"] .hero-cue { color: rgba(255, 247, 235, 0.96) !important; }
+
+/* 4. Stars sat a hair under the line in both themes. */
+.stars-sm, .rating-badge .stars { color: #9C3A16 !important; }
+[data-theme="vibrant"] .stars-sm,
+[data-theme="vibrant"] .rating-badge .stars { color: #FFC969 !important; }
+
+/* 5. Small caps labels on the dark stat band. */
+.stat-item .label { color: #E7D4B4 !important; }
+
+/* 6. Cream text on rust needs the deeper rust to clear 4.5. */
+.theme-hint button,
+.btn-primary { background: var(--rust-deep) !important; }
+.theme-hint button:hover, .btn-primary:hover { background: #A33A0D !important; }
+
+/* --- 53b. Three that needed to answer a more specific rule, and two that
+       sit on a photograph rather than on a flat colour. ------------------ */
+
+/* Stars: the theme-scoped rules further up are three levels deep, so this
+   has to match them level for level. */
+[data-theme="light"] .review-card .stars-sm,
+[data-theme="light"] .rating-badge .stars,
+.review-card .stars-sm,
+.rating-badge .stars { color: #9C3A16 !important; }
+[data-theme="vibrant"] .review-card .stars-sm,
+[data-theme="vibrant"] .rating-badge .stars { color: #FFC969 !important; }
+
+/* The hero buttons stand on a photograph, which stays dark in both themes.
+   A rust label disappears into it; a cream one does not. */
+.hero .btn-ghost,
+.hero .btn-ghost .btn-label,
+[data-theme="light"] .hero .btn-ghost,
+[data-theme="light"] .hero .btn-ghost .btn-label {
+  color: #FFF6E8 !important;
+  border-color: rgba(255, 246, 232, 0.72) !important;
+  background: rgba(28, 17, 8, 0.28) !important;
+  backdrop-filter: blur(6px);
+}
+.hero .btn-ghost:hover,
+[data-theme="light"] .hero .btn-ghost:hover {
+  background: #FFF6E8 !important;
+  border-color: #FFF6E8 !important;
+}
+.hero .btn-ghost:hover,
+.hero .btn-ghost:hover .btn-label,
+[data-theme="light"] .hero .btn-ghost:hover,
+[data-theme="light"] .hero .btn-ghost:hover .btn-label { color: #2A1A0C !important; }
+
+/* The scroll cue lies across the seam where the photograph fades into
+   cream, so it needs a halo rather than a single colour. */
+.hero-cue,
+[data-theme="light"] .hero-cue {
+  color: #3A2617 !important;
+  text-shadow: 0 0 10px rgba(255, 252, 244, 0.95), 0 1px 2px rgba(255, 252, 244, 0.95) !important;
+}
+[data-theme="vibrant"] .hero-cue {
+  color: #FFF3E2 !important;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.9) !important;
+}
+
+/* Vibrant's primary sat at 4.23 against its cream label — a shade deeper
+   clears the line without changing the colour anyone perceives. */
+[data-theme="vibrant"] .btn-primary { background: #B33C0C !important; }
+[data-theme="vibrant"] .btn-primary:hover { background: #9C330A !important; }
+
+/* On the dark theme every ground is dark, so the outlined button takes the
+   gold-on-dark treatment site-wide rather than only inside dark bands. */
+[data-theme="vibrant"] .btn-ghost,
+[data-theme="vibrant"] .btn-ghost .btn-label {
+  color: #FBF3E4 !important;
+  border-color: rgba(255, 204, 77, 0.7) !important;
+}
+[data-theme="vibrant"] .btn-ghost:hover,
+[data-theme="vibrant"] .btn-ghost:hover .btn-label {
+  background: var(--gold) !important;
+  border-color: var(--gold) !important;
+  color: #24160A !important;
+}
+
+/* ==========================================================================
+   54. THE HERO COULD OVERFLOW ITS OWN COLUMN ON A PHONE
+   The headline held its words together with non-breaking spaces, so
+   "Served with pride." was a single unbreakable 415px line inside a 342px
+   column. The hero is a grid, and a grid item defaults to min-width:auto,
+   so the column simply grew — and .hero{overflow:hidden} quietly cut the
+   ends off the headline, the sentence under it and the buttons.
+
+   The spaces are ordinary spaces again. These two rules make sure no
+   future edit can reintroduce the same silent clipping.
+   ========================================================================== */
+.hero .wrap { min-width: 0; }
+.hero-copy, .hero-copy h1, .hero-copy .lede { max-width: 100%; min-width: 0; overflow-wrap: break-word; }
+
+@media (max-width: 560px) {
+  /* On a phone the hint sits over the headline for a few seconds, so it is
+     kept as small as it can be while still pointing at the control. */
+  .theme-hint { width: min(228px, calc(100vw - 24px)); padding: 12px 13px 11px; }
+  .theme-hint strong { font-size: 0.94rem; }
+  .theme-hint p { font-size: 0.79rem; margin-bottom: 9px; }
+  .theme-hint button { font-size: 0.7rem; padding: 0.55em 1em; }
+}
+
+/* ==========================================================================
+   55. TAP TARGETS
+   Footer links were 23px tall and the privacy link 12px. On a phone that
+   is a link you have to aim at. Padding costs nothing and the footer is
+   already loose.
+   ========================================================================== */
+.footer-links a,
+.footer-links span {
+  display: inline-block;
+  padding: 7px 0;
+  line-height: 1.35;
+}
+.footer-bottom { gap: 14px 26px; }
+.footer-bottom a {
+  display: inline-block;
+  padding: 8px 2px;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(251, 244, 231, 0.4);
+}
+.footer-bottom a:hover { text-decoration-color: var(--gold); }
+.special-go { display: inline-flex; align-items: center; padding: 10px 0; }
+
+/* The dish thumbnail and its name were touching on a phone — 48px of
+   photograph, then the word, with nothing between them. */
+.menu-item.has-photo { gap: 14px !important; }
+@media (max-width: 560px) { .menu-item.has-photo { gap: 12px !important; } }
+
+/* ==========================================================================
+   56. LET THE FOOD THROUGH
+   Two things were sitting on top of the opening photographs: a dark scrim
+   shaped to keep the headline readable, and a brightness filter. The scrim
+   still has a job — white type on a photograph needs something behind it —
+   but it was reaching much further across the picture than the words do.
+   Pulled back so the plate is bright from the first second, in both themes,
+   while the left-hand column stays dark enough to read against.
+   ========================================================================== */
+.hero .wrap::before,
+[data-theme="light"] .hero .wrap::before {
+  background: linear-gradient(100deg,
+    rgba(10, 6, 3, 0.82) 0%,
+    rgba(10, 6, 3, 0.66) 28%,
+    rgba(10, 6, 3, 0.34) 46%,
+    rgba(10, 6, 3, 0.08) 60%,
+    rgba(10, 6, 3, 0) 70%) !important;
+}
+@media (max-width: 860px) {
+  /* On a phone the words sit over the middle of the picture, so the scrim
+     stays full width — it just starts lighter at the top. */
+  .hero .wrap::before,
+  [data-theme="light"] .hero .wrap::before {
+    background: linear-gradient(180deg,
+      rgba(8,5,3,0.36) 0%, rgba(8,5,3,0.62) 42%, rgba(8,5,3,0.86) 100%) !important;
+  }
+}
+
+/* The type does the rest. A tight shadow holds the letter edges; a wide
+   soft one darkens the photograph just enough immediately around them.
+   This is what lets the scrim stay light without losing the headline. */
+.hero-copy h1,
+.hero-copy h1 .accent {
+  text-shadow: 0 2px 5px rgba(8, 5, 3, 0.72), 0 4px 34px rgba(8, 5, 3, 0.7);
+}
+.hero-copy .lede { text-shadow: 0 1px 4px rgba(8, 5, 3, 0.88), 0 2px 18px rgba(8, 5, 3, 0.65); }
+.hero-copy .sign-tag { text-shadow: 0 1px 4px rgba(8, 5, 3, 0.92); }
+
+.hero-backdrop { opacity: 1 !important; }
+.hero-backdrop-layer,
+[data-theme="light"] .hero-backdrop-layer {
+  filter: saturate(1.12) contrast(1.04) brightness(1.14) !important;
+}
+
+/* ==========================================================================
+   57. NO BAND BEHIND THE ROLLING PLATE
+   The strip carried a soft beige wash to help the plate read. It reads
+   perfectly well on its own, and the wash was visible as a fading band
+   across the top of the light theme.
+   ========================================================================== */
+.plate-mini-strip { background: none !important; }
+.plate-mini-strip::before { display: none !important; }

@@ -1,0 +1,23 @@
+ALMAZ CAFE — WEBSITE
+====================
+
+FOR THE OWNER
+-------------
+Open   OWNER-GUIDE.html   (double-click it — it opens in your browser)
+
+Everything you will ever need to change — prices, dishes, photos,
+today's special, your phone number — is done by logging in at:
+
+    your-website-address/admin
+
+Bookmark that page. You will never need to look at any of the files
+in this folder.
+
+
+FOR WHOEVER SETS IT UP
+----------------------
+Read   SETUP-README.md   first. The site must be in a GitHub repo
+before the /admin editor will work — that is step one and nothing
+else functions without it.
+
+HANDOVER.md has the technical notes.

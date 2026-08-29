@@ -1,0 +1,442 @@
+# ============================================================
+# ALMAZ CAFE  -  what the website editor is allowed to change
+#
+# This decides which boxes appear when the owner logs in at
+# /admin. Adding a field here adds a box; the build script
+# (build.js) turns whatever is saved back into the website.
+# ============================================================
+
+backend:
+  name: git-gateway
+  branch: main
+
+# Photos uploaded through the editor land in the images folder,
+# next to the ones already there.
+media_folder: "images"
+public_folder: "images"
+
+# Saving publishes straight away. An editorial workflow would add a
+# draft/review step, which is one more thing for a single owner to
+# understand for no benefit.
+publish_mode: simple
+
+locale: "en"
+
+site_url: https://almazcafe.netlify.app
+display_url: https://almazcafe.netlify.app
+logo_url: https://almazcafe.netlify.app/images/almaz-badge-logo.png
+
+collections:
+  # ---------------------------------------------------------
+  - name: "menu"
+    label: "The Menu"
+    label_singular: "Menu section"
+    description: "Prices and dishes. Pick the part of the menu you want to change."
+    files:
+      - name: "combos"
+        label: "Deal Combos"
+        file: "data/menu/combos.json"
+        fields:
+          - { name: title, label: "Heading shown on the page", widget: string }
+          - { name: halal, label: "Show the Halal badge",      widget: boolean, required: false, default: false }
+          - { name: note,  label: "Note under this section",   widget: string,  required: false }
+          - name: items
+            label: "Dishes"
+            label_singular: "Dish"
+            widget: list
+            required: false
+            summary: "{{fields.name}}  —  {{fields.price}}"
+            collapsed: false
+        fields:
+          - { name: name,        label: "Dish name",  widget: string }
+          - { name: price,       label: "Price",      widget: string, hint: "Type it exactly as it should appear, including the $ sign. For example $18.90" }
+          - { name: description, label: "Description", widget: text,   required: false, hint: "The small grey line under the name. Leave empty if it does not need one." }
+          - { name: name_note,   label: "Note after the name", widget: string, required: false, hint: "Shown in lighter type straight after the name, e.g. (mild or spicy)" }
+          - { name: photo,       label: "Photo",      widget: image,  required: false, hint: "Optional. A photo makes the dish stand out on the page." }
+          - name: sections
+            label: "Extra sub-sections"
+            label_singular: "Sub-section"
+            widget: list
+            required: false
+            summary: "{{fields.heading}}"
+            hint: "Only used where a category is split, e.g. Salads inside Rice Meals."
+            fields:
+              - { name: heading, label: "Sub-heading", widget: string }
+              - { name: note,    label: "Note under the sub-heading", widget: string, required: false }
+              - name: items
+                label: "Dishes"
+                label_singular: "Dish"
+                widget: list
+                required: false
+                summary: "{{fields.name}}  —  {{fields.price}}"
+                collapsed: false
+                fields:
+                  - { name: name,        label: "Dish name",  widget: string }
+                  - { name: price,       label: "Price",      widget: string }
+                  - { name: description, label: "Description", widget: text,   required: false }
+                  - { name: name_note,   label: "Note after the name", widget: string, required: false }
+                  - { name: photo,       label: "Photo",      widget: image,  required: false }
+          - name: cards
+            label: "Combo cards"
+            widget: list
+            required: false
+            summary: "{{fields.name}}  —  {{fields.price}}"
+            collapsed: false
+            fields:
+              - { name: name,        label: "Combo name",  widget: string }
+              - { name: price,       label: "Price",       widget: string }
+              - { name: description, label: "Description", widget: text }
+              - { name: tag,         label: "Corner label", widget: string, required: false, hint: "The small caption on the photo, e.g. Combo 1" }
+              - { name: photo,       label: "Photo",        widget: image }
+              - { name: alt,         label: "Photo description for screen readers", widget: string, required: false }
+          - { name: sauces_title, label: "Sauce box heading", widget: string, required: false }
+          - name: sauces
+            label: "Sauces"
+            widget: list
+            required: false
+            summary: "{{fields.name}}"
+            fields:
+              - { name: name,        label: "Sauce",  widget: string }
+              - { name: colour,      label: "Sticker colour", widget: color, required: false, default: "#e7d3a8" }
+              - { name: text_colour, label: "Writing colour", widget: select, required: false, default: "#1B1006", options: [{ label: "Dark writing (for pale sauces)", value: "#1B1006" }, { label: "Light writing (for dark sauces)", value: "#FFF3E2" }] }
+              - { name: tilt,        label: "Tilt",   widget: string, required: false, default: "0deg", hint: "How far the sticker leans, e.g. -4deg or 5deg" }
+
+      - name: "kebabs"
+        label: "Kebabs"
+        file: "data/menu/kebabs.json"
+        fields:
+          - { name: title, label: "Heading shown on the page", widget: string }
+          - { name: halal, label: "Show the Halal badge",      widget: boolean, required: false, default: false }
+          - { name: note,  label: "Note under this section",   widget: string,  required: false }
+          - name: items
+            label: "Dishes"
+            label_singular: "Dish"
+            widget: list
+            required: false
+            summary: "{{fields.name}}  —  {{fields.price}}"
+            collapsed: false
+        fields:
+          - { name: name,        label: "Dish name",  widget: string }
+          - { name: price,       label: "Price",      widget: string, hint: "Type it exactly as it should appear, including the $ sign. For example $18.90" }
+          - { name: description, label: "Description", widget: text,   required: false, hint: "The small grey line under the name. Leave empty if it does not need one." }
+          - { name: name_note,   label: "Note after the name", widget: string, required: false, hint: "Shown in lighter type straight after the name, e.g. (mild or spicy)" }
+          - { name: photo,       label: "Photo",      widget: image,  required: false, hint: "Optional. A photo makes the dish stand out on the page." }
+          - name: sections
+            label: "Extra sub-sections"
+            label_singular: "Sub-section"
+            widget: list
+            required: false
+            summary: "{{fields.heading}}"
+            hint: "Only used where a category is split, e.g. Salads inside Rice Meals."
+            fields:
+              - { name: heading, label: "Sub-heading", widget: string }
+              - { name: note,    label: "Note under the sub-heading", widget: string, required: false }
+              - name: items
+                label: "Dishes"
+                label_singular: "Dish"
+                widget: list
+                required: false
+                summary: "{{fields.name}}  —  {{fields.price}}"
+                collapsed: false
+                fields:
+                  - { name: name,        label: "Dish name",  widget: string }
+                  - { name: price,       label: "Price",      widget: string }
+                  - { name: description, label: "Description", widget: text,   required: false }
+                  - { name: name_note,   label: "Note after the name", widget: string, required: false }
+                  - { name: photo,       label: "Photo",      widget: image,  required: false }
+
+      - name: "rice"
+        label: "Rice Meals & Salads"
+        file: "data/menu/rice.json"
+        fields:
+          - { name: title, label: "Heading shown on the page", widget: string }
+          - { name: halal, label: "Show the Halal badge",      widget: boolean, required: false, default: false }
+          - { name: note,  label: "Note under this section",   widget: string,  required: false }
+          - name: items
+            label: "Dishes"
+            label_singular: "Dish"
+            widget: list
+            required: false
+            summary: "{{fields.name}}  —  {{fields.price}}"
+            collapsed: false
+        fields:
+          - { name: name,        label: "Dish name",  widget: string }
+          - { name: price,       label: "Price",      widget: string, hint: "Type it exactly as it should appear, including the $ sign. For example $18.90" }
+          - { name: description, label: "Description", widget: text,   required: false, hint: "The small grey line under the name. Leave empty if it does not need one." }
+          - { name: name_note,   label: "Note after the name", widget: string, required: false, hint: "Shown in lighter type straight after the name, e.g. (mild or spicy)" }
+          - { name: photo,       label: "Photo",      widget: image,  required: false, hint: "Optional. A photo makes the dish stand out on the page." }
+          - name: sections
+            label: "Extra sub-sections"
+            label_singular: "Sub-section"
+            widget: list
+            required: false
+            summary: "{{fields.heading}}"
+            hint: "Only used where a category is split, e.g. Salads inside Rice Meals."
+            fields:
+              - { name: heading, label: "Sub-heading", widget: string }
+              - { name: note,    label: "Note under the sub-heading", widget: string, required: false }
+              - name: items
+                label: "Dishes"
+                label_singular: "Dish"
+                widget: list
+                required: false
+                summary: "{{fields.name}}  —  {{fields.price}}"
+                collapsed: false
+                fields:
+                  - { name: name,        label: "Dish name",  widget: string }
+                  - { name: price,       label: "Price",      widget: string }
+                  - { name: description, label: "Description", widget: text,   required: false }
+                  - { name: name_note,   label: "Note after the name", widget: string, required: false }
+                  - { name: photo,       label: "Photo",      widget: image,  required: false }
+
+      - name: "traditional"
+        label: "Traditional"
+        file: "data/menu/traditional.json"
+        fields:
+          - { name: title, label: "Heading shown on the page", widget: string }
+          - { name: halal, label: "Show the Halal badge",      widget: boolean, required: false, default: false }
+          - { name: note,  label: "Note under this section",   widget: string,  required: false }
+          - name: items
+            label: "Dishes"
+            label_singular: "Dish"
+            widget: list
+            required: false
+            summary: "{{fields.name}}  —  {{fields.price}}"
+            collapsed: false
+        fields:
+          - { name: name,        label: "Dish name",  widget: string }
+          - { name: price,       label: "Price",      widget: string, hint: "Type it exactly as it should appear, including the $ sign. For example $18.90" }
+          - { name: description, label: "Description", widget: text,   required: false, hint: "The small grey line under the name. Leave empty if it does not need one." }
+          - { name: name_note,   label: "Note after the name", widget: string, required: false, hint: "Shown in lighter type straight after the name, e.g. (mild or spicy)" }
+          - { name: photo,       label: "Photo",      widget: image,  required: false, hint: "Optional. A photo makes the dish stand out on the page." }
+          - name: sections
+            label: "Extra sub-sections"
+            label_singular: "Sub-section"
+            widget: list
+            required: false
+            summary: "{{fields.heading}}"
+            hint: "Only used where a category is split, e.g. Salads inside Rice Meals."
+            fields:
+              - { name: heading, label: "Sub-heading", widget: string }
+              - { name: note,    label: "Note under the sub-heading", widget: string, required: false }
+              - name: items
+                label: "Dishes"
+                label_singular: "Dish"
+                widget: list
+                required: false
+                summary: "{{fields.name}}  —  {{fields.price}}"
+                collapsed: false
+                fields:
+                  - { name: name,        label: "Dish name",  widget: string }
+                  - { name: price,       label: "Price",      widget: string }
+                  - { name: description, label: "Description", widget: text,   required: false }
+                  - { name: name_note,   label: "Note after the name", widget: string, required: false }
+                  - { name: photo,       label: "Photo",      widget: image,  required: false }
+
+      - name: "veg"
+        label: "Vegetarian"
+        file: "data/menu/veg.json"
+        fields:
+          - { name: title, label: "Heading shown on the page", widget: string }
+          - { name: halal, label: "Show the Halal badge",      widget: boolean, required: false, default: false }
+          - { name: note,  label: "Note under this section",   widget: string,  required: false }
+          - name: items
+            label: "Dishes"
+            label_singular: "Dish"
+            widget: list
+            required: false
+            summary: "{{fields.name}}  —  {{fields.price}}"
+            collapsed: false
+        fields:
+          - { name: name,        label: "Dish name",  widget: string }
+          - { name: price,       label: "Price",      widget: string, hint: "Type it exactly as it should appear, including the $ sign. For example $18.90" }
+          - { name: description, label: "Description", widget: text,   required: false, hint: "The small grey line under the name. Leave empty if it does not need one." }
+          - { name: name_note,   label: "Note after the name", widget: string, required: false, hint: "Shown in lighter type straight after the name, e.g. (mild or spicy)" }
+          - { name: photo,       label: "Photo",      widget: image,  required: false, hint: "Optional. A photo makes the dish stand out on the page." }
+          - name: sections
+            label: "Extra sub-sections"
+            label_singular: "Sub-section"
+            widget: list
+            required: false
+            summary: "{{fields.heading}}"
+            hint: "Only used where a category is split, e.g. Salads inside Rice Meals."
+            fields:
+              - { name: heading, label: "Sub-heading", widget: string }
+              - { name: note,    label: "Note under the sub-heading", widget: string, required: false }
+              - name: items
+                label: "Dishes"
+                label_singular: "Dish"
+                widget: list
+                required: false
+                summary: "{{fields.name}}  —  {{fields.price}}"
+                collapsed: false
+                fields:
+                  - { name: name,        label: "Dish name",  widget: string }
+                  - { name: price,       label: "Price",      widget: string }
+                  - { name: description, label: "Description", widget: text,   required: false }
+                  - { name: name_note,   label: "Note after the name", widget: string, required: false }
+                  - { name: photo,       label: "Photo",      widget: image,  required: false }
+
+      - name: "fishburgers"
+        label: "Fish, Chips & Burgers"
+        file: "data/menu/fishburgers.json"
+        fields:
+          - { name: title, label: "Heading shown on the page", widget: string }
+          - { name: halal, label: "Show the Halal badge",      widget: boolean, required: false, default: false }
+          - { name: note,  label: "Note under this section",   widget: string,  required: false }
+          - name: items
+            label: "Dishes"
+            label_singular: "Dish"
+            widget: list
+            required: false
+            summary: "{{fields.name}}  —  {{fields.price}}"
+            collapsed: false
+        fields:
+          - { name: name,        label: "Dish name",  widget: string }
+          - { name: price,       label: "Price",      widget: string, hint: "Type it exactly as it should appear, including the $ sign. For example $18.90" }
+          - { name: description, label: "Description", widget: text,   required: false, hint: "The small grey line under the name. Leave empty if it does not need one." }
+          - { name: name_note,   label: "Note after the name", widget: string, required: false, hint: "Shown in lighter type straight after the name, e.g. (mild or spicy)" }
+          - { name: photo,       label: "Photo",      widget: image,  required: false, hint: "Optional. A photo makes the dish stand out on the page." }
+          - name: sections
+            label: "Extra sub-sections"
+            label_singular: "Sub-section"
+            widget: list
+            required: false
+            summary: "{{fields.heading}}"
+            hint: "Only used where a category is split, e.g. Salads inside Rice Meals."
+            fields:
+              - { name: heading, label: "Sub-heading", widget: string }
+              - { name: note,    label: "Note under the sub-heading", widget: string, required: false }
+              - name: items
+                label: "Dishes"
+                label_singular: "Dish"
+                widget: list
+                required: false
+                summary: "{{fields.name}}  —  {{fields.price}}"
+                collapsed: false
+                fields:
+                  - { name: name,        label: "Dish name",  widget: string }
+                  - { name: price,       label: "Price",      widget: string }
+                  - { name: description, label: "Description", widget: text,   required: false }
+                  - { name: name_note,   label: "Note after the name", widget: string, required: false }
+                  - { name: photo,       label: "Photo",      widget: image,  required: false }
+
+      - name: "sides"
+        label: "Sides & Desserts"
+        file: "data/menu/sides.json"
+        fields:
+          - { name: title, label: "Heading shown on the page", widget: string }
+          - { name: halal, label: "Show the Halal badge",      widget: boolean, required: false, default: false }
+          - { name: note,  label: "Note under this section",   widget: string,  required: false }
+          - name: items
+            label: "Dishes"
+            label_singular: "Dish"
+            widget: list
+            required: false
+            summary: "{{fields.name}}  —  {{fields.price}}"
+            collapsed: false
+        fields:
+          - { name: name,        label: "Dish name",  widget: string }
+          - { name: price,       label: "Price",      widget: string, hint: "Type it exactly as it should appear, including the $ sign. For example $18.90" }
+          - { name: description, label: "Description", widget: text,   required: false, hint: "The small grey line under the name. Leave empty if it does not need one." }
+          - { name: name_note,   label: "Note after the name", widget: string, required: false, hint: "Shown in lighter type straight after the name, e.g. (mild or spicy)" }
+          - { name: photo,       label: "Photo",      widget: image,  required: false, hint: "Optional. A photo makes the dish stand out on the page." }
+          - name: sections
+            label: "Extra sub-sections"
+            label_singular: "Sub-section"
+            widget: list
+            required: false
+            summary: "{{fields.heading}}"
+            hint: "Only used where a category is split, e.g. Salads inside Rice Meals."
+            fields:
+              - { name: heading, label: "Sub-heading", widget: string }
+              - { name: note,    label: "Note under the sub-heading", widget: string, required: false }
+              - name: items
+                label: "Dishes"
+                label_singular: "Dish"
+                widget: list
+                required: false
+                summary: "{{fields.name}}  —  {{fields.price}}"
+                collapsed: false
+                fields:
+                  - { name: name,        label: "Dish name",  widget: string }
+                  - { name: price,       label: "Price",      widget: string }
+                  - { name: description, label: "Description", widget: text,   required: false }
+                  - { name: name_note,   label: "Note after the name", widget: string, required: false }
+                  - { name: photo,       label: "Photo",      widget: image,  required: false }
+
+      - name: "drinks"
+        label: "Drinks"
+        file: "data/menu/drinks.json"
+        fields:
+          - { name: title, label: "Heading shown on the page", widget: string }
+          - { name: halal, label: "Show the Halal badge",      widget: boolean, required: false, default: false }
+          - { name: note,  label: "Note under this section",   widget: string,  required: false }
+          - name: items
+            label: "Dishes"
+            label_singular: "Dish"
+            widget: list
+            required: false
+            summary: "{{fields.name}}  —  {{fields.price}}"
+            collapsed: false
+        fields:
+          - { name: name,        label: "Dish name",  widget: string }
+          - { name: price,       label: "Price",      widget: string, hint: "Type it exactly as it should appear, including the $ sign. For example $18.90" }
+          - { name: description, label: "Description", widget: text,   required: false, hint: "The small grey line under the name. Leave empty if it does not need one." }
+          - { name: name_note,   label: "Note after the name", widget: string, required: false, hint: "Shown in lighter type straight after the name, e.g. (mild or spicy)" }
+          - { name: photo,       label: "Photo",      widget: image,  required: false, hint: "Optional. A photo makes the dish stand out on the page." }
+          - name: sections
+            label: "Extra sub-sections"
+            label_singular: "Sub-section"
+            widget: list
+            required: false
+            summary: "{{fields.heading}}"
+            hint: "Only used where a category is split, e.g. Salads inside Rice Meals."
+            fields:
+              - { name: heading, label: "Sub-heading", widget: string }
+              - { name: note,    label: "Note under the sub-heading", widget: string, required: false }
+              - name: items
+                label: "Dishes"
+                label_singular: "Dish"
+                widget: list
+                required: false
+                summary: "{{fields.name}}  —  {{fields.price}}"
+                collapsed: false
+                fields:
+                  - { name: name,        label: "Dish name",  widget: string }
+                  - { name: price,       label: "Price",      widget: string }
+                  - { name: description, label: "Description", widget: text,   required: false }
+                  - { name: name_note,   label: "Note after the name", widget: string, required: false }
+                  - { name: photo,       label: "Photo",      widget: image,  required: false }
+
+  # ---------------------------------------------------------
+  - name: "settings"
+    label: "Cafe Details"
+    files:
+      - name: "details"
+        label: "Phone, email, address and hours"
+        file: "data/settings.json"
+        description: "These appear at the bottom of every page and on the contact page. Change them once here and they change everywhere."
+        fields:
+          - { name: phone,     label: "Phone number as people read it", widget: string, hint: "For example (09) 622 2108" }
+          - { name: phoneDial, label: "Phone number as a phone dials it", widget: string, hint: "Country code, no spaces or brackets. For example +6496222108" }
+          - { name: email,     label: "Email address", widget: string }
+          - { name: address,   label: "Street address", widget: string }
+          - { name: hours,     label: "Opening hours", widget: string, hint: "For example Daily, 11am-9pm" }
+          - { name: facebook,  label: "Facebook page address", widget: string, required: false }
+          - { name: instagram, label: "Instagram page address", widget: string, required: false }
+
+      - name: "specials"
+        label: "Today's Special"
+        file: "data/specials.json"
+        description: "One special for each day of the week. The website works out what day it is and shows the right one on the home page."
+        fields:
+          - name: specials
+            label: "The week"
+            widget: list
+            summary: "{{fields.day}}  —  {{fields.name}}"
+            collapsed: false
+            fields:
+              - { name: day,  label: "Day", widget: select, options: ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"] }
+              - { name: name, label: "Dish", widget: string }
+              - { name: note, label: "One line about it", widget: string }

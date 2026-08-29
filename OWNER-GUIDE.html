@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Almaz Cafe — Owner's Guide</title>
+<style>
+  :root{
+    --ink:#2A1A0C; --soft:#5C4326; --cream:#FFFBF2; --paper:#F5EAD6;
+    --rust:#B84514; --gold:#C98A2E; --line:rgba(42,26,12,.16);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font:17px/1.65 "Jost","Segoe UI",system-ui,sans-serif;
+    -webkit-text-size-adjust:100%;
+  }
+  .sheet{max-width:820px;margin:0 auto;padding:44px 26px 90px;background:var(--cream);
+         box-shadow:0 0 60px -30px rgba(42,26,12,.5);min-height:100vh}
+  h1{font-size:2.1rem;line-height:1.1;margin:0 0 6px;letter-spacing:-.01em}
+  .sub{color:var(--soft);margin:0 0 30px;font-size:1.05rem}
+  h2{font-size:1.42rem;margin:46px 0 4px;padding-top:22px;border-top:2px solid var(--rust)}
+  h3{font-size:1.1rem;margin:28px 0 6px;color:var(--rust)}
+  p,li{font-size:1.02rem}
+  ol,ul{padding-left:22px}
+  li{margin:7px 0}
+  code{background:#F1E4CC;padding:2px 6px;border-radius:4px;font:0.94em/1.4 ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+       word-break:break-word}
+  pre{background:#2A1A0C;color:#FBF3E4;padding:16px 18px;border-radius:8px;overflow-x:auto;
+      font:14px/1.6 ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+  pre code{background:none;padding:0;color:inherit}
+  .box{background:#FFF7E7;border:1px solid var(--line);border-left:5px solid var(--gold);
+       padding:14px 18px;border-radius:8px;margin:20px 0}
+  .warn{border-left-color:var(--rust);background:#FFF1EA}
+  .box p:first-child{margin-top:0} .box p:last-child{margin-bottom:0}
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:0.97rem}
+  th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{background:#F1E4CC;font-weight:600}
+  td:first-child{white-space:nowrap;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92em}
+  .toc{background:#F1E4CC;border-radius:10px;padding:16px 22px;margin:0 0 10px}
+  .toc ol{margin:6px 0 0;padding-left:20px} .toc li{margin:4px 0}
+  a{color:var(--rust)}
+  .lead{font-size:1.1rem}
+  @media print{ body{background:#fff} .sheet{box-shadow:none;max-width:none} }
+  @media (max-width:560px){ .sheet{padding:28px 16px 60px} h1{font-size:1.7rem} }
+</style>
+</head>
+<body>
+<div class="sheet">
+
+<h1>Almaz Cafe — the owner's guide</h1>
+<p class="sub">How to change anything on your website. You will never need to look at code.</p>
+
+<div class="box">
+  <p><strong>Everything happens in one place.</strong> Your website has an editor built into it. You log in, type the new price into a box, and click Publish. That is the whole job.</p>
+</div>
+
+<div class="toc">
+  <strong>What's in here</strong>
+  <ol>
+    <li>Logging into the editor</li>
+    <li>Changing a price</li>
+    <li>Adding or removing a dish</li>
+    <li>Changing today's special</li>
+    <li>Changing a photo</li>
+    <li>Changing your phone number, email, hours or address</li>
+    <li>Getting messages from the website sent to your Gmail</li>
+    <li>If something goes wrong</li>
+    <li>Things to leave alone</li>
+  </ol>
+</div>
+
+<h2>1. Logging into the editor</h2>
+<p>Go to your website address and add <code>/admin</code> on the end. For example:</p>
+<pre><code>almazcafe.co.nz/admin</code></pre>
+<p><strong>Bookmark that page.</strong> It is the only address you need.</p>
+<p>Log in with your Gmail address and the password you were given. The screen you land on has two things down the left:</p>
+<ul>
+  <li><strong>The Menu</strong> — every part of the menu, one at a time</li>
+  <li><strong>Cafe Details</strong> — phone, email, address, hours, and today's special</li>
+</ul>
+<div class="box">
+  <p><strong>Nothing you do is live until you click Publish.</strong> Click around as much as you like. If you change your mind, close the page without publishing and nothing happens.</p>
+</div>
+
+<h2>2. Changing a price</h2>
+<ol>
+  <li>Click <strong>The Menu</strong>.</li>
+  <li>Click the part of the menu the dish is in — Kebabs, Rice Meals &amp; Salads, Drinks, and so on.</li>
+  <li>Find the dish. Each one shows its name and price so you can spot it at a glance.</li>
+  <li>Click into the <strong>Price</strong> box and type the new price. Include the dollar sign: <code>$18.90</code>, not <code>18.90</code>.</li>
+  <li>Click <strong>Publish</strong> at the top.</li>
+</ol>
+<p>Give it a minute, then open your website and press Ctrl+Shift+R (Cmd+Shift+R on a Mac) to see the change.</p>
+<div class="box warn">
+  <p><strong>Type prices exactly as you want them read.</strong> Whatever you type appears on the website letter for letter. <code>$18.90</code> is right. <code>18.90 dollars</code> would appear as "18.90 dollars".</p>
+</div>
+
+<h2>3. Adding or removing a dish</h2>
+<p>In the same place. Under the list of dishes there is an <strong>Add Dish</strong> button.</p>
+<table>
+  <tr><th>Box</th><th>What to put in it</th></tr>
+  <tr><td>Dish name</td><td>What it is called. Required.</td></tr>
+  <tr><td>Price</td><td>With the dollar sign. Required.</td></tr>
+  <tr><td>Description</td><td>The small grey line underneath. Leave empty if it does not need one — plenty of dishes have none.</td></tr>
+  <tr><td>Note after the name</td><td>Rarely used. It puts a lighter note straight after the name, like <em>(mild or spicy)</em>.</td></tr>
+  <tr><td>Photo</td><td>Optional. A dish with a photo stands out on the page.</td></tr>
+</table>
+<p>To <strong>remove</strong> a dish, click the small dropdown arrow on its row and choose Delete. To <strong>reorder</strong>, drag it by the handle on the left.</p>
+<p>Then Publish.</p>
+
+<h2>4. Changing today's special</h2>
+<ol>
+  <li>Click <strong>Cafe Details</strong> → <strong>Today's Special</strong>.</li>
+  <li>There are seven rows, one per day. Change the dish and the line about it.</li>
+  <li>Publish.</li>
+</ol>
+<p>The website works out what day it is and shows the right one on the home page by itself. You set this once and it looks after itself from then on.</p>
+
+<h2>5. Changing a photo</h2>
+<p>Click the <strong>Photo</strong> box on any dish, then <strong>Upload</strong> and choose a picture from your computer or phone. Publish.</p>
+<div class="box">
+  <p><strong>A note on photo size.</strong> Photos straight from a phone are very large and make the website slow to open, especially for people on mobile data. If you can, shrink it to about 1000 pixels wide first. If you are not sure how, it will still work — it will just load a little slower.</p>
+</div>
+
+<h2>6. Changing your phone number, email, hours or address</h2>
+<p>Click <strong>Cafe Details</strong> → <strong>Phone, email, address and hours</strong>. Change what you need and Publish.</p>
+<p>These appear at the bottom of every page and across the contact page. You change them once here and they change everywhere at the same time.</p>
+<div class="box warn">
+  <p><strong>Two phone boxes, on purpose.</strong> The first is what people <em>read</em> — <code>(09) 622 2108</code>. The second is what their phone <em>dials</em> when they tap it — <code>+6496222108</code>, with the country code and no spaces or brackets. If you change one, change both, or tapping the number will ring the wrong place.</p>
+</div>
+
+<h2>7. Getting messages from the website sent to your Gmail</h2>
+<p>When someone fills in the form on the Contact page, the message is kept safely on Netlify — and it can also be emailed straight to you. Set that up once:</p>
+<ol>
+  <li>Go to <a href="https://app.netlify.com">app.netlify.com</a> and click <strong>Log in with Google</strong> using your cafe Gmail.</li>
+  <li>Open the site, then click <strong>Forms</strong> in the menu on the left.</li>
+  <li>Click <strong>Form notifications</strong> → <strong>Add notification</strong> → <strong>Email notification</strong>.</li>
+  <li>Type your Gmail address and save.</li>
+</ol>
+<p>Every message now arrives in your inbox, and a copy is always kept on that Forms page as a backup.</p>
+<div class="box warn">
+  <p><strong>Check your spam folder the first time.</strong> Gmail usually files the very first one as junk. Mark it "Not spam" once and the rest come through properly.</p>
+</div>
+
+<h2>8. If something goes wrong</h2>
+
+<h3>I published something and it looks wrong</h3>
+<p>Go back into the editor, fix the box, and Publish again. Every version is kept, so nothing is ever really lost.</p>
+
+<h3>I published but the website still shows the old price</h3>
+<p>Two reasons, in order of likelihood. First, give it two minutes — the website takes a moment to rebuild after you publish. Second, your browser is showing you the copy it saved earlier: hold <strong>Shift</strong> and click reload.</p>
+
+<h3>The editor won't let me log in</h3>
+<p>Use the "Forgot password" link on the login box. The reset email goes to your cafe Gmail.</p>
+
+<h3>The light and dark switch</h3>
+<p>The website opens light. Visitors can switch it themselves using the button in the top bar, and their choice is remembered on their own device. First-time visitors see a small card pointing at it, once only. Nothing for you to do.</p>
+
+<h3>Something bigger</h3>
+<p>Contact whoever built the site. Tell them what you were changing and what happened. They can put yesterday's version back in under a minute.</p>
+
+<h2>9. Things to leave alone</h2>
+<p>You will never need these, but so you know what they are if you come across them:</p>
+<table>
+  <tr><th>What</th><th>Why leave it</th></tr>
+  <tr><td>The <code>data</code> folder</td><td>Where the editor keeps your menu. The editor writes it for you.</td></tr>
+  <tr><td><code>build.js</code></td><td>Turns what you type in the editor back into the website. Runs by itself.</td></tr>
+  <tr><td><code>site-settings.js</code>, <code>menu.html</code></td><td>Written automatically every time you publish. Anything typed into them by hand is wiped at the next Publish.</td></tr>
+  <tr><td>The <code>admin</code> folder</td><td>The editor itself.</td></tr>
+  <tr><td><code>netlify.toml</code></td><td>Hosting settings.</td></tr>
+</table>
+<div class="box">
+  <p><strong>The short version.</strong> Bookmark <code>/admin</code>. Log in. Change the box. Click Publish. That is the entire job, and you cannot break the website doing it.</p>
+</div>
+
+</div>
+</body>
+</html>

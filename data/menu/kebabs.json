@@ -1,0 +1,56 @@
+{
+  "title": "Kebabs",
+  "halal": true,
+  "items": [
+    {
+      "name": "Chicken Kebab",
+      "price": "$16.90",
+      "description": "Marinated boneless chicken with sauces & salad."
+    },
+    {
+      "name": "Lamb Kebab",
+      "price": "$18.90",
+      "description": "Marinated tender lamb with sauces & salad."
+    },
+    {
+      "name": "Mixed Kebab",
+      "price": "$19.90",
+      "description": "Chicken & lamb with sauces & salad."
+    },
+    {
+      "name": "Beef Kebab",
+      "price": "$16.90",
+      "description": "Marinated prime beef with sauces & salad."
+    },
+    {
+      "name": "Chicken Souvlaki Kebab",
+      "price": "$17.90",
+      "description": "Cooked with homemade garlic sauce."
+    },
+    {
+      "name": "Lamb Souvlaki Kebab",
+      "price": "$19.90",
+      "description": "Cooked with homemade garlic sauce."
+    },
+    {
+      "name": "Chicken Satay Kebab",
+      "price": "$17.90",
+      "description": "Cooked with homemade satay sauce."
+    },
+    {
+      "name": "Lamb Satay Kebab",
+      "price": "$19.90",
+      "description": "Cooked with homemade satay sauce."
+    },
+    {
+      "name": "Chicken Works Kebab",
+      "price": "$19.90",
+      "description": "Chicken with salad, cheese, hummus & sauces."
+    },
+    {
+      "name": "Lamb Works Kebab",
+      "price": "$21.90",
+      "description": "Lamb with salad, cheese, hummus & sauces."
+    }
+  ]
+}

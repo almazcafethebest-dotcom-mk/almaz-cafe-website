@@ -1,0 +1,9 @@
+{
+  "name": "almaz-cafe",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Almaz Cafe website. Static HTML built from the files in data/ by build.js. No dependencies.",
+  "scripts": {
+    "build": "node build.js"
+  }
+}
