@@ -11,6 +11,12 @@
   command = "node build.js"
   publish = "."
 
+# The folder called "functions" at the root belongs to Cloudflare Pages,
+# which uses it for the preview password gate. Netlify's own functions
+# directory is pointed elsewhere so it does not try to build that file.
+[functions]
+  directory = "netlify/functions"
+
 [[headers]]
   for = "/*"
   [headers.values]
